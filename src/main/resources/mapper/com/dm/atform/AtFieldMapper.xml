@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.atform.sqldao.AtFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.atform.model.AtField" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="table_id" property="tableId" jdbcType="VARCHAR" />
+    <result column="a_title" property="aTitle" jdbcType="VARCHAR" />
+    <result column="a_field" property="aField" jdbcType="VARCHAR" />
+    <result column="a_width" property="aWidth" jdbcType="VARCHAR" />
+    <result column="a_format" property="aFormat" jdbcType="VARCHAR" />
+    <result column="a_sort" property="aSort" jdbcType="BIT" />
+    <result column="a_type" property="aType" jdbcType="VARCHAR" />
+    <result column="grid_show" property="gridShow" jdbcType="BIT" />
+    <result column="detail_show" property="detailShow" jdbcType="BIT" />
+    <result column="a_search" property="aSearch" jdbcType="BIT" />
+    <result column="a_seq" property="aSeq" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, table_id, a_title, a_field, a_width, a_format, a_sort, a_type, grid_show, detail_show,a_search, 
+    a_seq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from at_field_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByArgMap" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from at_field_config
+    <where>
+    	<if test="model!=null">
+    		<if test="model.tableId!=null and model.tableId!=''">
+    			and table_id =#{model.tableId}
+    		</if>
+    		<if test="model.aTitle!=null and model.aTitle!=''">
+    			and a_title =#{model.aTitle}
+    		</if>
+    		<if test="model.aField!=null and model.aField!=''">
+    			and a_field =#{model.aField}
+    		</if>
+    	</if>
+    </where>
+    <if test="sort!=null and sort!=''">
+    	order by ${sort}
+    </if>
+  </select>
+  <select id="findmaxSeq" resultType="Integer">
+  	select 
+    max(a_seq) a_seq
+    from at_field_config
+    <if test="tableId!=null">
+    where table_id = #{tableId,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from at_field_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dm.atform.model.AtField" >
+    insert into at_field_config (id, table_id, a_title, 
+      a_field, a_width, a_format, 
+      a_sort, a_type, grid_show, 
+      detail_show,a_search, a_seq)
+    values (#{id,jdbcType=VARCHAR}, #{tableId,jdbcType=VARCHAR}, #{aTitle,jdbcType=VARCHAR}, 
+      #{aField,jdbcType=VARCHAR}, #{aWidth,jdbcType=VARCHAR}, #{aFormat,jdbcType=VARCHAR}, 
+      #{aSort,jdbcType=BIT}, #{aType,jdbcType=VARCHAR}, #{gridShow,jdbcType=BIT}, 
+      #{detailShow,jdbcType=BIT},#{aSearch,jdbcType=BIT}, #{aSeq,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.atform.model.AtField" >
+    insert into at_field_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="table_id != null" >
+        table_id,
+      </if>
+      <if test="aTitle != null" >
+        a_title,
+      </if>
+      <if test="aField != null" >
+        a_field,
+      </if>
+      <if test="aWidth != null" >
+        a_width,
+      </if>
+      <if test="aFormat != null" >
+        a_format,
+      </if>
+      <if test="aSort != null" >
+        a_sort,
+      </if>
+      <if test="aType != null" >
+        a_type,
+      </if>
+      <if test="gridShow != null" >
+        grid_show,
+      </if>
+      <if test="detailShow != null" >
+        detail_show,
+      </if>
+      <if test="aSearch != null" >
+        a_search,
+      </if>
+      <if test="aSeq != null" >
+        a_seq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="table_id != null" >
+        #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="aTitle != null" >
+        #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aField != null" >
+        #{aField,jdbcType=VARCHAR},
+      </if>
+      <if test="aWidth != null" >
+        #{aWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="aFormat != null" >
+        #{aFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="aSort != null" >
+        #{aSort,jdbcType=BIT},
+      </if>
+      <if test="aType != null" >
+        #{aType,jdbcType=VARCHAR},
+      </if>
+      <if test="gridShow != null" >
+        #{gridShow,jdbcType=BIT},
+      </if>
+      <if test="detailShow != null" >
+        #{detailShow,jdbcType=BIT},
+      </if>
+      <if test="aSearch != null" >
+        #{aSearch,jdbcType=BIT},
+      </if>
+      <if test="aSeq != null" >
+        #{aSeq,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.atform.model.AtField" >
+    update at_field_config
+    <set >
+      <if test="table_id != null" >
+        table_id = #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="aTitle != null" >
+        a_title = #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aField != null" >
+        a_field = #{aField,jdbcType=VARCHAR},
+      </if>
+      <if test="aWidth != null" >
+        a_width = #{aWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="aFormat != null" >
+        a_format = #{aFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="aSort != null" >
+        a_sort = #{aSort,jdbcType=BIT},
+      </if>
+      <if test="aType != null" >
+        a_type = #{aType,jdbcType=VARCHAR},
+      </if>
+      <if test="gridShow != null" >
+        grid_show = #{gridShow,jdbcType=BIT},
+      </if>
+      <if test="detailShow != null" >
+        detail_show = #{detailShow,jdbcType=BIT},
+      </if>
+      <if test="aSearch != null" >
+        a_search = #{aSearch,jdbcType=BIT},
+      </if>
+      <if test="aSeq != null" >
+        a_seq = #{aSeq,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.atform.model.AtField" >
+    update at_field_config
+    set table_id = #{tableId,jdbcType=VARCHAR},
+      a_title = #{aTitle,jdbcType=VARCHAR},
+      a_field = #{aField,jdbcType=VARCHAR},
+      a_width = #{aWidth,jdbcType=VARCHAR},
+      a_format = #{aFormat,jdbcType=VARCHAR},
+      a_sort = #{aSort,jdbcType=BIT},
+      a_type = #{aType,jdbcType=VARCHAR},
+      grid_show = #{gridShow,jdbcType=BIT},
+      detail_show = #{detailShow,jdbcType=BIT},
+      a_search = #{aSearch,jdbcType=BIT},
+      a_seq = #{aSeq,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByTableId" resultType="java.util.HashMap" parameterType="java.lang.String">
+	SELECT t.a_title chinese,t.a_field fuhao FROM at_field_config t WHERE
+	t.table_id = #{tableId,jdbcType=VARCHAR}
+  </select>
+</mapper>

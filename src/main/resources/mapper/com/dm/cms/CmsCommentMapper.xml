@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsComment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="comment_text" property="commentText" jdbcType="VARCHAR" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP"/>
+    <result column="comment_user_login_name" property="commentUserLoginName" jdbcType="VARCHAR" />
+    <result column="comment_user_name" property="commentUserName" jdbcType="VARCHAR" />
+    <result column="comment_user_avatar" property="commentUserAvatar" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_active" property="isActive" jdbcType="BIT" />
+    <result column="channel_type" property="channelType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, comment_text, content_id,comment_time,comment_user_login_name, comment_user_name, 
+    comment_user_avatar, create_time, create_user, update_time, is_active, channel_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsComment" >
+    insert into cms_comment (id, comment_text, content_id, 
+      comment_time, comment_user_login_name, comment_user_name, 
+      comment_user_avatar, create_time, create_user, 
+      update_time, is_active, channel_type
+      )
+    values (#{id,jdbcType=INTEGER}, #{commentText,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER}, 
+      #{commentTime,jdbcType=TIMESTAMP}, #{commentUserLoginName,jdbcType=VARCHAR}, #{commentUserName,jdbcType=VARCHAR}, 
+      #{commentUserAvatar,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isActive,jdbcType=BIT}, #{channelType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsComment" >
+    insert into cms_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commentText != null" >
+        comment_text,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+      <if test="commentUserLoginName != null" >
+        comment_user_login_name,
+      </if>
+      <if test="commentUserName != null" >
+        comment_user_name,
+      </if>
+      <if test="commentUserAvatar != null" >
+        comment_user_avatar,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="channelType != null" >
+        channel_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="commentText != null" >
+        #{commentText,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentUserLoginName != null" >
+        #{commentUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserName != null" >
+        #{commentUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserAvatar != null" >
+        #{commentUserAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="channelType != null" >
+        #{channelType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsComment" >
+    update cms_comment
+    <set >
+      <if test="commentText != null" >
+        comment_text = #{commentText,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentUserLoginName != null" >
+        comment_user_login_name = #{commentUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserName != null" >
+        comment_user_name = #{commentUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserAvatar != null" >
+        comment_user_avatar = #{commentUserAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="channelType != null" >
+        channel_type = #{channelType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsComment" >
+    update cms_comment
+    set comment_text = #{commentText,jdbcType=VARCHAR},
+      content_id = #{contentId,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      comment_user_login_name = #{commentUserLoginName,jdbcType=VARCHAR},
+      comment_user_name = #{commentUserName,jdbcType=VARCHAR},
+      comment_user_avatar = #{commentUserAvatar,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_active = #{isActive,jdbcType=BIT},
+      channel_type = #{channelType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectRecordsByCmsContentId" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from cms_comment
+        where content_id = #{cmsContentId,jdbcType=INTEGER} ORDER BY comment_time DESC
+    </select>
+    
+    <select id="selectCountByCmsContentId" resultType="java.lang.Integer">
+        select
+        count(*)
+        from cms_comment
+        where content_id = #{cmsContentId,jdbcType=INTEGER} and channel_type= #{channelType} ORDER BY comment_time DESC
+    </select>
+</mapper>

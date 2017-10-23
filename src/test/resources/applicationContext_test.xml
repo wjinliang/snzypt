@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="zcptdataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1:3306/zcpt?useUnicode=true&amp;characterEncoding=utf-8</value> 
+			<!--  <value>jdbc:mysql://101.200.234.44:3306/zcpt?useUnicode=true&amp;characterEncoding=utf-8</value> -->
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>123456</value>
+		</property>
+	</bean>
+	<bean id="sndataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1:3306/topiecms_sn?useUnicode=true&amp;characterEncoding=utf-8</value> 
+			<!-- <value>jdbc:mysql://101.200.234.44:3306/zcpt?useUnicode=true&amp;characterEncoding=utf-8</value> -->
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>123456</value>
+		</property>
+	</bean>
+	<bean id="acdcdatasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://111.205.51.24:3306/zcpt?useUnicode=true&amp;characterEncoding=utf-8</value> 
+			<!-- <value>jdbc:mysql://101.200.234.44:3306/jinhu?useUnicode=true&amp;characterEncoding=utf-8</value>-->
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>ALI12345ali</value>
+		</property>
+	</bean>
+	<bean id="egiSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://10.2.30.16:3306/jinhu?useUnicode=true&amp;characterEncoding=utf-8</value> 
+			<!-- <value>jdbc:mysql://101.200.234.44:3306/jinhu?useUnicode=true&amp;characterEncoding=utf-8</value>-->
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>taiji@jinhu2016</value>
+		</property>
+	</bean>
+	<!-- <bean id="zsdataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.ibm.db2.jcc.DB2Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:db2://192.168.1.188:50000/Tracing</value>
+		</property>
+		<property name="username">
+			<value>db2admin</value>
+		</property>
+		<property name="password">
+			<value>kah@321.com</value>
+		</property>
+	</bean> -->
+	<!-- <bean id="oraleSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@10.2.30.13:1521:orcl</value>
+			<value>jdbc:oracle:thin:@127.0.0.1:1521:ORCL</value> 
+		</property>
+		<property name="username">
+			<value>egiweball</value>
+		</property>
+		<property name="password">
+			<value>egiweball</value>
+		</property>
+	</bean>
+	<bean id="jinhuoraleSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@10.2.30.13:1521:orcl</value>
+			<value>jdbc:oracle:thin:@10.2.30.13:1521:ORCL</value> 
+		</property>
+		<property name="username">
+			<value>egiweball</value>
+		</property>
+		<property name="password">
+			<value>egiweball</value>
+		</property>
+	</bean> -->
+	
+</beans>

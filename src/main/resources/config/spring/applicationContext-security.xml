@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <sec:http pattern="/favicon.ico" security="none"/>
+    <sec:http pattern="/assets/**" security="none"/>
+    <sec:http pattern="/image_center/**" security="none"/>
+    <sec:http pattern="/file_center/**" security="none"/>
+    <sec:http pattern="/randomImage" security="none"/>
+    <sec:http pattern="/cmsStatic/**" security="none"/>
+    <!-- <sec:http pattern="/checkunique" security="none"/> -->
+    <sec:http pattern="/login" security="none"/> 
+    <sec:http pattern="/calogin" security="none"/> 
+    <sec:http pattern="/cacheck" security="none"/> 
+    <!-- <sec:http pattern="/regiest" security="none"/>
+    <sec:http pattern="/saveRegiest" security="none"/>
+    <sec:http pattern="/ajaxSaveRegister" security="none"/> -->
+    <sec:http pattern="/resetPassword" security="none"/>
+    <sec:http pattern="/portal/**" security="none"/>
+    <sec:http pattern="/searchConfig/search" security="none"/>
+    <sec:http pattern="/checkUrl" security="none"/>
+    <sec:http pattern="/resource/**" security="none"/>
+    <sec:http pattern="/cms/attachment/download/**" security="none"/>
+     <sec:http pattern="/axis2-web/**" security="none"/>
+     <sec:http pattern="/axis2-admin/**" security="none"/>
+     
+     <sec:http pattern="/receiveticket.jsp" security="none"/>
+     <sec:http pattern="/sso_errors.jsp" security="none"/>
+    <sec:http pattern="/services/**" security="none"/>
+    <sec:http pattern="${htmlDir}/**" security="none"/>
+
+    <sec:http use-expressions="true"
+              entry-point-ref="authenticationProcessingFilterEntryPoint"
+              access-denied-page="/pages/content/403.jsp">
+        <sec:session-management
+                session-authentication-strategy-ref="sessionAuthenticationStrategy"
+                invalid-session-url="/login"/>
+        <!-- <sec:logout invalidate-session="false" logout-url="/logout" logout-success-url="/"/> -->
+        <sec:custom-filter position="FORM_LOGIN_FILTER" ref="ajaxLoginFilter"/>
+        <sec:custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter"/>
+
+        <sec:custom-filter before="LOGOUT_FILTER" ref="myLogoutFilter"/>
+        <sec:custom-filter position="LOGOUT_FILTER" ref="myAjaxLogoutFilter"/>
+        <sec:custom-filter position="CONCURRENT_SESSION_FILTER"
+                           ref="concurrencyFilter"/>
+        <sec:custom-filter before="FILTER_SECURITY_INTERCEPTOR"
+                           ref="myFilter"/>
+		<!-- <sec:custom-filter ref="ipFilter" before="FIRST"/> -->
+        <sec:intercept-url pattern="/api/**" access="permitAll"/>
+        <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <!-- <sec:intercept-url pattern="/login" access="hasIpAddress('172.16.10.1')"/> -->
+        <sec:remember-me key="springDm" use-secure-cookie="true"/>
+    </sec:http>
+    <sec:authentication-manager
+            erase-credentials="false" alias="authenticationManager">
+        <sec:authentication-provider ref="daoAuthenticationProvider">
+        </sec:authentication-provider>
+        <sec:authentication-provider ref="rememberMeAuthenticationProvider">
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+    <!-- 注销登陆过滤器 -->
+    <bean id="myLogoutFilter" class="com.dm.platform.security.MyLogoutFilter">
+        <!-- 处理退出的虚拟url -->
+        <property name="filterProcessesUrl" value="/logout"/>
+        <!-- 退出处理成功后的默认显示url -->
+        <constructor-arg index="0" value="/login"/>
+        <constructor-arg index="1">
+            <!-- 退出成功后的handler列表 -->
+            <array>
+                <ref bean="rememberMeServices"/>
+                <bean id="securityContextLogoutHandler"
+                      class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
+                    <property name="invalidateHttpSession" value="false"/>
+                </bean>
+            </array>
+        </constructor-arg>
+    </bean>
+
+    <bean id="myAjaxLogoutFilter" class="com.dm.platform.security.MyLogoutFilter">
+        <!-- 处理退出的虚拟url -->
+        <property name="filterProcessesUrl" value="/ajaxLogout"/>
+        <!-- 退出处理成功后的默认显示url -->
+        <constructor-arg index="0" value="/login"/>
+        <constructor-arg index="1">
+            <!-- 退出成功后的handler列表 -->
+            <array>
+                <ref bean="rememberMeServices"/>
+                <bean id="securityContextLogoutHandler"
+                      class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
+                    <property name="invalidateHttpSession" value="false"/>
+                </bean>
+                <!-- 加入了开发人员自定义的退出成功处理 -->
+                <bean id="myLogoutHandler" class="com.dm.platform.security.MyLogoutHandler"/>
+            </array>
+        </constructor-arg>
+    </bean>
+    <!-- 注销登陆过滤器 结束 -->
+
+    <bean id="authenticationProcessingFilterEntryPoint"
+          class="com.dm.platform.security.MyAuthenticationEntryPoint">
+        <property name="loginFormUrl" value="/login"></property>
+    </bean>
+    <bean id="concurrencyFilter"
+          class="org.springframework.security.web.session.ConcurrentSessionFilter">
+        <property name="sessionRegistry" ref="sessionRegistry"/>
+        <property name="expiredUrl" value="/timeout.jsp"/>
+    </bean>
+    <bean id="sessionAuthenticationStrategy"
+          class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+        <constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
+        <property name="maximumSessions" value="1"/>
+        <property name="exceptionIfMaximumExceeded" value="false"/>
+    </bean>
+
+    <!-- ajax -->
+    <bean id="ajaxLoginFilter"
+          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+        <property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy"/>
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <!-- 验证失败后的处理 -->
+        <property name="authenticationFailureHandler" ref="ajaxFailureHandler"/>
+        <!-- 验证成功后的处理 -->
+        <property name="authenticationSuccessHandler" ref="ajaxSuccessHandler"/>
+        <!-- 处理登录的action -->
+        <property name="filterProcessesUrl" value="/ajaxLoginProcess"/>
+        <!-- 记住密码 -->
+        <property name="rememberMeServices" ref="rememberMeServices"></property>
+    </bean>
+    <bean id="ajaxFailureHandler"
+          class="com.dm.platform.security.AjaxAuthenticationFailureHandler">
+    </bean>
+    <bean id="ajaxSuccessHandler"
+          class="com.dm.platform.security.AjaxAuthenticationSuccessHandler">
+    </bean>
+    <!-- ajax end -->
+
+    <!-- 登录验证器 -->
+    <bean id="loginFilter"
+          class="com.dm.platform.security.MyUsernamePasswordAuthenticationFilter">
+        <property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy"/>
+        <!-- 处理登录的action -->
+        <property name="filterProcessesUrl" value="/j_spring_security_check"></property>
+        <!-- 验证成功后的处理 -->
+        <property name="authenticationSuccessHandler"
+                  ref="mySavedRequestAwareAuthenticationSuccessHandler"></property>
+        <!-- 验证失败后的处理 -->
+        <property name="authenticationFailureHandler"
+                  ref="mySimpleUrlAuthenticationFailureHandler"></property>
+        <property name="authenticationManager" ref="authenticationManager"></property>
+        <!-- 记住密码 -->
+        <property name="rememberMeServices" ref="rememberMeServices"></property>
+    </bean>
+    <bean id="mySavedRequestAwareAuthenticationSuccessHandler"
+          class="com.dm.platform.security.MySavedRequestAwareAuthenticationSuccessHandler">
+    </bean>
+    <bean id="mySimpleUrlAuthenticationFailureHandler"
+          class="com.dm.platform.security.MySimpleUrlAuthenticationFailureHandler">
+        <property name="defaultFailureUrl" value="/login?error=true"></property>
+    </bean>
+    <bean id="myFilter" class="com.dm.platform.security.MySecurityFilter">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="accessDecisionManager" ref="myAccessDecisionManager"/>
+        <property name="securityMetadataSource" ref="MySecurityMetadataSource"/>
+    </bean>
+    <bean id="MySecurityMetadataSource" class="com.dm.platform.security.MySecurityMetadataSource">
+    </bean>
+    <bean id="myAccessDecisionManager" class="com.dm.platform.security.MyAccessDecisionManager">
+    </bean>
+
+    <bean id="rememberMeServices"
+          class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+        <property name="userDetailsService" ref="userDetailsService"/>
+        <property name="key" value="springDm"/>
+        <property name="alwaysRemember" value="false"/>
+        <property name="tokenValiditySeconds" value="1209600"/>
+        <property name="parameter" value="_spring_security_remember_me"/>
+    </bean>
+	<bean id="ipFilter" class="com.dm.platform.security.IPAuthenticationFilter">  
+	          <property name="ips">  
+	               <list>  
+	                    <value>127.0.0.1</value>  
+	               </list>  
+	          </property>  
+	</bean>
+    <bean id="rememberMeAuthenticationProvider"
+          class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+        <property name="key" value="springDm"/>
+    </bean>
+
+    <bean id="userDetailsService" class="com.dm.platform.security.MyUserDetailServiceImpl"/>
+
+    <bean id="daoAuthenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="userDetailsService"></property>
+        <property name="hideUserNotFoundExceptions" value="false"/>
+        <property name="passwordEncoder" ref="passwordEncoder"></property>
+        <property name="userCache" ref="userCache"></property>
+    </bean>
+
+    <bean id="passwordEncoder"
+          class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/>
+
+    <bean id="sessionRegistry"
+          class="org.springframework.security.core.session.SessionRegistryImpl"/>
+    <!-- 国际化 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename"
+                  value="classpath:config/properties/messages_zh_CN"/>
+    </bean>
+    <!-- 国际化 end -->
+</beans>

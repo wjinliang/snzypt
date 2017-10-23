@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.platform.model.UserAccount">
+	<resultMap id="UserMap" type="HashMap">
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+		<result column="USERNAME" property="name" jdbcType="VARCHAR" />
+		<result column="LASTLOGINTIME" property="lastLoginTime" jdbcType="VARCHAR" />
+		<result column="REMOTEIPADDR" property="remoteIpAddr" jdbcType="VARCHAR" />
+		<result column="LOGINCOUNT" property="loginCount" jdbcType="INTEGER" />
+		<result column="NONLOCKED" property="nonLocked" jdbcType="BOOLEAN" />
+		<result column="ID" property="orgId" jdbcType="INTEGER" />
+		<result column="ORGNAME" property="orgName" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="UserTreeMap" type="HashMap">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PID" property="pId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 用户查询 -->
+	<select id="findUserList" parameterType="java.util.Map" resultMap="UserMap">
+		select
+		U.CODE,U.NAME AS USERNAME,U.LOGINNAME,U.LASTLOGINTIME,U.REMOTEIPADDR,U.LOGINCOUNT,U.NONLOCKED,O.ID,O.NAME AS ORGNAME
+		from T_USER_ACCOUNT U LEFT JOIN T_ORG O ON U.org_id = O.ID
+		<where>
+			<if test="name!=null and name!='' ">
+				U.NAME like CONCAT(CONCAT('%', #{name}),'%')
+			</if>
+			<if test="orgName!=null and orgName!='' ">
+				AND O.NAME like CONCAT(CONCAT('%', #{orgName}),'%')
+			</if>
+		</where>
+		<if test="sort!=null and sort!='' ">
+			ORDER BY ${sort}
+		</if>
+	</select>
+	<!-- 所有用户查询 -->
+	<select id="findAllUserList" resultMap="UserTreeMap">
+		select
+		U.CODE AS ID,CONCAT(CONCAT(CONCAT(U.NAME,'('),U.LOGINNAME),')') AS NAME,null AS PID
+		from T_USER_ACCOUNT U 
+	</select>
+	<!-- 用户查询数 -->
+	<select id="countUserForUnique" parameterType="java.util.Map" resultType="LONG">
+		select
+		COUNT(*)
+		from T_USER_ACCOUNT U
+		<where>
+			<if test="loginName!=null and loginName!='' ">
+				U.LOGINNAME = #{loginName}
+			</if>
+			<if test="code!=null and code!='' ">
+				AND U.CODE != #{code}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询用户头像 -->
+	<select id="getUserHeadPic" parameterType="java.util.Map" resultType="STRING">
+		select
+		U.HEADPIC
+		from T_USER_ACCOUNT U
+		<where>
+			<if test="userId!=null and userId!='' ">
+				U.CODE = #{userId}
+			</if>
+		</where>
+	</select>
+</mapper>

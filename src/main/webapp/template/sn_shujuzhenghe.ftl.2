@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<#include "/template/sn_head.ftl">
+<style type="text/css">
+.blink{display:inline-block; width: 15px;height:15px; border-radius: 50%;
+     margin-right:10px;
+}
+.color0{background:#ef7c0f;}
+.color1{background:#6dd7cc;}
+.color2{background:#33cc33;}
+.color3{background:#b27e61;}
+.color4{background:#6666cc;}
+.color5{background:#ff66aa;}
+@-webkit-keyframes redanimations{
+    0%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+    50%{box-shadow:0 0 15px 2px rgba(239,124,15,.4);}
+    100%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+}
+@-moz-keyframes redanimations{/* Firefox */
+    0%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+    50%{box-shadow:0 0 15px 2px rgba(239,124,15,.3);}
+    100%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+}
+@keyframes redanimations{
+    0%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+    50%{box-shadow:0 0 15px 2px rgba(239,124,15,.3);}
+    100%{box-shadow:0 0 10px 2px rgba(239,124,15,.8);}
+}
+.blink{animation:redanimations 2s ease infinite; }
+</style>
+
+</head>
+
+<body>
+	<#include "/template/sn_header.ftl">
+	 <#assign baseStoreArr = ["bCIbFy4Y","8n5CbiZT","a1RtGRtM","znFoIvFr","gtTEogrR","ubQfMxwl","SB7TABfi","tlEgf4kl","c2Ci5cj0","QuHM4Myr","2jA5V8Qh","hznuuul3","oadjmLpy","V5xYUnWp"] >
+	 <#assign baseStoreZHArr = ['基础地理信息',
+'涉农人员信息',
+'涉农机构信息',
+'农产品信息',
+'政务资讯信息',
+'标准规范信息',
+'行政办公信息',
+'农业生产信息',
+'市场行情信息',
+'质量安全信息',
+'监测预警信息',
+'农村经济信息',
+'农村科技信息',
+'休闲农业信息'] >
+    <div class="wrapper" style="min-height:300px;">
+   		<div class="container">
+        	<div class="sjzh" style="    margin-bottom: 30px;">
+            	<ul class="sjzh-list clearfix">
+                	<li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/sjzh.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color0"></span><span>数据来源</sapn></div>
+                            <div class="zjzh_con" style=" border: solid 1px #ef7c0f; height: 280px;">
+							<@dictItemListDirective  code="C07">
+								<#list items as item>
+                                <p class="clearfix"><span class="pull-left">${item.itemName!}</span><span class="pull-right"></span></p>
+								</#list>
+							</@dictItemListDirective>
+                                <!--<p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/zjzh1.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color1"></span><span>整合部门</sapn></div>
+                            <div class="zjzh_con"  style=" border: solid 1px #6dd7cc; height: 280px;">
+							<@dictItemListDirective  code="C06">
+								<#list items as item>
+                                <p class="clearfix"><span class="pull-left">${item.itemName!}</span><span class="pull-right"></span></p>
+								</#list>
+							</@dictItemListDirective>
+                                <!--<p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>-->
+                            </div>
+                        </div>
+                    </li>
+		    <li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/zjzh3.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color3"></span><span>数据专题</sapn></div>
+                            <div class="zjzh_con" style=" border: solid 1px #b27e61; height: 280px;">
+                                <@channelListDirective channelId=2 >
+									<#list channels as chan>
+										<p class="clearfix"><span class="pull-left">${chan.displayName!}</span><span class="pull-right"></span></p>
+									</#list>
+								</@channelListDirective>
+								<!--<p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/zjzh2.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color2"></span><span>数据目录类</sapn></div>
+                            <div class="zjzh_con"  style=" border: solid 1px #33cc33; height: 530px;">
+							<#list baseStoreArr as bs>
+							<@directoryNumberDirective pId=bs type="1">
+								<p class="clearfix"><span class="pull-left">${baseStoreZHArr[bs_index]}</span><span class="pull-right">${directoryNumber+1}</span></p>
+							</@directoryNumberDirective>
+							</#list>
+                                <!--<p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>-->
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/zjzh4.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color4"></span><span>数据条数</sapn></div>
+                            <div class="zjzh_con"  style=" border: solid 1px #6666cc; height: 530px;">
+							<#list baseStoreArr as bs>
+								<@dataResourceRecordDirective id=bs>
+								<p class="clearfix"><span class="pull-left">${record.title!}</span><span class="pull-right">${record.dataCount!}</span></p>
+								</@dataResourceRecordDirective>
+							</#list>
+                               <!-- <p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>-->
+                            </div>
+                        </div>
+                    </li>
+                    <!--<li>
+                    	<div class="sjzh-part" style="background:url(/html/sn-static/static/image/zjzh5.png) no-repeat top 10px left -10px; ">
+                            <div class="zjzh_tit"><span class="blink color5"></span><span>数据增量</sapn></div>
+                            <div class="zjzh_con">
+                                <p class="clearfix"><span class="pull-left">基础平台管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">数据交换管理系统</span><span class="pull-right">45</span></p>
+                                <p class="clearfix"><span class="pull-left">互联网采集管理系统</span><span class="pull-right">45</span></p>
+                            </div>
+                        </div>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--footer开始-->
+    <#include "/template/sn_footer.ftl">
+    <!--footer结束-->
+    <script type="text/javascript">
+	</script>
+</body>
+</html>

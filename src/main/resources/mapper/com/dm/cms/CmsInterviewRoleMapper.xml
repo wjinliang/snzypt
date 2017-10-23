@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsInterviewRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsInterviewRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="interview_id" property="interviewId" jdbcType="INTEGER" />
+    <result column="filed1" property="filed1" jdbcType="VARCHAR" />
+    <result column="filed2" property="filed2" jdbcType="VARCHAR" />
+    <result column="filed3" property="filed3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_name, role_desc, type, person_name, interview_id, filed1, filed2, filed3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_interview_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList"  resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from cms_interview_role
+    where interview_id = #{model.interviewId,jdbcType=INTEGER}
+  	
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_interview_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsInterviewRole" >
+    insert into cms_interview_role (id, role_name, role_desc, 
+      type, person_name, interview_id, 
+      filed1, filed2, filed3
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, #{interviewId,jdbcType=INTEGER}, 
+      #{filed1,jdbcType=VARCHAR}, #{filed2,jdbcType=VARCHAR}, #{filed3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsInterviewRole" >
+    insert into cms_interview_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleDesc != null" >
+        role_desc,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="personName != null" >
+        person_name,
+      </if>
+      <if test="interviewId != null" >
+        interview_id,
+      </if>
+      <if test="filed1 != null" >
+        filed1,
+      </if>
+      <if test="filed2 != null" >
+        filed2,
+      </if>
+      <if test="filed3 != null" >
+        filed3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewId != null" >
+        #{interviewId,jdbcType=INTEGER},
+      </if>
+      <if test="filed1 != null" >
+        #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        #{filed3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsInterviewRole" >
+    update cms_interview_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        role_desc = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewId != null" >
+        interview_id = #{interviewId,jdbcType=INTEGER},
+      </if>
+      <if test="filed1 != null" >
+        filed1 = #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        filed2 = #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        filed3 = #{filed3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsInterviewRole" >
+    update cms_interview_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      interview_id = #{interviewId,jdbcType=INTEGER},
+      filed1 = #{filed1,jdbcType=VARCHAR},
+      filed2 = #{filed2,jdbcType=VARCHAR},
+      filed3 = #{filed3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

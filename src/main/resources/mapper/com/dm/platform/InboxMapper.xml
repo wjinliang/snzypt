@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.platform.model.InboxEntity">
+	<resultMap id="inbox" type="com.dm.platform.dto.InboxDto">
+		<result column="ib_id" property="inboxId" jdbcType="VARCHAR" />
+		<result column="ib_subject" property="subject" jdbcType="VARCHAR" />
+		<result column="ib_content" property="content" jdbcType="VARCHAR" />
+		<result column="ib_has_attachment" property="hasAttachment"
+			jdbcType="VARCHAR" />
+		<result column="ib_from_user" property="formUserStr" jdbcType="VARCHAR" />
+		<result column="ib_to_users" property="toUserStr" jdbcType="VARCHAR" />
+		<result column="ib_create_user_id" property="creatUserId"
+			jdbcType="VARCHAR" />
+		<result column="ib_create_time" property="creatTime" jdbcType="VARCHAR" />
+		<result column="t_id" property="tId" jdbcType="INTEGER" />
+		<result column="ib_type_state" property="inboxType" jdbcType="VARCHAR" />
+		<result column="ib_read_state" property="isRead" jdbcType="VARCHAR" />
+		<result column="ib_mark_state" property="isMark" jdbcType="VARCHAR" />
+		<result column="ib_trash_state" property="isTrash" jdbcType="VARCHAR" />
+		<result column="ib_delete_state" property="isDelete" jdbcType="VARCHAR" />
+		<result column="ib_date" property="inboxDate" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="attachment" type="com.dm.platform.model.FileEntity">
+	</resultMap>
+	<insert id="saveAttachement" parameterType="java.util.Map">
+		insert into
+		t_inbox_attachment
+		(ib_id,attachment_id,attachment_state)
+		values
+		(#{inboxId},#{attachmentId},'1')
+	</insert>
+	<insert id="sendUser" parameterType="java.util.Map">
+		insert into
+		t_inbox_user_state
+		(ib_id,user_id,ib_type_state,ib_date)
+		values
+		(#{inboxId},#{userId},#{inboxType},#{inboxDate})
+	</insert>
+	<insert id="insertDraft" parameterType="java.util.Map">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="tId">
+			SELECT LAST_INSERT_ID() AS t_id
+		</selectKey>
+		insert into
+		t_inbox_user_state
+		(ib_id,user_id,ib_type_state,ib_date)
+		values
+		(#{inboxId},#{userId},#{inboxType},#{inboxDate})
+	</insert>
+	<update id="updateDraft" parameterType="java.util.Map">
+		update t_inbox_user_state
+		t
+		set
+		t.ib_date=#{inboxDate}
+		where
+		t.t_id=#{tId}
+	</update>
+	<update id="isReadInbox" parameterType="java.util.Map">
+		update t_inbox_user_state
+		t
+		set
+		t.ib_read_state=#{readState}
+		where
+		t.t_id=#{tId}
+	</update>
+	<update id="isMarkInbox" parameterType="java.util.Map">
+		update t_inbox_user_state
+		t
+		set
+		t.ib_mark_state=#{markState}
+		where
+		t.t_id=#{tId}
+	</update>
+	<update id="isTrashInbox" parameterType="java.util.Map">
+		update t_inbox_user_state
+		t
+		set
+		t.ib_trash_state=#{trashState}
+		where
+		t.t_id=#{tId}
+	</update>
+	<delete id="deleteDraft" parameterType="java.util.Map">
+		delete from
+		t_inbox_user_state where t_id = #{tId}
+	</delete>
+	<delete id="deleteInbox" parameterType="java.util.Map">
+		delete from
+		t_inbox_user_state where t_id = #{tId}
+	</delete>
+	<delete id="deleteAttachments" parameterType="java.util.Map">
+		delete from
+		t_inbox_attachment where ib_id = #{inboxId}
+	</delete>
+	<select id="findAttachments" parameterType="java.util.Map"
+		resultMap="attachment">
+		select
+		t2.*
+		from t_inbox_attachment t1 LEFT JOIN t_filetable
+		t2 ON
+		t2.id=t1.attachment_id
+		where t1.ib_id = #{inboxId}
+	</select>
+	<select id="findInboxList" parameterType="java.util.Map"
+		resultMap="inbox">
+		select
+		t1.*,t2.t_id,t2.ib_type_state,t2.ib_trash_state,t2.ib_delete_state,t2.ib_read_state,t2.ib_mark_state,t2.ib_date
+		from t_inbox t1 left join t_inbox_user_state t2
+		on t1.ib_id = t2.ib_id
+		where
+		t2.ib_delete_state='0'
+		and t2.user_id= #{userId}
+		<if test="type!=null and type!='' ">
+			and t2.ib_type_state = #{type}
+		</if>
+		<if test="isMark!=null and isMark!='' ">
+			and t2.ib_mark_state = #{isMark}
+		</if>
+		<if test="isTrash!=null and isTrash!='' ">
+			and t2.ib_trash_state = #{isTrash}
+		</if>
+		<if test="isRead!=null and isRead!='' ">
+			and t2.ib_read_state = #{isRead}
+		</if>
+		order by t2.ib_read_state asc,t2.ib_date desc
+	</select>
+	<select id="readInbox" parameterType="java.util.Map" resultMap="inbox">
+		select
+		t1.*,t2.t_id,t2.ib_type_state,t2.ib_trash_state,t2.ib_delete_state,t2.ib_read_state,t2.ib_mark_state,t2.ib_date
+		from t_inbox t1 left join t_inbox_user_state t2
+		on t1.ib_id = t2.ib_id
+		where
+		t2.t_id= #{tId}
+	</select>
+</mapper>

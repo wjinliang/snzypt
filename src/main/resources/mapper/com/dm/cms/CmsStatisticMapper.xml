@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsStatisticMapper">
+	<select id="selectSiteStatisticList" resultType="java.util.HashMap">
+		SELECT t0.id siteId,t0.display_name,IFNULL(count(t1.channelId),0) channelCount
+		,IFNULL(SUM(t1.contentCount),0)
+		contentCount
+		,IFNULL(SUM(t1.videoCount),0) videoCount
+		,IFNULL(SUM(t1.novelCount),0)
+		novelCount
+		,IFNULL(SUM(t1.audioCount),0) audioCount
+		from cms_site t0 LEFT JOIN(
+		SELECT site.display_name,site.id,channel.id channelId,
+		COUNT(content.id) contentCount,
+		COUNT(video.id) videoCount ,
+		COUNT(novel.id) novelCount ,
+		COUNT(audio.id) audioCount
+		FROM cms_site
+		site LEFT JOIN cms_channel channel
+		ON site.id=channel.site_id
+		LEFT JOIN
+		cms_content content ON channel.id=content.channel_id
+		LEFT JOIN
+		cms_video video ON channel.id=video.channel_id
+		LEFT JOIN cms_novel
+		novel ON channel.id=novel.channel_id
+		LEFT JOIN cms_audio audio ON
+		channel.id=audio.channel_id
+		<if test="siteId!=null">WHERE site.id=#{siteId}</if>
+		GROUP BY channel.id) t1
+		ON t0.id = t1.id
+		<if test="siteId!=null">WHERE t0.id=#{siteId}</if>
+		GROUP BY t0.id
+		<if test="sort!=null and sort!=''">
+			ORDER BY ${sort}
+		</if>
+	</select>
+	<select id="selectChannelStatisticList" resultType="java.util.HashMap">
+		SELECT t1.id,t5.display_name siteName,t1.display_name
+		channelName,IFNULL(t2.new,0) new,IFNULL(t3.checke,0)
+		checke,IFNULL(t4.publish,0) publish
+		FROM cms_channel t1 LEFT JOIN
+		cms_site t5 ON t1.site_id = t5.id LEFT JOIN
+		(SELECT c.id,COUNT(c1.id)
+		as new FROM
+		cms_channel c LEFT JOIN cms_content c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status` IN (0,3)
+		GROUP BY c.id)t2 ON t1.id=t2.id
+		LEFT JOIN
+		(SELECT c.id,COUNT(c1.id) as checke FROM
+		cms_channel c LEFT JOIN
+		cms_content c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=1
+		GROUP BY c.id)t3 ON t1.id=t3.id
+		LEFT JOIN
+		(SELECT
+		c.id,COUNT(c1.id) as publish FROM
+		cms_channel c LEFT JOIN cms_content
+		c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`='2'
+		GROUP BY c.id)t4 ON t1.id=t4.id
+		WHERE
+		t1.channel_type in('0','1','2','3')
+		<if test="channelId!=null"> and t1.id=#{channelId}</if>
+		UNION ALL
+		SELECT t1.id,t5.display_name siteName, t1.display_name
+		channelName,IFNULL(t2.new,0) new,IFNULL(t3.checke,0)
+		checke,IFNULL(t4.publish,0) publish
+		FROM cms_channel t1 LEFT JOIN
+		cms_site t5 ON t1.site_id = t5.id LEFT JOIN
+		(SELECT c.id,COUNT(c1.id)
+		as new FROM
+		cms_channel c LEFT JOIN cms_audio c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status` IN (0,3)
+		GROUP BY c.id)t2 ON t1.id=t2.id
+		LEFT JOIN
+		(SELECT c.id,COUNT(c1.id) as checke FROM
+		cms_channel c LEFT JOIN
+		cms_audio c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=1
+		GROUP BY c.id)t3 ON t1.id=t3.id
+		LEFT JOIN
+		(SELECT
+		c.id,COUNT(c1.id) as publish FROM
+		cms_channel c LEFT JOIN cms_audio c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=2
+		GROUP BY c.id)t4 ON t1.id=t4.id
+		WHERE
+		t1.channel_type='6'
+		<if test="channelId!=null">and t1.id=#{channelId}</if>
+		UNION ALL
+		SELECT t1.id,t5.display_name siteName,
+		t1.display_name,IFNULL(t2.new,0) new,IFNULL(t3.checke,0)
+		checke,IFNULL(t4.publish,0) publish
+		FROM cms_channel t1 LEFT JOIN
+		cms_site t5 ON t1.site_id = t5.id LEFT JOIN
+		(SELECT c.id,COUNT(c1.id)
+		as new FROM
+		cms_channel c LEFT JOIN cms_video c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status` IN (0,3)
+		GROUP BY c.id)t2 ON t1.id=t2.id
+		LEFT JOIN
+		(SELECT c.id,COUNT(c1.id) as checke FROM
+		cms_channel c LEFT JOIN
+		cms_video c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=1
+		GROUP BY c.id)t3 ON t1.id=t3.id
+		LEFT JOIN
+		(SELECT
+		c.id,COUNT(c1.id) as publish FROM
+		cms_channel c LEFT JOIN cms_video c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=2
+		GROUP BY c.id)t4 ON t1.id=t4.id
+		WHERE
+		t1.channel_type='5'
+		<if test="channelId!=null">and t1.id=#{channelId}</if>
+		UNION ALL
+		SELECT t1.id,t5.display_name siteName, t1.display_name
+		channelName,IFNULL(t2.new,0) new,IFNULL(t3.checke,0)
+		checke,IFNULL(t4.publish,0) publish
+		FROM cms_channel t1 LEFT JOIN
+		cms_site t5 ON t1.site_id = t5.id LEFT JOIN
+		(SELECT c.id,COUNT(c1.id)
+		as new FROM
+		cms_channel c LEFT JOIN cms_novel c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status` IN (0,3)
+		GROUP BY c.id)t2 ON t1.id=t2.id
+		LEFT JOIN
+		(SELECT c.id,COUNT(c1.id) as checke FROM
+		cms_channel c LEFT JOIN
+		cms_novel c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=1
+		GROUP BY c.id)t3 ON t1.id=t3.id
+		LEFT JOIN
+		(SELECT
+		c.id,COUNT(c1.id) as publish FROM
+		cms_channel c LEFT JOIN cms_novel c1
+		ON c.id=c1.channel_id
+		<if test="channelId!=null">and c.id=#{channelId}</if>
+		<if test="channelName!=null">and c.display_name=#{chanenlName}</if>
+		WHERE c1.`status`=2
+		GROUP BY c.id)t4 ON t1.id=t4.id
+		WHERE
+		t1.channel_type='7'
+		<if test="sort!=null and sort!=''">
+			ORDER BY ${sort}
+		</if>
+	</select>
+	<select id="selectUserStatisticList" resultType="java.util.HashMap">
+		SELECT t1.`CODE` code,
+		t1.`NAME` name,SUM(t1.audioCount) audioCount,SUM(t1.contentCount)
+		contentCount,SUM(t1.novelCount) novelCount,SUM(t1.videoCount)
+		videoCount FROM(
+		SELECT `USER`.`NAME`,`USER`.`CODE`,
+		COUNT(cms_content.id) contentCount,0 audioCount,0 novelCount,0
+		videoCount
+		FROM t_user_account USER
+		LEFT JOIN cms_content ON
+		`USER`.`CODE`=cms_content.create_user
+		<if test="code!=null"> where user.code=#{code}</if>
+		GROUP BY `USER`.`CODE`
+		UNION ALL
+		SELECT `USER`.`NAME`,`USER`.`CODE`,0
+		contentCount,
+		COUNT(cms_audio.id)audioCount,0 novelCount,0
+		videoCount
+		FROM t_user_account USER
+		LEFT JOIN cms_audio ON
+		`USER`.`CODE` = cms_audio.create_user_id
+		<if test="code!=null">where user.code=#{code}</if>
+		GROUP BY `USER`.`CODE`
+		UNION ALL
+		SELECT `USER`.`NAME`,`USER`.`CODE`,0
+		contentCount,
+		0 audioCount,COUNT(cms_novel.id) novelCount,0
+		videoCount
+		FROM t_user_account USER
+		LEFT JOIN cms_novel ON
+		`USER`.`CODE`= cms_novel.create_user_id
+		<if test="code!=null">where user.code=#{code}</if>
+		GROUP BY `USER`.`CODE`
+		UNION ALL
+		SELECT `USER`.`NAME`,`USER`.`CODE`,0
+		contentCount,
+		0 audioCount,0 novelCount,COUNT(cms_video.id)
+		videoCount
+		FROM t_user_account USER
+		LEFT JOIN cms_video ON
+		`USER`.`CODE`= cms_video.create_user_id
+		<if test="code!=null">where user.code=#{code}</if>
+		GROUP BY `USER`.`CODE`) t1
+		GROUP BY t1.CODE
+		<if test="sort!=null">ORDER BY ${sort} </if> 
+	</select>
+	<select id="selectTemplateCountForSite" resultType="java.lang.Integer">
+		select count(id) from cms_template where site_id = #{siteId}
+	</select>
+</mapper>

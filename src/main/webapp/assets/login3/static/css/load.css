@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+html{height:100%;}
+*{padding:0; margin:0; text-decoration:none; list-style:none;}
+body{font-size:12px; background:#0083c3 url(../image/bodybanner1.jpg) no-repeat top center; background-size:cover; height:100%;}
+a{color:#000;}
+a:hover{text-decoration:none;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{*+height:1%;}
+.loadSystem{width:100%;}
+.loadSystem h1{width:100%; padding:30px; margin:0px; text-align:center; color:#f9711f; font-size:32px;}
+.title{width:1000px; margin:0 auto; height:36px; line-height:36px;}
+.loadSystem .title ul{width:100%; text-align:center; overflow:hidden; float:left; margin:0px;}
+.title ul li{width:33%; float:left; cursor:pointer;  font-size:18px; font-weight:bold; background:url(../image/borderx1.png)  no-repeat left bottom;}
+.title ul li a{color:#fff;}
+.title ul li.hover{background:url(../image/borderx.png) no-repeat left bottom;}
+.title ul li.hover a{color:#f5e050;}
+.content{width:100%; padding:65px 0; background:rgba(38,142,201,.6);}
+.content .slide_content{width:400px; overflow:hidden; position:relative; margin:0 auto;}
+.tabslider{width:1500px;}
+.tabslider .content-wrap{ float:left; width:400px;}
+.content .loadForm{width:400px; margin:0 auto;}
+.content .loadForm p{
+	padding:5px;
+	background:#fff;
+	margin-bottom:10px;
+	}
+.content .loadForm p input{width:100%; box-sizing:border-box; padding:10px 5px 10px 30px; border:none;}
+.content .loadForm p input.alter-text{background:#fff url(../image/people.png) no-repeat left 5px center; background-size:20px 20px;}
+.content .loadForm p input.ater-passwd{background:#fff url(../image/lock.png) no-repeat left 5px center; background-size:20px 20px;}
+.content .loadForm p input.ater-yzm{width:68%; float:left;}
+.content .loadForm p img{float:right; cursor:pointer;}
+.content .loadForm p:last-child{padding:0px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+.content .loadForm  input.login-btn{padding:15px 0px 15px 0px; color:#fff; background:url(../image/bluejib.png) repeat-x; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border:none; cursor:pointer; font-size:16px;}
+.footer{width:100%; position:absolute; bottom:10px; left:0;}
+.footer p{text-align:center; font-size:16px; color:#fff; margin-top:10px;}
+
+
+

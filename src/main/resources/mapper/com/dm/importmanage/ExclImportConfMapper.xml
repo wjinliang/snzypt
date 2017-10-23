@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.importmanage.sqldao.ExclImportConfMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.importmanage.model.ExclImportConf" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="collect_name" property="tableName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="collection_names" property="collectionNames" jdbcType="VARCHAR" />
+    <result column="collection_indexs" property="collectionIndexs" jdbcType="VARCHAR" />
+    <result column="collection_titles" property="collectionTitles" jdbcType="VARCHAR" />
+    <result column="start_row" property="startRow" jdbcType="INTEGER" />
+    <result column="end_row" property="endRow" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="creatime" property="creatime" jdbcType="TIMESTAMP" />
+    <result column="is_delta" property="isDelta" jdbcType="BIT" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+  	<result column="collection_key" property="collectionKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, collect_name, en_name, collection_names, collection_indexs, collection_titles, 
+    start_row, end_row, status, creatime, is_delta, file_path,collection_key
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from excl_import_conf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTableName" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from excl_import_conf
+    where collect_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByArgMap" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from excl_import_conf
+    <where>
+    	<if test="model!=null">
+    		<if test="model.name!=null and model.name!=''">
+    			and name like contcat('%',#{model.name},'%')
+    		</if>
+    		<if test="model.tableName!=null and model.tableName!=''">
+    			and collect_name = #{model.tableName}
+    		</if>
+    	</if>
+    </where>
+    <if test="sort!=null and sort!=''">
+    	sort by #{sort}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from excl_import_conf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.importmanage.model.ExclImportConf" >
+    insert into excl_import_conf (id, name, collect_name, 
+      en_name, collection_names, collection_indexs, 
+      collection_titles, start_row, end_row, 
+      status, creatime, is_delta, 
+      file_path,collection_key)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{enName,jdbcType=VARCHAR}, #{collectionNames,jdbcType=VARCHAR}, #{collectionIndexs,jdbcType=VARCHAR}, 
+      #{collectionTitles,jdbcType=VARCHAR}, #{startRow,jdbcType=INTEGER}, #{endRow,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{creatime,jdbcType=TIMESTAMP}, #{isDelta,jdbcType=BIT}, 
+      #{filePath,jdbcType=VARCHAR}, #{collectionKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.importmanage.model.ExclImportConf" >
+    insert into excl_import_conf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tableName != null" >
+        collect_name,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="collectionNames != null" >
+        collection_names,
+      </if>
+      <if test="collectionIndexs != null" >
+        collection_indexs,
+      </if>
+      <if test="collectionTitles != null" >
+        collection_titles,
+      </if>
+      <if test="startRow != null" >
+        start_row,
+      </if>
+      <if test="endRow != null" >
+        end_row,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creatime != null" >
+        creatime,
+      </if>
+      <if test="isDelta != null" >
+        is_delta,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+      <if test="collectionKey != null" >
+        collection_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionNames != null" >
+        #{collectionNames,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionIndexs != null" >
+        #{collectionIndexs,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTitles != null" >
+        #{collectionTitles,jdbcType=VARCHAR},
+      </if>
+      <if test="startRow != null" >
+        #{startRow,jdbcType=INTEGER},
+      </if>
+      <if test="endRow != null" >
+        #{endRow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelta != null" >
+        #{isDelta,jdbcType=BIT},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionKey != null" >
+        #{collectionKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.importmanage.model.ExclImportConf" >
+    update excl_import_conf
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        collect_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionNames != null" >
+        collection_names = #{collectionNames,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionIndexs != null" >
+        collection_indexs = #{collectionIndexs,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTitles != null" >
+        collection_titles = #{collectionTitles,jdbcType=VARCHAR},
+      </if>
+      <if test="startRow != null" >
+        start_row = #{startRow,jdbcType=INTEGER},
+      </if>
+      <if test="endRow != null" >
+        end_row = #{endRow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        creatime = #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelta != null" >
+        is_delta = #{isDelta,jdbcType=BIT},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionKey != null" >
+        collection_key = #{collectionKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.importmanage.model.ExclImportConf" >
+    update excl_import_conf
+    set name = #{name,jdbcType=VARCHAR},
+      collect_name = #{tableName,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      collection_names = #{collectionNames,jdbcType=VARCHAR},
+      collection_indexs = #{collectionIndexs,jdbcType=VARCHAR},
+      collection_titles = #{collectionTitles,jdbcType=VARCHAR},
+      start_row = #{startRow,jdbcType=INTEGER},
+      end_row = #{endRow,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      creatime = #{creatime,jdbcType=TIMESTAMP},
+      is_delta = #{isDelta,jdbcType=BIT},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      collection_key = #{collectionKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

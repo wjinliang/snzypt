@@ -1,0 +1,8 @@
+/* 选择器格式为：html #layui_layer_skin文件夹名stylecss，这一点非常重要 */
+html #layui_layer_skinyourskinstylecss{display:none; position: absolute; width:1989px;}
+
+
+body .layer-ext-yourskin .layui-layer-title{ background:#000  }
+body .layui-ext-yourskin .layui-layer-btn{ text-align:center;}
+body .layui-ext-yourskin .layui-layer-btn a{}
+/*  你可以通过调试工具重置更多样式 */

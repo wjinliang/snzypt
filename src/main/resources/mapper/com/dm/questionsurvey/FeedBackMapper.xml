@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.questionsurvey.sqldao.FeedBackMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.questionsurvey.model.FeedBack" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="funcdesc" property="funcdesc" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title,funcdesc, email, tel, date,ip
+  </sql>
+  <insert id="insert" parameterType="com.dm.questionsurvey.model.FeedBack" >
+    insert into feed_back (id, title,funcdesc, email, 
+      tel, date,ip)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},#{funcdesc,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}),#{ip,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.questionsurvey.model.FeedBack" >
+    insert into feed_back
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="funcdesc != null" >
+        funcdesc,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="funcdesc != null" >
+        #{funcdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByArgMap" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from feed_back 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from feed_back
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from feed_back 
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsVideo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="actor" property="actor" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="is_html" property="isHtml" jdbcType="BIT" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, channel_id, create_user_id, template_id, name, origin, introduce, image_url, director, actor, 
+    url, is_html, publish_date, create_time, update_time, status, seq, video_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectAttachmentsByVideoId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    attachment_id
+    from cms_video_attach
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectPageListByMap" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+     <include refid="Base_Column_List" />
+    from cms_video
+    <where>
+      <if test="channelId!=null">
+         channel_id=#{channelId}
+      </if>
+      <if test="status!=null and status!=''">
+        and status in
+        <foreach collection="status" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+      </if>
+    </where>
+    <if test="order!=null">
+      order by ${order}
+    </if>
+    limit #{pageStart},#{pageSize}
+  </select>
+  
+  <select id="findBychannelIdArgMap" resultMap="BaseResultMap"
+            parameterType="java.util.Map">
+        select
+        video.id, video.channel_id, video.create_user_id, video.template_id, video.name, video.origin, video.introduce, image_url, director, actor, 
+        video.url, video.is_html, video.publish_date, video.create_time, video.update_time, video.status, video.seq, video_url
+        ,channel.display_name as type
+        from cms_video video left join cms_channel channel 
+        on video.channel_id = channel.id
+        <where>
+        	<if test="channelIds != null">
+        	 channel_id in 
+              <foreach item="item" index="index" collection="channelIds" open="(" separator="," close=")">  
+			  #{item}  
+			 </foreach>
+           </if>
+            <if test="model != null">
+                <if test="model.name != null">
+                    and name like CONCAT(CONCAT('%', #{model.name}),'%')
+                </if>
+                <if test="model.actor !=null">
+                	and actor like CONCAT(CONCAT('%', #{model.actor}),'%')
+                </if>
+                <if test="model.director !=null">
+                	and director = #{model.director}
+                </if>
+                <if test="model.status !=null">
+                	and status = #{model.status}
+                </if>
+                <if test="model.isHtml !=null">
+                	and video.is_html = #{model.isHtml}
+                </if>
+                <if test="model.createUserId !=null">
+                	and create_user_id = #{model.createUserId}
+                </if>
+            </if>
+        </where>
+        <if test="order!=null and order!=''">
+        	order by ${order}
+        </if>
+    </select>
+  
+  <delete id="deleteAttachmentsByVideoId" parameterType="java.lang.Integer" >
+    delete from cms_video_attach
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertAttachments"  >
+    insert into cms_video_attach (video_id,attachment_id)
+    values (#{videoId}, #{attachmentId})
+  </insert>
+  
+  <insert id="insert" parameterType="com.dm.cms.model.CmsVideo" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_video (id, channel_id, create_user_id,  template_id,
+      name, origin, introduce,
+      image_url, director, actor, 
+      url, is_html, publish_date, 
+      create_time, update_time, status, 
+      seq, video_url)
+    values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR}, 
+      #{templateId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{actor,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{isHtml,jdbcType=BIT}, #{publishDate,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{seq,jdbcType=INTEGER}, #{videoUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsVideo" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="director != null" >
+        director,
+      </if>
+      <if test="actor != null" >
+        actor,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="isHtml != null" >
+        is_html,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="actor != null" >
+        #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        #{isHtml,jdbcType=BIT},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsVideo" >
+    update cms_video
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id =  #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="actor != null" >
+        actor = #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        is_html = #{isHtml,jdbcType=BIT},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsVideo" >
+    update cms_video
+    set channel_id = #{channelId,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      actor = #{actor,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_html = #{isHtml,jdbcType=BIT},
+      publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      seq = #{seq,jdbcType=INTEGER},
+      video_url = #{videoUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectVideoIdsByAttachmentId">
+  	SELECT GROUP_CONCAT(t.video_id) FROM cms_video_attach t WHERE t.attachment_id=#{attachmentId}
+  </select>
+</mapper>

@@ -1,0 +1,136 @@
+.bodybg{ background-color: #f6f6f6;}
+.Cont{ margin: 1.5% 2%; background: #fff; padding: 10px 20px 20px; border-radius: 5px;}
+.Cont.searchbox { padding: 15px 20px; }
+
+.subcont.searchbox { margin: 5px 0 20px; }
+
+.ContTit{ border-bottom: 1px solid #dddddd; height: 30px; line-height: 30px; margin-bottom: 15px; padding-bottom: 10px; position: relative;}
+.ContTit span{ font-size: 18px; color: #2e96ef;}
+.ContTit span.cor-red{ display: inline-block; padding: 0 14px; background:#ffece5; font-size: 12px; color: #666; border-radius: 5px;}
+.ContTit span.cor-red b{ font-size: 14px; color: #ff4400; }
+.ContTit span img{ vertical-align: middle; margin-top: -2px; margin-right: 10px;}
+.ContTit .conttitR{ position: absolute; right: 0; top: 5px;}
+.ContTit .conttitR a{ margin-left: 5px; cursor: pointer;}
+.ContTit .conttitR input[type='text']{ border: 1px solid #dddddd; width: 130px; height:29px; border-radius: 2px; margin-left: 5px; padding: 0 5px;}
+
+.searchbox input,.searchbox select{ width:110px; height:30px; line-height:30px; }
+.searchbox input.wdate { width: 90px; padding-right: 20px; background: url(../images/datepicker.gif) no-repeat right center; }
+.searchbox li { float: left; margin-right: 18px; }
+.searchbox label { margin-right: 5px; }
+
+.account { margin-bottom: 20px; text-align: center; }
+.account h1 { font-size: 14px; font-weight: normal; color: #333; text-align: left; }
+.account h1 span{ display: inline-block; margin: 0 10px 0 0; position: relative; }
+.account h1 span img { width: 60px; height: 60px; border-radius: 5px; }
+/*.account h1 span em{ display: block; position: absolute; top: 0; left: 0; width: 60px; height: 60px; background: url("../images/img_mask_w.png") no-repeat; z-index: 3;}*/
+
+/* ==================== 登录 ==================== */
+.loginBg {width:100%; height:440px; background:url(../images/banner-bg2.jpg) no-repeat top center; position: relative;}
+.loginBox { width:90%; position: relative; margin: 0 auto; max-width: 1440px; }
+
+span.error { display: block; padding: 5px 10px 5px 30px; border-radius: 3px; border: 1px #ed5565 solid; color: #ed5565; background: #fff url("../images/ic_error.png") no-repeat 10px center; }
+.no_bor{ border:none; background-color:#eee; height:40px;line-height:40px;box-sizing: border-box; width:100%; padding-left:3%; font-size: 13px; color: #666;}
+
+.whiteBox { position: absolute; right: 0; top: 48px; width: 280px; padding: 10px 25px 20px 25px; background: #fff; z-index: 99; border-radius:5px; }
+.whiteBox h2 { margin: 10px 0 20px 0; font-size: 21px; color: #333333; }
+.whiteBox ul li { margin-bottom: 10px;position:relative;background-color:#eeeeee; border-radius:5px; height:40px;line-height:40px; }
+.whiteBox ul li span { display: inline-block; float: left; padding-left: 10px; line-height: 40px; }
+.whiteBox ul li i{ position:absolute; top:12px; right:10px; cursor:pointer; width:16px; height:16px; line-height:16px;}
+.whiteBox ul li input { float: left; width: 200px;}
+.whiteBox ul li .select{ padding:10px 5px;}
+.whiteBox ul li.yzm { float: left; width: 180px; }
+.whiteBox ul li.ewm { float: right; width: 94px; background: #fff; }
+.whiteBox ul li .code{ width:120px;}
+.whiteBox ul li .code_img img{ border:1px solid #dddddd; border-radius:5px;}
+.whiteBox .forget{ margin: -5px 0 10px; text-align:right;}
+.whiteBox .forget a{ color:#3ca0ee; font-size:13px;}
+
+.whiteBox .button { width: 100%; height: 40px; border-radius:5px; line-height: 20px; cursor: hand; text-align: center; font-size: 18px; letter-spacing: 8px; border: 0; color: #ffffff; background: #2e96ef; }
+
+.footer-login {height:40px;line-height:40px;background:#f2f2f2;font-size: 12px;text-align: center;color: #888;}
+
+.top.log { width: 100%; margin: 0 auto; background:#f2f2f2; }
+.top.log .logo {width: 90%; margin: 0 auto; max-width: 1440px; height:90px; }
+.top.log .logo img { margin-top: 10px; }
+
+/* ==================== 首页 图表分析 ==================== */
+.ry { padding: 20px 15px 15px 20px; background: #f4fafe; border-radius: 5px; }
+.sy { margin-top: 20px; padding: 20px 15px 15px 20px; background: #fffbf5; border-radius: 5px; }
+
+/* ==================== 系统管理 system ==================== */
+.system{position: relative; }
+.systemBox{width:100%;border-collapse:collapse;border: 1px solid #eee;}
+.systemBox td{padding: 10px;}
+.systemBox td.systemBox-lf{ border-right:1px solid #eee;background: #f8f8f8;padding:10px 20px 10px 10px; }
+.systemBox td.systemBox-rg{width:80%;background: #fff;}
+.systemBox-Con{width:100%;border-collapse:collapse;}
+.systemBox-Con th{background:#f1f1f1;border:1px solid #fff;text-align: right;padding:10px; }
+.systemBox-Con td{background:#f8f8f8;border:1px solid #fff; text-align: left;padding:10px; }
+
+.demo01 { position: relative; width: 250px; height: 140px; margin-bottom: 10px; overflow: hidden; }
+.demo01 img { width: 250px; margin-top: -55px; }
+.demo01 p { position: absolute; bottom: 0; left: 0; width: 92%; padding: 5px 4%; background: rgba(0,0,0,0.6); color: #fff; }
+.demo02 { position: relative; margin-bottom: 10px; padding: 10px; background: #fff; }
+.demo02 img { width: 60px; }
+.demo02 p { display: inline; margin-left: 10px; vertical-align: top; }
+.demo02 .demoedit { position: absolute; bottom: 10px; right: 10px; } 
+.demo02 .demoedit i { display: inline-block; width: 16px; height: 16px; margin-right: 5px; vertical-align: middle; }
+.demo02 .demoedit i.ic_edit { margin-right: 10px; background: url("../images/ic_edit.png") no-repeat; }
+.demo02 .demoedit i.ic_del { background: url("../images/ic_del.png") no-repeat; }
+.ic_lf { position: absolute; left: 270px; top: 100px; display: inline-block; width: 12px; height: 23px; background: url("../images/ic_lf.png") no-repeat; }
+
+/* 选项卡 ========== */
+.tab { position: relative; background: #fff; width: 100%; margin: 0 auto; }
+.tab h4 { margin: 20px auto; border-bottom: 1px solid #e5e5e5; font-size: 21px; color: #aaa; text-align: center; }
+.tab h4 b { margin: 0 10px; }
+.tab h4 span { position: relative; top: 18px; padding: 0 30px; background: #fff; }
+.tab h4 span a { cursor: pointer; }
+.tab h4 span a.cur { color: #ff7300; }
+.tab div.contant { position: relative; z-index: 11; width: 98%; padding: 1%; display: none; color: #646464; }
+.tab div.contant.cur { display: block; }
+
+.tab > ul { background: #f2f9fe; border-top: 2px #91c9f8 solid; }
+.tab > ul li { float: left; margin-right: 16px; padding-right: 7px; }
+.tab > ul li:hover, .tab > ul li.cur { background: url(../images/bg_tab.png) no-repeat right bottom; }
+.tab > ul li a { display: inline-block; float: left; padding: 14px 30px; cursor: pointer; color: #91c9f8; font-size: 14px; }
+.tab > ul li a:hover, .tab > ul li.cur a { background: #fff; color: #2494f2; }
+
+.tabs li { float: left; width: 50%; }
+.tabs li a { display: block; font-size: 16px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; cursor: pointer; height: 42px; line-height: 42px; text-align: center; color: #666; }
+.tabs li.cur a { border-top: 3px solid #ff7300; border-bottom: none; height: 40px; line-height: 40px; color: #ff7300; }
+.tabs div.contant { position: relative; z-index: 11; padding: 15px; display: none; color: #646464; min-height: 220px; }
+.tabs div.contant.cur { display: block; }
+.tabs .btn_org a { margin-top: 15px; }
+.tabs h2 { font-size: 14px; color: #222; }
+
+/* 卡片式 ========== */
+.whiteList li { float: left; width: 44.5%; padding: 2%; border: 1px #eee solid; }
+.whiteList li.first { margin-right: 2%; }
+.whiteList li h1 { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px #ddd dashed; font-size: 16px; }
+.whiteList li h2 { font-size: 14px; }
+
+/* 功能开关 ========== */
+.fun_sw { margin: 15px 0; }
+.fun_sw .checkboxList ul { position: relative; clear: left; float: left; left: 50%; } 
+.fun_sw .checkboxList ul li { display: block; position: relative; right: 50%; float: left; margin-right: 15px;} 
+
+/*弹窗*/
+.tc{ width: 100%; margin-top: 20px; padding: 10px 0; text-align: center; background: #f8f8f8; position: absolute; bottom: 0; left: 0; }
+
+.tips_layer { display: none; width: 670px; height: 540px; padding: 5px 15px 0 15px; border-radius: 2px; color: #333; font-size: 14px; overflow-y: hidden; }
+.tips_layer h2 { position: absolute; top: 0; left: 0; width: 100%; color: #fff; font-size: 18px; background: #2e96ef; height: 45px; line-height: 45px; }
+.tips_layer h2 span { margin-left: 20px; }
+.tips_layer h2 a { position: absolute; right: 10px; top: 10px;}
+.tips_layer .tips_tit { margin: 25px auto 10px; font-size: 14px; }
+.tips_layer .thTab td { padding: 10px; }
+
+.tips { width: 100%; height: 350px; margin: 50px 0 60px; }
+.tips table { border-top: 1px #ddd solid; border-bottom: 1px #ddd solid; }
+.tips table tr:nth-child(2n+2) { background: #f8f8f8; }
+.tips_search { padding: 8px 10px 12px 10px; }
+
+/* 分页 ========== */
+.panelbar { margin: 15px auto 0; font-size: 12px; color: #666; }
+.panelbar div { text-align: center; }
+.panelbar a { display: inline-block; height: 18px; line-height: 18px; padding: 2px 10px; border: 1px #e5e5e5 solid; color: #666; }
+.panelbar a:hover, .panelbar a.cur { background: #58beff; border: 1px #58beff solid; color: #fff; }

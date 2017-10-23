@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.platform.model.UserRole">
+	<resultMap id="RoleMap" type="HashMap">
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="HOMEPAGE" property="homePage" jdbcType="VARCHAR" />
+		<result column="DETAIL" property="detail" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 用户查询 -->
+	<select id="findRoleList" parameterType="java.util.Map" resultMap="RoleMap">
+		select
+		T.CODE,T.NAME,T.HOMEPAGE,T.DETAIL
+		from T_USER_ROLE T
+		<where>
+			<if test="name!=null and name!='' ">
+				T.NAME like CONCAT(CONCAT('%', #{name}),'%')
+			</if>
+		</where>
+		<if test="sort!=null and sort!='' ">
+			ORDER BY ${sort}
+		</if>
+	</select>
+</mapper>

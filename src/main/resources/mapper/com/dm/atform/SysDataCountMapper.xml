@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.atform.sqldao.SysDataCountMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.atform.model.SysDataCount" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="db_name" property="dbName" jdbcType="VARCHAR" />
+    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+    <result column="full_count" property="fullCount" jdbcType="BIGINT" />
+    <result column="add_count" property="addCount" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, db_name, table_name, full_count, add_count
+  </sql>
+  <select id="selectSumFullCount" resultType="Long">
+  	select sum(full_count) as full_count from sys_data_count
+  </select>
+  <select id="selectSumAddCount" resultType="Long">
+  	select sum(add_count) as add_count from sys_data_count
+  </select>
+    <select id="selectFullCountByTableName" resultType="Long">
+  	select full_count from sys_data_count where table_name=#{tableName}
+  </select>
+  <select id="selectListByArg" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_data_count
+    <where>
+    	<if test="dbName!=null and dbName!=''">
+    		and db_name = #{dbName}
+    	</if>
+    	<if test="tableName!=null and tableName!=''">
+    		and table_name = #{tableName}
+    	</if>
+    </where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_data_count
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_data_count
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dm.atform.model.SysDataCount" >
+    insert into sys_data_count (id, db_name, table_name, 
+      full_count, add_count)
+    values (#{id,jdbcType=BIGINT}, #{dbName,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{fullCount,jdbcType=BIGINT}, #{addCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.atform.model.SysDataCount" >
+    insert into sys_data_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dbName != null" >
+        db_name,
+      </if>
+      <if test="tableName != null" >
+        table_name,
+      </if>
+      <if test="fullCount != null" >
+        full_count,
+      </if>
+      <if test="addCount != null" >
+        add_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dbName != null" >
+        #{dbName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullCount != null" >
+        #{fullCount,jdbcType=BIGINT},
+      </if>
+      <if test="addCount != null" >
+        #{addCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.atform.model.SysDataCount" >
+    update sys_data_count
+    <set >
+      <if test="dbName != null" >
+        db_name = #{dbName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullCount != null" >
+        full_count = #{fullCount,jdbcType=BIGINT},
+      </if>
+      <if test="addCount != null" >
+        add_count = #{addCount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.atform.model.SysDataCount" >
+    update sys_data_count
+    set db_name = #{dbName,jdbcType=VARCHAR},
+      table_name = #{tableName,jdbcType=VARCHAR},
+      full_count = #{fullCount,jdbcType=BIGINT},
+      add_count = #{addCount,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

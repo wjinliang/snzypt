@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:task="http://www.springframework.org/schema/task"    
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+          http://www.springframework.org/schema/beans/spring-beans.xsd  
+          http://www.springframework.org/schema/task  
+          http://www.springframework.org/schema/task/spring-task.xsd">  
+
+
+	<!-- 定时任务配置 scheduler 方式 注解 暂时不支持动态更新 -->
+	<!-- 测试-->
+	<!-- <context:component-scan base-package="com.dm.timer" /> -->
+	<task:annotation-driven />
+    <bean id="jobDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.SpringTimerTest" />  
+        </property>  
+        <property name="targetMethod" value="test" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="jobDispatcher" />  
+        <property name="cronExpression" value="0 0 0/1 * * ?" /><!-- cronExpression用于指明该方法被调用的时机 -->  
+    </bean> 
+    
+    <!-- 定时任务配置 scheduler 方式 注解 暂时不支持动态更新 -->
+    <!-- 行政村编码定时更新 --> 
+    <bean id="xzcCodeDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.XzcCodeTimer" />  
+        </property>  
+        <property name="targetMethod" value="doAction" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="xzcCodeTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="xzcCodeDispatcher" />  
+        <property name="cronExpression" value="0 0/10 * * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+     <!-- 定时任务配置 scheduler 方式 注解 暂时不支持动态更新 -->
+    <!-- 站点静态化定时更新 --> 
+    <bean id="siteStaticDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.SiteStaticTimer" />  
+        </property>  
+        <property name="targetMethod" value="run" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="siteStaticTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="siteStaticDispatcher" />  
+        <property name="cronExpression" value="0 0/30 * * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+    <!-- 数据总条数更新 --> 
+    <bean id="atDataTableDataCountDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.AtDataTableDataCountTimer" />  
+        </property>  
+        <property name="targetMethod" value="run" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="atDataTableDataCountTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="atDataTableDataCountDispatcher" />  
+        <property name="cronExpression" value="0 0/10 * * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+    
+     <!-- 记录当天数据总条数 --> 
+    <bean id="redisRecordDataCountTimerDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.RedisRecordDataCountTimer" />  
+        </property>  
+        <property name="targetMethod" value="run" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="redisRecordDataCountTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="redisRecordDataCountTimerDispatcher" />  
+        <property name="cronExpression" value="0 50 23 * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+	<!-- 发布新闻 --> 
+    <bean id="cmsSpiderToContentTimerDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.CmsSpiderToContentTimer" />  
+        </property>  
+        <property name="targetMethod" value="doAction" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="cmsSpiderToContentTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="cmsSpiderToContentTimerDispatcher" />  
+        <property name="cronExpression" value="0 0/10 * * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+	 <!-- 查询图则是否存在--> 
+    <bean id="tuzeExsitTimerDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject"><!-- 指定调度对象 -->  
+            <bean class="com.dm.timer.TuzeExsitTimer" />  
+        </property>  
+        <property name="targetMethod" value="doAction" /><!-- 指定定时器执行调度对象中的那个方法，该方法的访问权限也可以是私有的 -->  
+        <property name="concurrent" value="false" /><!-- 配置job是否可以并行运行 -->  
+    </bean>  
+  
+    <bean id="tuzeExsitTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="tuzeExsitTimerDispatcher" />  
+        <property name="cronExpression" value="0 10 9 * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+    </bean>  
+  <!-- 定时任务列表 -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list><!-- 通过在list标签中的ref标签可以放置一个或多个触发器 -->  
+                <ref bean="cronTrigger" />
+                <ref bean="xzcCodeTimer" />
+                <ref bean="siteStaticTimer" /> 
+                <ref bean="atDataTableDataCountTimer" />  
+                <ref bean="redisRecordDataCountTimer" />  
+                <ref bean="cmsSpiderToContentTimer"/>
+                <ref bean="tuzeExsitTimer"/>
+            </list>  
+        </property>  
+    </bean>
+</beans>

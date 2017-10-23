@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.atform.sqldao.AtTableMapper">
+	<resultMap id="BaseResultMap" type="com.dm.atform.model.AtTable">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="table_name" property="tableName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="sort_field" property="sortField" jdbcType="VARCHAR" />
+		<result column="where_field" property="whereField" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="info" property="info" jdbcType="VARCHAR" />
+		<result column="seq" property="seq" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="grid_name" property="gridName" jdbcType="VARCHAR" />
+		<result column="id_field" property="idField" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="pid" property="pId" jdbcType="VARCHAR" />
+		<result column="data_time" property="dataTime" jdbcType="VARCHAR" />
+		<result column="data_update_time" property="dataUpdateTime" jdbcType="VARCHAR" />
+		<result column="show_data_query" property="showDataQuery" jdbcType="VARCHAR" />
+		<result column="p_type_name" property="pTypeName" jdbcType="VARCHAR" />
+		<result column="origin" property="origin" jdbcType="VARCHAR" />
+		<result column="org" property="org" jdbcType="VARCHAR" />
+		<result column="data_count" property="dataCount" jdbcType="INTEGER" />
+		<result column="is_insert" property="isInsert" jdbcType="BIT" />
+		<result column="is_update" property="isUpdate" jdbcType="BIT" />
+		<result column="is_delete" property="isDelete" jdbcType="BIT" />
+		<result column="is_detail" property="isDetail" jdbcType="BIT" />
+		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
+	</resultMap> 
+	<resultMap id="treeNodeMap" type="com.dm.cms.model.TreeNode">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="pid" property="pId" jdbcType="VARCHAR" />
+		<result column="grid_name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="s" jdbcType="VARCHAR" />
+		<result column="data_count" property="i" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, table_name, status, sort_field, where_field, type, seq, org ,
+		create_date, create_user,id_field,info,data_time,data_update_time,origin,code,
+		grid_name,pid,is_detail,is_delete,is_update,is_insert,visit_count,show_data_query,data_count
+	</sql>
+	<sql id="tree_Column_List">
+		id,(case when `status`='0' then concat(grid_name,'(隐藏)') else grid_name end ) grid_name, pid , type,data_count
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from at_table_config
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByArgMap" resultMap="BaseResultMap">
+		select
+		t1.id, t1.table_name, t1.status, t1.sort_field, t1.where_field, t1.type, t1.seq, t1.org ,
+		t1.create_date, t1.create_user,t1.id_field,t1.info,t1.data_time,t1.data_update_time,t1.origin,t1.code,
+		t1.grid_name,t1.pid,t1.is_detail,t1.is_delete,t1.is_update,t1.is_insert,t1.visit_count,
+		t1.show_data_query,t1.data_count,
+		t2.grid_name p_type_name 
+		from at_table_config t1 left join at_table_config t2 on t1.pid=t2.id
+		where t1.status &lt;&gt; '9' 
+		<if test="pids!=null">
+			and t1.pid  in
+			<foreach collection="pids" item="item" separator="," open="(" close=")">
+				'${item}'
+			</foreach>
+		</if>
+		<if test="model!=null">
+			<if test="model.tableName!=null and model.tableName!=''">
+				 and t1.table_name like concat('%',#{model.tableName},'%')
+			</if>
+			<if test="model.status!=null and model.status!=''">
+				and t1.status = #{model.status}
+			</if>
+			<if test="model.pId!=null and model.pId!='' and pids==null">
+				and ( t1.pid = #{model.pId}
+				or t1.id = #{model.pId} )
+			</if>
+			<if test="model.type!=null and model.type!=''">
+				and t1.type = #{model.type,jdbcType=VARCHAR}
+			</if>
+			<if test="model.gridName!=null and model.gridName!=''">
+				and t1.grid_name like concat('%',#{model.gridName},'%')
+			</if>
+		</if>
+		
+		<if test="sort!=null and sort!=''">
+			order by ${sort}
+		</if>
+	</select>
+	<select id="selectByPid" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from at_table_config
+		where status ='1'
+		and pid = #{pid}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		at_table_config
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.dm.atform.model.AtTable">
+		insert into at_table_config
+		(id, table_name, status,org,code,
+		sort_field, where_field, type,
+		seq,data_time,data_update_time,origin,
+		create_date, create_user,id_field,info,data_count,
+		grid_name,pid,is_detail,is_delete,is_update,
+		is_insert,visit_count,show_data_query)
+		values
+		(#{id,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{org,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{sortField,jdbcType=VARCHAR},
+		#{whereField,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{seq,jdbcType=INTEGER},
+		#{dataTime,jdbcType=INTEGER},
+		#{dataUpdateTime,jdbcType=INTEGER},
+		#{origin,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createUser,jdbcType=VARCHAR},
+		#{idField,jdbcType=VARCHAR},
+		#{info,jdbcType=VARCHAR},
+		#{dataCount,jdbcType=INTEGER},
+		#{gridName,jdbcType=VARCHAR},#{pId,jdbcType=VARCHAR},
+		#{isDetail,jdbcType=BIT},
+		#{isDelete,jdbcType=BIT},
+		#{isUpdate,jdbcType=BIT},
+		#{isInsert,jdbcType=BIT},
+		#{visitCount,jdbcType=INTEGER},
+		#{showDataQuery,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dm.atform.model.AtTable">
+		insert into at_table_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tableName != null">
+				table_name,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="org != null">
+				org,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="sortField != null">
+				sort_field,
+			</if>
+			<if test="whereField != null">
+				where_field,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="seq != null">
+				seq,
+			</if>
+			<if test="dataTime != null">
+				data_time,
+			</if>
+			<if test="dataCount != null">
+				data_ccount,
+			</if>
+			<if test="dataUpdateTime != null">
+				data_update_time,
+			</if>
+			<if test="origin != null">
+				origin,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="gridName != null">
+				grid_name,
+			</if>
+			<if test="idField ! =null">
+				id_field,
+			</if>
+			<if test="info != null">
+				info,
+			</if>
+			<if test="pId!=null">
+				pid,
+			</if>
+			<if test="isDetail !=null">
+				is_detail,
+			</if>
+			<if test="isDelete !=null">
+				is_delete,
+			</if>
+			<if test="isUpdate !=null">
+				is_update,
+			</if>
+			<if test="isInsert !=null">
+				is_insert,
+			</if>
+			<if test="visitCount !=null">
+				visit_count,
+			</if>
+			<if test="showDataQuery !=null">
+				show_data_query,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="org != null">
+				#{org,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="sortField != null">
+				#{sortField,jdbcType=VARCHAR},
+			</if>
+			<if test="whereField != null">
+				#{whereField,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="seq != null">
+				#{seq},
+			</if>
+			<if test="dataTime != null">
+				#{dataTime},
+			</if>
+			<if test="dataCount != null">
+				#{dataCount,jdbcType=INTEGER}
+			</if>
+			<if test="dataUpdateTime != null">
+				#{dataUpdateTime},
+			</if>
+			<if test="origin != null">
+				#{origin},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="gridName != null">
+				#{gridName,jdbcType=VARCHAR},
+			</if>
+			<if test="idField !=null">
+				#{idField,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				#{info,jdbcType=VARCHAR},
+			</if>
+			<if test="pId!=null">
+				#{pId,jdbcType=VARCHAR},
+			</if>
+			<if test="isDetail !=null">
+				#{isDetail,jdbcType=BIT},
+			</if>
+			<if test="isDelete !=null">
+				#{isDelete,jdbcType=BIT},
+			</if>
+			<if test="isUpdate !=null">
+				#{isUpdate,jdbcType=BIT},
+			</if>
+			<if test="isInsert !=null">
+				#{isInsert,jdbcType=BIT},
+			</if>
+			<if test="visitCount !=null">
+				#{visitCount,jdbcType=INTEGER},
+			</if>
+			<if test="showDataQuery !=null">
+				#{showDataQuery,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dm.atform.model.AtTable">
+		update at_table_config
+		<set>
+			<if test="tableName != null">
+				table_name = #{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="org != null">
+				org = #{org,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="sortField != null">
+				sort_field = #{sortField,jdbcType=VARCHAR},
+			</if>
+			<if test="whereField != null">
+				where_field = #{whereField,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="seq != null">
+				seq = #{seq,jdbcType=INTEGER},
+			</if>
+			<if test="dataTime != null">
+				data_time = #{dataTime},
+			</if>
+			<if test="dataUpdateTime != null">
+				data_update_time = #{dataUpdateTime},
+			</if>
+			<if test="origin != null">
+				origin = #{origin,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="gridName != null">
+				grid_name = #{gridName,jdbcType=VARCHAR},
+			</if>
+			<if test="dataCount != null">
+				data_count = #{dataCount},
+			</if>
+			<if test="idField !=null">
+				id_field = #{idField,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test="pId!=null">
+				pid = #{pId,jdbcType=VARCHAR},
+			</if>
+			<if test="isDetail !=null">
+				is_detail = #{isDetail,jdbcType=BIT},
+			</if>
+			<if test="isDelete !=null">
+				is_delete = #{isDelete,jdbcType=BIT},
+			</if>
+			<if test="isUpdate !=null">
+				is_update = #{isUpdate,jdbcType=BIT},
+			</if>
+			<if test="isInsert !=null">
+				is_insert = #{isInsert,jdbcType=BIT},
+			</if>
+			<if test="visitCount !=null">
+				visit_count = #{visitCount,jdbcType=INTEGER},
+			</if>
+			<if test="showDataQuery !=null">
+				show_data_query = #{showDataQuery,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dm.atform.model.AtTable">
+		update
+		at_table_config
+		set table_name = #{tableName,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=VARCHAR},
+		org =
+		#{org,jdbcType=VARCHAR},
+		sort_field = #{sortField,jdbcType=VARCHAR},
+		where_field = #{whereField,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
+		data_count =
+		#{dataCount},
+		code = #{code,jdbcType=VARCHAR},
+		seq = #{seq,jdbcType=INTEGER},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		create_user =
+		#{createUser,jdbcType=VARCHAR},
+		grid_name =
+		#{gridName,jdbcType=VARCHAR},
+		id_field = #{idField,jdbcType=VARCHAR},
+		info = #{info,jdbcType=VARCHAR},
+		data_time = #{dataTime},
+		data_update_time = #{dataUpdateTime},
+		show_data_query = #{showDataQuery,jdbcType=VARCHAR},
+		origin = #{origin},
+		pid = #{pId,jdbcType=VARCHAR},
+		is_detail = #{isDetail,jdbcType=BIT},
+		is_delete = #{isDelete,jdbcType=BIT},
+		is_update = #{isUpdate,jdbcType=BIT},
+		is_insert = #{isInsert,jdbcType=BIT},
+		visit_count = #{visitCount,jdbcType=INTEGER}
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="countByArg" resultType="Long">
+		select count(id) from at_table_config 
+		<where>
+			status &lt;&gt; '9' 
+			<if test="type!=null and type!=''">
+				and type = #{type,jdbcType=VARCHAR}
+			</if>
+			<if test="status!=null and status!=''">
+				and status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="pId!=null and pId!=''">
+				and pid = #{pId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="selectTreeNode" resultMap="treeNodeMap">
+		select
+		<include refid="tree_Column_List" />
+		from at_table_config
+		<where>
+			status &lt;&gt; '9'  
+			<if test="pId!=null and pId!=''">
+				and pid = #{pId,jdbcType=VARCHAR}
+			</if>
+			<if test="status!=null and status!=''">
+				and status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="type!=null and type!=''">
+				and type = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by seq
+	</select>
+	<select id="selectMaxSeq" resultType="Integer">
+		select max(seq) seq from
+		at_table_config
+	</select>
+</mapper>

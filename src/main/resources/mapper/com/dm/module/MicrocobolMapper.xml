@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.module.sqldao.MicrocobolMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.module.model.Microcobol" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_hidden" property="isHidden" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="open_time" property="openTime" jdbcType="TIMESTAMP" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="open_org" property="openOrg" jdbcType="VARCHAR" />
+    <result column="open_plant" property="openPlant" jdbcType="VARCHAR" />
+    <result column="weiban_org" property="weibanOrg" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+    <result column="click_counts" property="clickCounts" jdbcType="INTEGER" />
+    <result column="android_app_url" property="androidAppUrl" jdbcType="VARCHAR" />
+    <result column="apple_app_url" property="appleAppUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, logo, `desc`, remark, is_hidden, create_time, open_time, seq, link, open_org, 
+    open_plant, weiban_org, create_user, type, site_id, qr_code, click_counts, android_app_url, 
+    apple_app_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_microcobol
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="listByArg" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from m_microcobol
+    where site_id =#{model.siteId}
+    <if test="model.isHidden!=null">
+    	and is_hidden = #{model.isHidden}
+    </if>
+    <if test="model.name!=null and model.name!=''">
+    	and name like concat('%',#{model.name},'%')
+    </if>
+    <if test="model.type!=null and model.type!=''">
+    	and type =#{model.type}
+    </if>
+    order by seq asc,id desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from m_microcobol
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.module.model.Microcobol" >
+    insert into m_microcobol (id, name, logo, 
+      `desc`, remark, is_hidden, 
+      create_time, open_time, seq, 
+      link, open_org, open_plant, 
+      weiban_org, create_user, type, 
+      site_id, qr_code, click_counts, 
+      android_app_url, apple_app_url)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isHidden,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{openTime,jdbcType=TIMESTAMP}, #{seq,jdbcType=INTEGER}, 
+      #{link,jdbcType=VARCHAR}, #{openOrg,jdbcType=VARCHAR}, #{openPlant,jdbcType=VARCHAR}, 
+      #{weibanOrg,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{siteId,jdbcType=INTEGER}, #{qrCode,jdbcType=VARCHAR}, #{clickCounts,jdbcType=INTEGER}, 
+      #{androidAppUrl,jdbcType=VARCHAR}, #{appleAppUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.module.model.Microcobol" >
+    insert into m_microcobol
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="desc != null" >
+        `desc`,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isHidden != null" >
+        is_hidden,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="openOrg != null" >
+        open_org,
+      </if>
+      <if test="openPlant != null" >
+        open_plant,
+      </if>
+      <if test="weibanOrg != null" >
+        weiban_org,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="qrCode != null" >
+        qr_code,
+      </if>
+      <if test="clickCounts != null" >
+        click_counts,
+      </if>
+      <if test="androidAppUrl != null" >
+        android_app_url,
+      </if>
+      <if test="appleAppUrl != null" >
+        apple_app_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null" >
+        #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="openOrg != null" >
+        #{openOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="openPlant != null" >
+        #{openPlant,jdbcType=VARCHAR},
+      </if>
+      <if test="weibanOrg != null" >
+        #{weibanOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="qrCode != null" >
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCounts != null" >
+        #{clickCounts,jdbcType=INTEGER},
+      </if>
+      <if test="androidAppUrl != null" >
+        #{androidAppUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appleAppUrl != null" >
+        #{appleAppUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.module.model.Microcobol" >
+    update m_microcobol
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        `desc` = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null" >
+        is_hidden = #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="openOrg != null" >
+        open_org = #{openOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="openPlant != null" >
+        open_plant = #{openPlant,jdbcType=VARCHAR},
+      </if>
+      <if test="weibanOrg != null" >
+        weiban_org = #{weibanOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="qrCode != null" >
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCounts != null" >
+        click_counts = #{clickCounts,jdbcType=INTEGER},
+      </if>
+      <if test="androidAppUrl != null" >
+        android_app_url = #{androidAppUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appleAppUrl != null" >
+        apple_app_url = #{appleAppUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.module.model.Microcobol" >
+    update m_microcobol
+    set name = #{name,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_hidden = #{isHidden,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      open_time = #{openTime,jdbcType=TIMESTAMP},
+      seq = #{seq,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
+      open_org = #{openOrg,jdbcType=VARCHAR},
+      open_plant = #{openPlant,jdbcType=VARCHAR},
+      weiban_org = #{weibanOrg,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      site_id = #{siteId,jdbcType=INTEGER},
+      qr_code = #{qrCode,jdbcType=VARCHAR},
+      click_counts = #{clickCounts,jdbcType=INTEGER},
+      android_app_url = #{androidAppUrl,jdbcType=VARCHAR},
+      apple_app_url = #{appleAppUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

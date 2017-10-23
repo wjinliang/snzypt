@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsAttachmentOtherMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsAttachmentOther" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="attachment_type" property="attachmentType" jdbcType="SMALLINT" />
+    <result column="attachment_name" property="attachmentName" jdbcType="VARCHAR" />
+    <result column="attachment_url" property="attachmentUrl" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_active" property="isActive" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, attachment_type, attachment_name, attachment_url, file_size, create_time, create_user, 
+    update_time, is_active
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_attachment_other
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_attachment_other
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsAttachmentOther" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_attachment_other (id, attachment_type, attachment_name, 
+      attachment_url, file_size, create_time, 
+      create_user, update_time, is_active
+      )
+    values (#{id,jdbcType=INTEGER}, #{attachmentType,jdbcType=SMALLINT}, #{attachmentName,jdbcType=VARCHAR}, 
+      #{attachmentUrl,jdbcType=VARCHAR}, #{fileSize,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{isActive,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsAttachmentOther" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_attachment_other
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attachmentType != null" >
+        attachment_type,
+      </if>
+      <if test="attachmentName != null" >
+        attachment_name,
+      </if>
+      <if test="attachmentUrl != null" >
+        attachment_url,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentType != null" >
+        #{attachmentType,jdbcType=SMALLINT},
+      </if>
+      <if test="attachmentName != null" >
+        #{attachmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUrl != null" >
+        #{attachmentUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsAttachmentOther" >
+    update cms_attachment_other
+    <set >
+      <if test="attachmentType != null" >
+        attachment_type = #{attachmentType,jdbcType=SMALLINT},
+      </if>
+      <if test="attachmentName != null" >
+        attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUrl != null" >
+        attachment_url = #{attachmentUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsAttachmentOther" >
+    update cms_attachment_other
+    set attachment_type = #{attachmentType,jdbcType=SMALLINT},
+      attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      attachment_url = #{attachmentUrl,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_active = #{isActive,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

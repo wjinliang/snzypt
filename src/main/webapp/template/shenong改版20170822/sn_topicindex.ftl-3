@@ -1,0 +1,373 @@
+<html>
+<head>
+<#include "/template/sn_head.ftl">
+</head>
+<style >
+.morez{
+    margin-left: 20px;
+    font-size: 20px;
+    color: #0e82d9;
+}
+.zt a{
+	width:75px;
+	height:75px;
+}
+.datagather {
+    position: relative;
+    top: 40px;
+    display: inline-block;
+    letter-spacing: -10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    line-height: 58px;
+    font-size: 48px;
+    font-weight: 300;
+    color: #E6E6E6;
+    text-align: center;
+}
+@media screen and (max-width: 1024px) { 
+.zt{width:24px; height:96px; background:url(/html/sn-static/static/image/more.png) no-repeat; background-size:contain; position:fixed; left:5px; bottom:5px; cursor:pointer;}
+.zt a{display:block; width:24px; height:96px;}
+  }
+}
+
+</style>
+<body>
+<#include "/template/sn_header.ftl">
+    <div class="wrapper" id="wrapper">
+    	<div class="container">
+        	<div class="row mgt15">
+		<div class="col-md-12 col-lg-12" style="color: #0e82d9;text-align: left;font-weight: 600;font-size: 22px;">
+		村情信息服务专题
+		</div>
+            	<div class="col-md-4 col-lg-4">
+                	<div class="dataSubjt-left">
+                    	<img src="/html/sn-static/static/image/sjzt1.png" width="100%" height="170">
+                        	
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                	<div class="dataSubjt-right">
+                    	<ul class="dataSubjt-right-top clearfix">
+                        	<li>
+                            	<div class="panel-body">
+                                    <p>行政村数量</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico1">&nbsp;</i>
+                                        <span class="num" id="num1">3936</span>
+                                        <span>个</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>乡镇及行政村常住户数</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico2">&nbsp;</i>
+                                        <span class="num" id="num2">221.4</span>
+                                        <span>万户</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>乡镇及行政村常住人口</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico3">&nbsp;</i>
+                                        <span class="num" id="num3">593.5</span>
+                                        <span>万人</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>农业户籍人口</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico4">&nbsp;</i>
+                                        <span class="num" id="num4">239.8348</span>
+                                        <span>万人</span>
+                                    </div>
+                                </div>
+                            <li>
+			    <li>
+                            	<div class="panel-body">
+                                    <p>农户家庭</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico4">&nbsp;</i>
+                                        <span class="num" id="num4">100.7382</span>
+                                        <span>万户</span>
+                                    </div>
+                                </div>
+                            <li>
+			    <li>
+                            	<div class="panel-body">
+                                    <p>农村劳动力</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico4">&nbsp;</i>
+                                        <span class="num" id="num4">154.5133</span>
+                                        <span>万人</span>
+                                    </div>
+                                </div>
+                            <li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="border-gray mgt15"></div>
+            <div class="row mgt15">
+	    <div class="col-md-12 col-lg-12" style="color: #0e82d9;text-align: left;font-weight: 600;font-size: 22px;">
+		休闲农业专题
+		</div>
+            	<div class="col-md-4 col-lg-4">
+                	<div class="dataSubjt-left">
+                    	<img src="/html/sn-static/static/image/sjzt3.png" width="100%" height="170">
+                        
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                	<div class="dataSubjt-right">
+                    	<ul class="dataSubjt-right-top clearfix">
+                        	<li>
+                            	<div class="panel-body">
+                                    <p>民俗旅游园区</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico31">&nbsp;</i>
+
+                                        <span class="num" id="num021">${lvyouyuquCount}</span>
+                                        <span>个</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>民俗旅游户</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico32">&nbsp;</i>
+
+                                        <span class="num" id="num022">${lvyouhuCount}</span>
+                                        <span>个</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>民俗旅游村</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico33">&nbsp;</i>
+
+                                        <span class="num" id="num023">335</span>
+                                        <span>个</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>特色农产品</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico34">&nbsp;</i>
+
+                                        <span class="num" id="num024">28</span>
+                                        <span>种</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>星级园区</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico35">&nbsp;</i>
+
+                                        <span class="num" id="num025">79</span>
+                                        <span>家</span>
+
+                                    </div>
+                                </div>
+                            <li>
+			    <li>
+                            	<div class="panel-body">
+                                    <p>美丽乡村</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico35">&nbsp;</i>
+
+                                        <span class="num" id="num025">29</span>
+                                        <span>个</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                        </ul>
+                    </div>
+                </div>	
+            </div>
+	<div class="border-gray mgt15"></div>
+            <div class="row mgt15">
+	    <div class="col-md-12 col-lg-12" style="color: #0e82d9;text-align: left;font-weight: 600;font-size: 22px;">
+		统计年鉴专题
+		</div>
+            	<div class="col-md-4 col-lg-4">
+                	<div class="dataSubjt-left">
+                    	<img src="/html/sn-static/static/image/sjzt2.png" width="100%" height="170">
+                        
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                	<div class="dataSubjt-right">
+                    	<ul class="dataSubjt-right-top clearfix">
+                        	<li>
+                            	<div class="panel-body">
+                                    <p>集体资产总额</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico21">&nbsp;</i>
+                                        <span class="num" id="num021">5849.8467</span>
+                                        <span>亿元</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>经济组织总收入</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico22">&nbsp;</i>
+                                        <span class="num" id="num022">6012.0999</span>
+                                        <span>亿元</span>
+                                    </div>
+                                </div>
+                            <li>
+			     <li>
+                            	<div class="panel-body">
+                                    <p>经济组织利润总额</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico22">&nbsp;</i>
+                                        <span class="num" id="num022">214.1137</span>
+                                        <span>亿元</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>农村营业收入</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico23">&nbsp;</i>
+                                        <span class="num" id="num023">5614.7281</span>
+                                        <span>亿元</span>
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>农村营业利润总额</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico24">&nbsp;</i>
+
+                                        <span class="num" id="num024">213.5138</span>
+                                        <span>亿元</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            <li>
+                            	<div class="panel-body">
+                                    <p>农用地面积</p>
+                                    <div style="text-align:center;">
+                                        <i class="ico25">&nbsp;</i>
+
+                                        <span class="num" id="num025">375226.9498</span>
+                                        <span>公顷</span>
+
+                                    </div>
+                                </div>
+                            <li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>	   
+        </div><div class="row mgt15"></div>
+    </div>
+<!--modal-->
+    <div class="modal fade" id="myModal17" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+                                            	<div class="modal-dialog">
+                                                    <div class="modal-content" style="height:380px; border:none;">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title" id="myModalLabel" style="color:#3399cc;">温馨提示</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="text-align: center;">
+                                                        	<div class="datagather">
+                                                                
+                                                                <span> 数 据 正 在 采 集 中 </br>暂 无 可 提 供 数 据 ...</span>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--弹框js开始-->
+											<script>
+											$(function () { $('#myModal17').modal({
+												keyboard: true,
+												show:false
+											})});
+											</script>
+                                        	<!--弹框js结束-->
+	<#include "/template/sn_footer.ftl">
+	<!--footer结束-->
+	<script type="text/javascript" src="/html/sn-static/static/js/webindex.js"></script>
+    <!--右侧浮动框-->
+    <div>
+        <script language="JavaScript" type="text/javascript"> 
+            lastScrollY511=0; 
+            function lastScrollY512(){  
+                var diffY513; 
+                    if (document.documentElement && document.documentElement.scrollTop) 
+                        diffY513 = document.documentElement.scrollTop; 
+                    else if (document.body) 
+                            diffY513 = document.body.scrollTop; 
+                        else{}
+                        
+                        percent5=.1*(diffY513-lastScrollY511);  
+                        if(percent5>0)
+                            percent5=Math.ceil(percent5);  
+                        else 
+                            percent5=Math.floor(percent5);  
+		    document.getElementById("loveright").style.top=parseInt(document.getElementById ("loveright").style.top)+percent5+"px"; 
+		    lastScrollY511=lastScrollY511+percent5;  
+                        //alert(lastScrollY511); 
+			fixedPosition();
+                 } 
+		suspendcode12="<div id=\"loveright\" style='z-index: 99;right:30px;position:absolute;TOP:300px;'><a href=\'/topiecms/portal/initItemCountPage\' ><img style='' border=0 src=\'/html/sn-static/static/image/abar.png\'></a></div>" 
+		document.write(suspendcode12);    
+		window.setInterval("lastScrollY512()",1); 
+
+
+		var oZt = document.getElementById("zt");
+		var footer = document.getElementById("footer");
+		var header = document.getElementById("headtop");
+		var wrapper = document.getElementById("wrapper");
+		var pageH = document.body.scrollHeight || document.documentElement.scrollHeight;
+		var pageOneH = header.offsetHeight;
+		var pageTwo = wrapper.offsetHeight;
+		var fh = pageH-pageOneH-pageTwo;
+		var ch = document.body.clientHeight;
+		fh = footer.offsetHeight+5;
+		function fixedPosition(){
+			var scrollHeight = document.body.scrollTop || document.documentElement.scrollTop;
+			console.log(pageH+"="+ scrollHeight+"="+(pageH-ch-fh) );
+			if(scrollHeight > (pageH-ch-fh+5)){
+			oZt.style.bottom = fh + "px";
+			}
+			else{
+			oZt.style.bottom = 5 + "px";
+			}
+		}
+        </script>
+    </div>
+</body>
+</html>

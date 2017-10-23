@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsAudioMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsAudio" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="singer" property="singer" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="audio_url" property="audioUrl" jdbcType="VARCHAR" />
+    <result column="is_html" property="isHtml" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dm.cms.model.CmsAudio" extends="BaseResultMap" >
+    <result column="lyrc" property="lyrc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, channel_id, name, singer, introduce, origin, create_user_id, create_time, publish_date, 
+    update_time, image_url, template_id, url, audio_url, is_html, status, seq
+  </sql>
+  <sql id="Blob_Column_List" >
+    lyrc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_audio
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectPageListByMap" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_audio
+    <where>
+      <if test="channelId!=null">
+        channel_id=#{channelId}
+      </if>
+      <if test="status!=null and status!=''">
+        and status in
+        <foreach collection="status" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+      </if>
+    </where>
+    order by ${order}
+    limit #{pageStart},#{pageSize}
+  </select>
+  
+  <select id="selectAttachmentByAudioId" resultType="string" parameterType="java.lang.Integer" >
+    select 
+    GROUP_CONCAT(attachment_id)
+    from cms_audio_attach
+    where audio_id = #{audioId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findByChannelIdArgMap" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+       audio.id, channel_id, name, singer, introduce, audio.origin, audio.create_user_id, audio.create_time, audio.publish_date, 
+       audio.update_time, image_url, audio.template_id, audio.url, audio_url, audio.is_html, audio.status, audio.seq
+        ,channel.display_name as type
+        from cms_audio audio left join cms_channel channel
+        on channel_id = channel.id
+        <where>
+        	<if test="channelIds !=null">
+				channel_id in
+				<foreach collection="channelIds" item="item" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+            <if test="model != null">
+                <if test="model.name != null">
+                    and name like CONCAT(CONCAT('%', #{model.name}),'%')
+                </if>
+                <if test="model.singer !=null">
+                	and singer like CONCAT(CONCAT('%', #{model.singer}),'%')
+                </if>
+                <if test="model.status !=null">
+                	and status = #{model.status}
+                </if>
+                <if test="model.isHtml !=null">
+                	and audio.is_html = #{model.isHtml}
+                </if>
+                 <if test="model.createUserId !=null">
+                	and audio.create_user_id = #{model.createUserId}
+                </if>
+            </if>
+        </where>
+        <if test="order!=null and order!=''">
+        	order by ${order}
+        </if>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_audio
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteAttachmentsByAudioId" parameterType="java.lang.Integer" >
+    delete from cms_audio_attach
+    where audio_id = #{audioId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertAttachments">
+    insert into cms_audio_attach (audio_id,attachment_id)
+    values (#{audioId}, #{attachmentId})
+  </insert>
+  
+  <insert id="insert" parameterType="com.dm.cms.model.CmsAudio" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_audio (id, channel_id, name, 
+      singer, introduce, origin, 
+      create_user_id, create_time, publish_date, 
+      update_time, image_url, template_id, 
+      url, audio_url, is_html, 
+      status, seq, lyrc
+      )
+    values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{singer,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{publishDate,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{imageUrl,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{audioUrl,jdbcType=VARCHAR}, #{isHtml,jdbcType=BIT}, 
+      #{status,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{lyrc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsAudio" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into cms_audio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="singer != null" >
+        singer,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="audioUrl != null" >
+        audio_url,
+      </if>
+      <if test="isHtml != null" >
+        is_html,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="lyrc != null" >
+        lyrc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null" >
+        #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="audioUrl != null" >
+        #{audioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        #{isHtml,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="lyrc != null" >
+        #{lyrc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsAudio" >
+    update cms_audio
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null" >
+        singer = #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="audioUrl != null" >
+        audio_url = #{audioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        is_html = #{isHtml,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="lyrc != null" >
+        lyrc = #{lyrc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dm.cms.model.CmsAudio" >
+    update cms_audio
+    set channel_id = #{channelId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      singer = #{singer,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      audio_url = #{audioUrl,jdbcType=VARCHAR},
+      is_html = #{isHtml,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      seq = #{seq,jdbcType=INTEGER},
+      lyrc = #{lyrc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsAudio" >
+    update cms_audio
+    set channel_id = #{channelId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      singer = #{singer,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      audio_url = #{audioUrl,jdbcType=VARCHAR},
+      is_html = #{isHtml,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      seq = #{seq,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAudioIdsByAttachmentId">
+ 	SELECT GROUP_CONCAT(t.audio_id) FROM cms_audio_attach t WHERE t.attachment_id=#{attachmentId}
+  </select>
+</mapper>

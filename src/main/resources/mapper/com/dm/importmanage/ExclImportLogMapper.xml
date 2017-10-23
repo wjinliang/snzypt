@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.importmanage.sqldao.ExclImportLogMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.importmanage.model.ExclImportLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="start_row" property="startRow" jdbcType="INTEGER" />
+    <result column="end_row" property="endRow" jdbcType="INTEGER" />
+    <result column="title_row" property="titleRow" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="collection_name" property="tableName" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="import_time" property="importTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="conf_id" property="confId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, file_path, start_row, end_row, title_row, status, collection_name, insert_time, 
+    import_time, type, conf_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from excl_import_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByArgMap" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from excl_import_log
+    <where>
+    	<if test="model!=null">
+    		<if test="model.tableName!=null">
+    			and collection_name like concat('%',#{model.tableName},'%')
+    		</if>
+    		<if test="model.confId!=null and model.confId!=''">
+    			and conf_id = #{model.confId}
+    		</if>
+    	</if>
+    </where>
+    <if test="order!=null and order!=''">
+    	order by #{order}
+    </if>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from excl_import_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.importmanage.model.ExclImportLog" >
+    insert into excl_import_log (id, file_path, start_row, 
+      end_row, title_row, status, 
+      collection_name, insert_time, import_time, 
+      type, conf_id)
+    values (#{id,jdbcType=INTEGER}, #{filePath,jdbcType=VARCHAR}, #{startRow,jdbcType=INTEGER}, 
+      #{endRow,jdbcType=INTEGER}, #{titleRow,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{importTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=VARCHAR}, #{confId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.importmanage.model.ExclImportLog" >
+    insert into excl_import_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+      <if test="startRow != null" >
+        start_row,
+      </if>
+      <if test="endRow != null" >
+        end_row,
+      </if>
+      <if test="titleRow != null" >
+        title_row,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="tableName != null" >
+        collection_name,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="importTime != null" >
+        import_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="confId != null" >
+        conf_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="startRow != null" >
+        #{startRow,jdbcType=INTEGER},
+      </if>
+      <if test="endRow != null" >
+        #{endRow,jdbcType=INTEGER},
+      </if>
+      <if test="titleRow != null" >
+        #{titleRow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="importTime != null" >
+        #{importTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="confId != null" >
+        #{confId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.importmanage.model.ExclImportLog" >
+    update excl_import_log
+    <set >
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="startRow != null" >
+        start_row = #{startRow,jdbcType=INTEGER},
+      </if>
+      <if test="endRow != null" >
+        end_row = #{endRow,jdbcType=INTEGER},
+      </if>
+      <if test="titleRow != null" >
+        title_row = #{titleRow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        collection_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="importTime != null" >
+        import_time = #{importTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="confId != null" >
+        conf_id = #{confId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.importmanage.model.ExclImportLog" >
+    update excl_import_log
+    set file_path = #{filePath,jdbcType=VARCHAR},
+      start_row = #{startRow,jdbcType=INTEGER},
+      end_row = #{endRow,jdbcType=INTEGER},
+      title_row = #{titleRow,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      collection_name = #{tableName,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      import_time = #{importTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      conf_id = #{confId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

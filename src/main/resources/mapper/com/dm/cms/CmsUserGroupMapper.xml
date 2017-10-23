@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsUserGroupMapper">
+	<resultMap id="BaseResultMap" type="com.dm.cms.model.CmsUserGroup">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEQ" property="seq" jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, NAME, SEQ
+	</sql>
+	<sql id="user_tree_node">
+		CODE as id,NAME
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user_group
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		t_user_group
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from t_user_group
+		where id in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.dm.cms.model.CmsUserGroup">
+		insert into t_user_group (ID,
+		NAME, SEQ)
+		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{seq,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dm.cms.model.CmsUserGroup">
+		insert into t_user_group
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="seq != null">
+				SEQ,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="seq != null">
+				#{seq,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsUserGroup">
+		update t_user_group
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="seq != null">
+				SEQ = #{seq,jdbcType=BIGINT},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsUserGroup">
+		update
+		t_user_group
+		set NAME = #{name,jdbcType=VARCHAR},
+		SEQ =
+		#{seq,jdbcType=BIGINT}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectRecordsByArgMap" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List"></include>
+		from t_user_group
+		<where>
+			<if test="model != null">
+				<if test="model.name != null">
+					name like CONCAT(CONCAT('%', #{model.name}),'%')
+				</if>
+			</if>
+		</where>
+		<!-- <if test="sort!=null and sort!='' "> -->
+		ORDER BY seq
+		<!-- </if> -->
+	</select>
+	<!-- 用户关联 -->
+	<select id="selectUsersByGroupId" resultType="String">
+		select USER_CODE
+		from t_group_user where group_id = #{groupId}
+	</select>
+	<insert id="insertGroupUser" parameterType="java.util.List">
+		insert into t_group_user (USER_CODE, GROUP_ID)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.userId,jdbcType=VARCHAR},
+			#{item.groupId,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<delete id="deleteGroupUser" parameterType="java.util.Map">
+		delete from t_group_user where
+		1=1
+		<if test="groupId!=null">
+			and group_id=#{groupId}
+		</if>
+		and user_code in
+		<foreach collection="userId" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<delete id="deleteGroupUserByGroupIds" parameterType="java.util.List">
+		delete from t_group_user where group_id in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<select id="selectCurrentUserGroupId" resultType="String">
+		select group_id
+		from t_group_user
+		where user_code = #{userId}
+	</select>
+	<!-- 用户关联结束 -->
+	<!-- 站点关联 -->
+	<select id="selectSitesByGroupId" resultType="String">
+		select site_id
+		from
+		t_group_site where group_id = #{groupId}
+	</select>
+	<insert id="insertGroupSite" parameterType="java.util.List">
+		insert into t_group_site (SITE_ID, GROUP_ID)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.siteId,jdbcType=VARCHAR},
+			#{item.groupId,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<delete id="deleteGroupSite" parameterType="java.util.Map">
+		delete from t_group_site
+		where 1=1
+		<if test="groupId!=null">
+			and group_id=#{groupId}
+		</if>
+		and site_id in
+		<foreach collection="siteId" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<delete id="deleteGroupSiteByGroupIds" parameterType="java.util.List">
+		delete from t_group_site where group_id in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<!-- 站点关联结束 -->
+	<!-- 频道关联 -->
+	<select id="selectChannelByGroupId" resultType="String">
+		select channel_id
+		from t_group_channel where group_id = #{groupId}
+	</select>
+	<insert id="insertGroupChannel" parameterType="java.util.List">
+		insert into t_group_channel (CHANNEL_ID, GROUP_ID)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.channelId,jdbcType=VARCHAR},
+			#{item.groupId,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<delete id="deleteGroupChannel" parameterType="java.util.Map">
+		delete from t_group_channel
+		where 1=1
+		<if test="groupId!=null">
+			and group_id=#{groupId}
+		</if>
+		and channel_id in
+		<foreach collection="channelId" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<delete id="deleteGroupChannelByGroupIds" parameterType="java.util.List">
+		delete from t_group_channel where group_id in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<!-- 频道关联结束 -->
+</mapper>

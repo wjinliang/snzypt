@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.questionsurvey.sqldao.QuestionnaireDataMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.questionsurvey.model.QuestionnaireData" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="questionId" property="questionId" jdbcType="VARCHAR" />
+    <result column="reportTime" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, questionId, reportTime,ip
+  </sql>
+   <insert id="insert" parameterType="com.dm.questionsurvey.model.QuestionnaireData" >
+    insert into question_data (id, questionId, reportTime,ip)
+    values (#{id,jdbcType=VARCHAR}, #{questionId,jdbcType=VARCHAR}, #{reportTime,jdbcType=TIMESTAMP},#{ip,jdbcType=VARCHAR})
+  </insert>
+  <!--<insert id="insertSelective" parameterType="com.dm.questionsurvey.model.QuestionnaireSuvery" >
+    insert into questionnaire_suvery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="weibanju != null" >
+        weibanju,
+      </if>
+      <if test="fundes != null" >
+        fundes,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="weibanju != null" >
+        #{weibanju,jdbcType=VARCHAR},
+      </if>
+      <if test="fundes != null" >
+        #{fundes,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.questionsurvey.model.QuestionnaireSuvery" >
+    update questionnaire_suvery
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="weibanju != null" >
+        weibanju = #{weibanju,jdbcType=VARCHAR},
+      </if>
+      <if test="fundes != null" >
+        fundes = #{fundes,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        fundes = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        fundes = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.questionsurvey.model.QuestionnaireSuvery" >
+    update questionnaire_suvery
+    set title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      weibanju = #{weibanju,jdbcType=VARCHAR},
+      fundes = #{fundes,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP}
+      
+    where id = #{id,jdbcType=VARCHAR}
+  </update>-->
+   <delete id="deleteByQuestionId" parameterType="java.lang.String" >
+    delete from question_data 
+    where questionId = #{id,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectByArgMap" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_data
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_data t
+    where t.id = #{id,jdbcType=VARCHAR}
+  </select>
+ <!--  <select id="selectCountByWeibanjuType" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from questionnaire_suvery t
+  </select>  -->
+</mapper>

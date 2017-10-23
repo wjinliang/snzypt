@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsInterviewAboutMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsInterviewAbout" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="interview_id" property="interviewId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_enable" property="isEnable" jdbcType="VARCHAR" />
+    <result column="filed1" property="filed1" jdbcType="VARCHAR" />
+    <result column="filed2" property="filed2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content, url, interview_id, title, type, create_user, create_time, update_time, 
+    is_enable, filed1, filed2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_interview_about
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_interview_about
+    <where>
+    	interview_id = #{model.interviewId}
+    	<if test="createTime!=null">
+    		and create_time &gt; #{model.createTime}
+    	</if>
+    	and filed2 &lt;&gt; '9'
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_interview_about
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsInterviewAbout" >
+    insert into cms_interview_about (id, content, url, 
+      interview_id, title, type, 
+      create_user, create_time, update_time, 
+      is_enable, filed1, filed2
+      )
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{interviewId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{isEnable,jdbcType=VARCHAR}, #{filed1,jdbcType=VARCHAR}, #{filed2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsInterviewAbout" >
+    insert into cms_interview_about
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="interviewId != null" >
+        interview_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isEnable != null" >
+        is_enable,
+      </if>
+      <if test="filed1 != null" >
+        filed1,
+      </if>
+      <if test="filed2 != null" >
+        filed2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewId != null" >
+        #{interviewId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isEnable != null" >
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="filed1 != null" >
+        #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        #{filed2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsInterviewAbout" >
+    update cms_interview_about
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewId != null" >
+        interview_id = #{interviewId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isEnable != null" >
+        is_enable = #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="filed1 != null" >
+        filed1 = #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        filed2 = #{filed2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsInterviewAbout" >
+    update cms_interview_about
+    set content = #{content,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      interview_id = #{interviewId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_enable = #{isEnable,jdbcType=VARCHAR},
+      filed1 = #{filed1,jdbcType=VARCHAR},
+      filed2 = #{filed2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

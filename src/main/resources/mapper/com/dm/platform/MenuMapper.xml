@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.platform.model.UserMenu">
+	<resultMap id="SimpleMenuMap" type="HashMap">
+		<result column="ID" property="id" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PID" property="pId" jdbcType="INTEGER" />
+		<result column="SEQ" property="seq" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 用户查询 -->
+	<select id="findAllMenuSimpleList" parameterType="java.util.Map" resultMap="SimpleMenuMap">
+		SELECT T.ID,T.NAME,T.PID
+		FROM T_USER_MENU T ORDER BY T.SEQ ASC
+	</select>
+	
+</mapper>

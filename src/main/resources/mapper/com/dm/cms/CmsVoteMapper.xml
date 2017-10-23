@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsVoteMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsVote" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="questionnaires_id" property="questionnairesId" jdbcType="INTEGER"/>
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="check_type" property="checkType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="is_result" property="isResult" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="click_count" property="clickCount" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+    <result column="filed1" property="filed1" jdbcType="VARCHAR" />
+    <result column="filed2" property="filed2" jdbcType="VARCHAR" />
+    <result column="filed3" property="filed3" jdbcType="VARCHAR" />
+    <result column="filed4" property="filed4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, channel_id,questionnaires_id, description, check_type, status, start_time, end_time, is_result, 
+    create_time, click_count, create_user, publish_time, filed1, filed2, filed3, filed4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_vote
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from cms_vote
+    where 
+     status !='9'
+    <if test="model!=null">
+    <if test="model.questionnairesId!=null">
+		and questionnaires_id = #{model.questionnairesId}
+		</if>
+    <if test="model.channelId!=null">
+		and channel_id = #{model.channelId}
+		</if>
+    <!-- <if test="model.status!=null and model.status!=''">
+    	and status = #{model.status}
+    </if> -->
+    <if test="model.title!=null and model.title!=''">
+    	and title like concat('%',#{model.title},'%')
+    </if>
+    </if>
+    order by publish_time desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_vote
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsVote" >
+    insert into cms_vote (id, title,channel_id, questionnaires_id, 
+      description, check_type, status, 
+      start_time, end_time, is_result, 
+      create_time, click_count, create_user, 
+      publish_time, filed1, filed2, 
+      filed3, filed4)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},#{channelId}, #{questionnairesId,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{checkType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{isResult,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{clickCount,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=VARCHAR}, #{filed1,jdbcType=VARCHAR}, #{filed2,jdbcType=VARCHAR}, 
+      #{filed3,jdbcType=VARCHAR}, #{filed4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsVote" >
+    insert into cms_vote
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="channelId!=null">
+      	channel_id,
+      </if>
+      <if test="questionnairesId != null" >
+        questionnaires_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="checkType != null" >
+        check_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="isResult != null" >
+        is_result,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="clickCount != null" >
+        click_count,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="filed1 != null" >
+        filed1,
+      </if>
+      <if test="filed2 != null" >
+        filed2,
+      </if>
+      <if test="filed3 != null" >
+        filed3,
+      </if>
+      <if test="filed4 != null" >
+        filed4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId!=null">
+      	#{channelId},
+      </if>
+      <if test="questionnairesId != null" >
+        #{questionnairesId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        #{checkType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isResult != null" >
+        #{isResult,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null" >
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="filed1 != null" >
+        #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        #{filed3,jdbcType=VARCHAR},
+      </if>
+      <if test="filed4 != null" >
+        #{filed4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsVote" >
+    update cms_vote
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId!=null">
+      	channel_id = #{channelId},
+      </if>
+      <if test="questionnairesId != null" >
+        questionnaires_id = #{questionnairesId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        check_type = #{checkType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isResult != null" >
+        is_result = #{isResult,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null" >
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="filed1 != null" >
+        filed1 = #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        filed2 = #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        filed3 = #{filed3,jdbcType=VARCHAR},
+      </if>
+      <if test="filed4 != null" >
+        filed4 = #{filed4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsVote" >
+    update cms_vote
+    set title = #{title,jdbcType=VARCHAR},
+      channel_id =	#{channelId},
+      questionnaires_id = #{questionnairesId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      check_type = #{checkType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      is_result = #{isResult,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      filed1 = #{filed1,jdbcType=VARCHAR},
+      filed2 = #{filed2,jdbcType=VARCHAR},
+      filed3 = #{filed3,jdbcType=VARCHAR},
+      filed4 = #{filed4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

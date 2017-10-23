@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsContentVisitRecordMapper">
+
+	<insert id="insertVisitRecord">
+		INSERT INTO cms_content_visit_record
+		(content_id,channel_id,channel_type,user_id,visit_time,ip)
+		VALUES(#{contentId},#{channelId},#{channelType},#{userId},#{visitTime},#{ip})
+	</insert>
+	<select id="selectVisitListForSite" resultType="com.dm.cms.model.CmsVisitCountVo">
+		SELECT s.id siteId,
+		s.url AS url,
+		s.display_name AS title,
+		Count(vr.id) AS count
+		FROM
+		cms_site AS s
+		LEFT JOIN cms_channel AS c ON s.id = c.site_id
+		LEFT JOIN
+		cms_content_visit_record AS vr ON c.id = vr.channel_id
+		WHERE
+		vr.content_id is NULL
+		<if test="date!=null">
+			and vr.visit_time &gt; #{date}
+		</if>
+		<if test="siteId!=null">and s.id=#{siteId}</if>
+		GROUP BY s.id
+		ORDER BY ${sort}
+	</select>
+	<select id="selectVisitListForChannel" resultType="com.dm.cms.model.CmsVisitCountVo">
+		SELECT chan.id channelId,
+		chan.url AS url,
+		chan.display_name AS
+		title,IFNULL(v.count,0) count FROM cms_channel chan LEFT JOIN
+		(SELECT
+		c.id channelId,
+		count(vr.id) AS count
+		FROM
+		cms_channel c
+		<if test="siteId!=null">
+			LEFT JOIN cms_site AS s ON s.id = c.site_id
+		</if>
+		LEFT JOIN cms_content_visit_record vr ON c.id = vr.channel_id
+		WHERE
+		vr.content_id is NULL
+		AND vr.channel_id is NOT NULL
+		<if test="date!=null">
+			and vr.visit_time &gt; #{date}
+		</if>
+		<if test="siteId!=null">
+			AND s.id = #{siteId}
+		</if>
+		<if test="channelId!=null">
+			AND c.id = #{channelId}
+		</if>
+		GROUP BY vr.channel_id
+		) v ON chan.id=v.channelId
+		<if test="sort!=null">
+			ORDER BY ${sort}
+		</if>
+	</select>
+	<select id="selectVisitListForContent" resultType="com.dm.cms.model.CmsVisitCountVo">
+      <!-- select p.* from ( -->
+    	SELECT 
+		c.url AS url,vr.content_id,
+		<if test="channelType == 0">
+		 c.title, c.title_image_url,
+		</if>
+		<if test="channelType == 5">
+		 c.name as title, c.image_url as imageUrl,c.actor as author,
+		</if>
+		<if test="channelType == 6">
+		 c.name as title,c.image_url as imageUrl,c.singer as author,
+		</if>
+		<if test="channelType == 7">
+		 c.name as title,c.image_url as imageUrl,c.author as author,
+		</if>
+		count(vr.id) AS count
+		FROM
+		cms_content_visit_record
+		 AS vr
+		left JOIN 
+		<if test="channelType == 0">
+		 cms_content
+		</if>
+		<if test="channelType == 5">
+		 cms_video
+		</if>
+		<if test="channelType == 6">
+		 cms_audio
+		</if>
+		<if test="channelType == 7">
+		 cms_novel
+		</if>
+		as c
+		ON c.id = vr.content_id 
+		<if test="channelId!=null">
+			LEFT JOIN cms_channel AS ch ON ch.id = vr.channel_id
+			<if test="siteId!=null">
+				LEFT JOIN cms_site AS s ON 	s.id = ch.site_id
+			</if>
+		</if>
+		WHERE c.is_html=1
+		<if test="date!=null">
+		 and vr.visit_time &gt; #{date}
+		</if>
+		AND vr.channel_type = #{channelType}
+		AND vr.content_id is not null
+		<if test="channelId!=null">
+			AND (vr.channel_id = #{channelId} or ch.pid =  #{channelId})
+			<if test="siteId!=null">
+				AND s.id = #{siteId}
+			</if>
+		</if>
+		GROUP BY vr.content_id
+		ORDER BY count DESC
+    </select>
+	<select id="selectPublishList" resultType="com.dm.cms.model.CmsVisitCountVo">
+		SELECT ch.display_name AS title,DATE_FORMAT( c.publish_date,
+		"%Y-%m-%d" ) AS date, COUNT(c.id) as count
+		FROM cms_content c
+		LEFT JOIN
+		cms_channel ch
+		ON c.channel_id = ch.id
+		WHERE c.publish_date IS NOT NULL
+		AND c.publish_date &gt; #{vo.date}
+		AND ch.id IN
+		<foreach collection="channelIds" item="channelId" separator=","
+			open="(" close=")">
+			#{channelId}
+		</foreach>
+		GROUP BY ch.id,DATE_FORMAT( c.publish_date, "%Y-%m-%d" )
+		ORDER BY date
+		ASC
+	</select>
+	<select id="selectPublishListLimit" resultType="com.dm.cms.model.CmsVisitCountVo">
+		SELECT ch.id AS channelId,ch.display_name AS title, COUNT(c.id) as
+		count
+		FROM cms_content c
+		LEFT JOIN cms_channel ch
+		ON c.channel_id = ch.id
+		WHERE c.publish_date IS NOT NULL
+		AND c.publish_date &gt; #{date}
+		AND
+		c.is_html=1
+		<if test="siteId!=null">
+			AND ch.site_id = #{siteId}
+		</if>
+		GROUP BY ch.id
+		ORDER BY count DESC
+	</select>
+
+	<select id="selectCountByContentId" resultType="java.lang.Integer">
+		select count(*)
+		from cms_content_visit_record
+		where content_id =
+		#{cmsContentId,jdbcType=INTEGER} and channel_type =
+		#{channelType}
+	</select>
+	<select id="selectVisitListForUser" resultType="java.util.HashMap">
+		SELECT
+		`USER`.`NAME` name,`USER`.`CODE` code,COUNT(v.id) as count
+		FROM
+		t_user_account USER
+		LEFT JOIN cms_content_visit_record v ON
+		`USER`.`CODE` = v.user_id
+		<where>
+			<if test="code !=null ">
+				user.code = #{code}
+			</if>
+		</where>
+		GROUP BY `USER`.`CODE`
+		<if test="order!=null">
+			ORDER BY ${order}
+		</if>
+	</select>
+</mapper>

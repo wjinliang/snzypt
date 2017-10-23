@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<context:property-placeholder
+		location="classpath*:config/properties/*.properties" />
+
+	<!-- 注解扫描包 -->
+	<context:component-scan base-package="com.dm.**.controller,com.dm.**.service.impl" />
+	<!-- 开启AOP自动代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 开启注解 -->
+	<!-- <mvc:annotation-driven/> -->
+	<!-- 静态资源(js/image)的访问 -->
+	<mvc:resources location="/favicon.ico" mapping="/favicon.ico" />
+	<mvc:resources location="/assets/" mapping="/assets/**" />
+	<mvc:resources location="/image_center/" mapping="/image_center/**" />
+	<mvc:resources location="/file_center/" mapping="/file_center/**" />
+	<mvc:resources location="${htmlDir}/" mapping="${htmlDir}/**" />
+	<mvc:resources location="/resource/" mapping="/resource/**" />
+	<mvc:interceptors>
+		<!-- On pre-handle, resolve the device that originated the web request -->
+		<bean
+			class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+	</mvc:interceptors>
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5000000000" />
+	</bean>
+
+	<!-- 配置freeMarker视图解析器 -->
+	<bean id="viewResolverFtl"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass"
+			value="com.dm.view.LimiFreeMarkerView" />
+		<property name="prefix" value="/" />
+		<property name="contentType" value="text/html; charset=utf-8" />
+		<property name="cache" value="true" />
+		<property name="suffix" value=".ftl" />
+		<property name="order" value="0" />
+	</bean>
+	<!-- <bean class="org.springframework.mobile.device.view.LiteDeviceDelegatingViewResolver"> 
+		<constructor-arg> <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/> 
+		<property name="prefix" value="/"/> <property name="contentType" value="text/html; 
+		charset=utf-8"/> <property name="cache" value="true"/> <property name="suffix" 
+		value=".ftl"/> </bean> <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/views/"/> <property name="suffix" 
+		value=".jsp"/> </bean> </constructor-arg> <property name="enableFallback" 
+		value="true" /> <property name="mobilePrefix" value="mobile/" /> <property 
+		name="tabletPrefix" value="tablet/" /> <property name="order" value="-1"/> 
+		</bean> -->
+
+	<!--通用视图解析器 -->
+	<bean id="viewResolverCommon"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+	<!-- 配置freeMarker的模板路径 -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath">
+			<value>/</value>
+		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+				<entry key="channelDirective" value-ref="channelDirective" />
+				<entry key="channelListDirective" value-ref="channelListDirective" />
+				<entry key="contentListDirective" value-ref="contentListDirective" />
+				<entry key="contentDirective" value-ref="contentDirective" />
+				<entry key="currentLocationDirective" value-ref="currentLocationDirective" />
+				<entry key="contentVisitListDirective" value-ref="contentVisitListDirective" />
+				<entry key="novelDirective" value-ref="novelDirective" />
+				<entry key="novelListDirective" value-ref="novelListDirective" />
+				<entry key="audioDirective" value-ref="audioDirective" />
+				<entry key="audioListDirective" value-ref="audioListDirective" />
+				<entry key="videoDirective" value-ref="videoDirective" />
+				<entry key="videoListDirective" value-ref="videoListDirective" />
+				<entry key="searchListDirective" value-ref="searchListDirective" />
+				<entry key="friendlinkDirective" value-ref="friendlinkDirective"></entry>
+				<entry key="advertisingListDirective" value-ref="advertisingListDirective"></entry>
+				<entry key="advertisingDirective" value-ref="advertisingDirective"></entry>
+<!-- 				<entry key="voteListDirective" value-ref="voteListDirective"></entry> -->
+<!-- 				<entry key="interviewListDirective" value-ref="interviewListDirective"></entry> -->
+				<entry key="topOneDirective" value-ref="topOneDirective"></entry>
+				<!-- <entry key="leaderListDirective" value-ref="leaderListDirective"></entry>
+				<entry key="leaderDirective" value-ref="leaderDirective"></entry>
+				<entry key="orgListDirective" value-ref="orgListDirective"></entry> -->
+				<!-- <entry key="pubDocDirective" value-ref="pubDocDirective"></entry>
+				<entry key="pubDocListDirective" value-ref="pubDocListDirective"></entry>
+				<entry key="websurveyListDirective" value-ref="websurveyListDirective"></entry> -->
+				<entry key="pictureListDirective" value-ref="pictureListDirective"></entry>
+				<!-- <entry key="microcobolListDirective" value-ref="microcobolListDirective"></entry>
+				<entry key="orgPersonDirective" value-ref="orgPersonDirective"></entry> -->
+				<!-- <entry key="leaderContentListDirective" value-ref="leaderContentListDirective"></entry> -->
+				<entry key="dictItemListDirective" value-ref="dictItemListDirective"></entry>
+				<!-- 涉农前台自定义标签 -->
+				<entry key="cunqingItemCountDirective" value-ref="cunqingItemCountDirective"></entry>
+				<entry key="cunqingItemInfoDirective" value-ref="cunqingItemInfoDirective"></entry>
+				<entry key="mongoDataListDirective" value-ref="mongoDataListDirective"></entry>
+				<entry key="tableListDirective" value-ref="tableListDirective"></entry>
+				<entry key="dataResourceRecordDirective" value-ref="dataResourceRecordDirective"></entry>
+				<entry key="directoryNumberDirective" value-ref="directoryNumberDirective"></entry>
+				<entry key="sysDataCountDirective" value-ref="sysDataCountDirective"></entry>
+				
+			</map>
+		</property>
+		<property name="defaultEncoding">
+			<value>utf-8</value>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				  <prop key="template_update_delay">0</prop>
+			      <prop key="date_format">yyyy-MM-dd</prop>
+			      <prop key="datetime_format">yyyy-MM-dd</prop>
+	                <prop key="time_format">HH:mm:ss</prop>  
+	                <prop key="number_format">#</prop><!-- 设置数字格式 以免出现 000.00 -->  
+	                <prop key="classic_compatible">true</prop><!-- 可以满足一般需要。默认情况变量为null则替换为空字符串，如果需要自定义，写上${empty!"EmptyValue of fbysss"}的形式即可  -->  
+	                <prop key="template_exception_handler">html_debug</prop><!-- ignore,debug,html_debug,rethrow -->  
+			</props>
+		</property>
+	</bean>
+
+	<!-- 自定义标签 -->
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+	<bean id="channelDirective" class="com.dm.cms.directive.ChannelDirective" />
+	<bean id="channelListDirective" class="com.dm.cms.directive.ChannelListDirective" />
+	<bean id="contentListDirective" class="com.dm.cms.directive.ContentListDirective" />
+	<bean id="contentDirective" class="com.dm.cms.directive.ContentDirective" />
+	<bean id="currentLocationDirective" class="com.dm.cms.directive.CurrentLocationDirective" />
+	<bean id="contentVisitListDirective" class="com.dm.cms.directive.ContentVisitListDirective" />
+	<bean id="novelDirective" class="com.dm.cms.directive.NovelDirective" />
+	<bean id="novelListDirective" class="com.dm.cms.directive.NovelListDirective" />
+	<bean id="audioDirective" class="com.dm.cms.directive.AudioDirective" />
+	<bean id="audioListDirective" class="com.dm.cms.directive.AudioListDirective" />
+	<bean id="videoDirective" class="com.dm.cms.directive.VideoDirective" />
+	<bean id="videoListDirective" class="com.dm.cms.directive.VideoListDirective" />
+	<bean id="searchListDirective" class="com.dm.search.directive.SearchListDirective" />
+	<bean id="friendlinkDirective" class="com.dm.cms.directive.FriendlinkListDirective"></bean>
+	<bean id="advertisingListDirective" class="com.dm.cms.directive.AdvertisingListDirective"></bean>
+	<bean id="advertisingDirective" class="com.dm.cms.directive.AdvertisingDirective"></bean>
+	<!-- <bean id="leaderDirective" class="com.dm.cms.directive.LeaderDirective"></bean>
+	<bean id="leaderListDirective" class="com.dm.cms.directive.LeaderListDirective"></bean>
+	<bean id="orgListDirective" class="com.dm.cms.directive.OrgListDirective"></bean>
+	<bean id="voteListDirective" class="com.dm.cms.directive.VoteListDirective"></bean>
+	<bean id="interviewListDirective" class="com.dm.cms.directive.InterviewListDirective" />
+	<bean id="pubDocDirective" class="com.dm.cms.directive.PubDocDirective"></bean>
+	<bean id="pubDocListDirective" class="com.dm.cms.directive.PubDocListDirective"></bean>
+	<bean id="websurveyListDirective" class="com.dm.cms.directive.WebsurveyListDirective" /> -->
+   <bean id="topOneDirective" class="com.dm.cms.directive.TopOneDirective"/>
+   <bean id="pictureListDirective" class="com.dm.cms.directive.PictureListDirective"/>
+   <!-- <bean id="leaderContentListDirective" class="com.dm.cms.directive.LeaderContentListDirective"></bean> -->
+   
+  <!--  <bean id="microcobolListDirective" class ="com.dm.module.directive.MicrocobolListDirective"></bean>
+   <bean id="orgPersonDirective" class ="com.dm.module.directive.OrgPersonListDirective"></bean> -->
+   <bean id="dictItemListDirective" class="com.dm.module.directive.DictItemListDirective"></bean>
+    <!-- 自定义标签结束 -->
+  <!-- 涉农前台自定义标签 -->
+ <bean id="cunqingItemCountDirective" class ="com.dm.app.datatopic.cunqing.cunqinginfo.directive.CunqingItemInfoDirective"></bean>
+ <bean id="cunqingItemInfoDirective" class ="com.dm.app.datatopic.cunqing.cunqinginfo.directive.CunqingItemInfoDirective"></bean>
+ <bean id="mongoDataListDirective" class="com.dm.atform.directive.MongoDataListDirective"></bean>
+ <bean id="tableListDirective" class="com.dm.atform.directive.AtTableListDirective"></bean>
+ <bean id="directoryNumberDirective" class="com.dm.atform.directive.DirectoryNumberDirective"></bean>
+ <bean id="dataResourceRecordDirective" class="com.dm.atform.directive.DataResourceRecordDirective"></bean>
+ <bean id="sysDataCountDirective" class="com.dm.atform.directive.SysDataCountDirective"></bean>
+ 
+ <!-- 涉农前台自定义标签结束 -->
+	<!-- json格式设置 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					
+					<property name="objectMapper">
+						<bean class="org.codehaus.jackson.map.ObjectMapper">
+							<property name="dateFormat">
+								<bean class="java.text.SimpleDateFormat">
+									<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+								</bean>
+							</property>
+						</bean>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="appUtil" class="com.dm.cms.util.AppUtil"/>
+<!-- 	<bean id="synData" class="com.dm.ca.syndata.SynData"/> -->
+</beans>
+

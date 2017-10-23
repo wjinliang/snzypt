@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"  
+       xsi:schemaLocation="
+       		http://www.springframework.org/schema/data/mongo 
+        	http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+    		http://www.springframework.org/schema/cache 
+			http://www.springframework.org/schema/cache/spring-cache.xsd
+            http://www.springframework.org/schema/data/repository
+            http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd">
+
+    
+     <context:property-placeholder
+            location="classpath*:config/properties/*.properties"/>    
+<!-- <context:property-placeholder -->
+<!--             location="classpath*:config/properties/dm.properties,classpath*:config/properties/jdbc.properties,classpath*:config/properties/mail.properties,classpath*:config/properties/cms.properties,classpath*:config/properties/webservice.properties"/>     -->
+
+    <bean id="cacheManager"
+          class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation">
+            <value>classpath:config/xmls/ehcache.xml</value>
+        </property>
+    </bean>
+ 
+    <bean id="myCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager" ref="cacheManager">
+        </property>
+        <property name="cacheName">
+            <value>DEFAULT_CACHE</value>
+        </property>
+    </bean>
+
+    <bean id="userCache"
+          class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+        <property name="cache" ref="userEhCache"/>
+    </bean>
+
+    <bean id="userEhCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="cacheName" value="userCache"/>
+    </bean>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc.initial.size}"/>
+        <property name="minIdle" value="${jdbc.min.idle}"/>
+        <property name="maxActive" value="${jdbc.max.active}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource">
+        </property>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.MySQLDialect
+                </prop>
+                <prop key="hibernate.max_fetch_depth">
+                    3
+                </prop>
+                <prop key="hibernate.show_sql">
+                    false
+                </prop>
+                <prop key="hibernate.format_sql">
+                    true
+                </prop>
+            </props>
+        </property>
+        <property name="packagesToScan" value="com.dm.*.model"/>
+    </bean>
+
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:configLocation="classpath:config/spring/mybatis-config.xml"
+          p:mapperLocations="classpath:/mapper/**/*.xml">
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=hsqldb
+                            reasonable=true
+                            params=count=countSql;pageSizeZero=zero
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+    <!-- configLocation为mybatis属性 mapperLocations为所有mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="com.dm.*.sqldao"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+
+	<bean id="redisCache" class="com.dm.atform.util.RedisCache"></bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+    <context:annotation-config/>
+    <!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+    <context:component-scan
+            base-package="com.dm.*.handler,com.dm.*.aop,com.dm.**.service,com.dm.**.dao"/>
+
+    <!-- 配置事务管理 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean> 
+    
+	<bean id="contentGenerateHtml" class="com.dm.cms.thread.ContentGenerateHtml" scope="prototype"></bean>
+    <aop:config>
+        <aop:pointcut expression="execution(* com.dm.*.service.*.*(..))"
+                      id="myTx"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="myTx"/>
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false"
+                       rollback-for="Exception"/>
+            <tx:method name="save*" propagation="REQUIRED" read-only="false"
+                       rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"
+                       rollback-for="Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"
+                       rollback-for="Exception"/>
+            <tx:method name="list*" propagation="SUPPORTS"/>
+            <tx:method name="find*" propagation="SUPPORTS"/>
+            <tx:method name="get*" propagation="SUPPORTS"/>
+            <tx:method name="select*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+<!-- mongodb的配置 -->
+	 <mongo:mongo id="mongo" host="${mongo.host}" port="${mongo.port}">  
+         <mongo:options connections-per-host="${mongo.connectionsPerHost}"
+             threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"  
+             connect-timeout="${mongo.connectTimeout}" 
+             max-wait-time="${mongo.maxWaitTime}"  
+             auto-connect-retry="${mongo.autoConnectRetry}" 
+             socket-keep-alive="${mongo.socketKeepAlive}" 
+             socket-timeout="${mongo.socketTimeout}"  
+             slave-ok="${mongo.slaveOk}"  
+             write-number="${mongo.writeNumber}" 
+             write-timeout="${mongo.writeTimeout}" 
+             write-fsync="${mongo.writeFsync}"/>
+	</mongo:mongo>
+	
+	<mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbName}" mongo-ref="mongo" /><!-- username="${mongo.user}" password="${mongo.password}" -->
+	
+	<bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+		<constructor-arg name="typeKey">
+			<null />
+		</constructor-arg> 
+	</bean>  
+	
+	<!-- mongodb 的实体映射器  根据注释，把它们作为mongodb的一个collection的映射-->
+	  <mongo:mapping-converter id="mongoConverter" base-package="com.dm.app.dilixinxi.jichushujuguanli.model" db-factory-ref="mongoDbFactory" /><!-- type-mapper-ref="defaultMongoTypeMapper"/> -->
+	 
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory"/>
+		   <constructor-arg ref="mongoConverter"/> 
+		<property name="writeConcern" value="${mongo.writeConcern}" />
+	</bean> 
+	          <import resource="classpath*:/config/spring/spring-redis.xml"/>
+	<!-- mongodb bean的仓库目录,使用springdata时用此, 会自动扫描扩展了MongoRepository接口的接口进行注入-->
+<!-- 	<mongo:repositories base-package="com.xkw.xy360.repository.mongo"/> -->
+    
+    
+    <!-- 默认访问127.0.0.1：27017 -->
+      <!-- <mongo:db-factory id="mongoDbFactory" dbname="test"/>
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoDbFactory" />
+        <property name="writeConcern" value="SAFE" />
+    </bean>  -->
+</beans>

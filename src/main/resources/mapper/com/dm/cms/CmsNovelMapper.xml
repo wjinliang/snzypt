@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsNovelMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsNovel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="channel_name" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="is_html" property="isHtml" jdbcType="VARCHAR" />
+    <result column="publish_date" property="publishDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="is_download" property="isDownload" jdbcType="VARCHAR" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, channel_id, name, type, author, create_user_id, introduce, is_html, publish_date, 
+    create_time, update_time, status, is_download, image_url, url, origin, template_id, 
+    seq
+  </sql>
+  
+   <select id="selectPageListByMap" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_novel
+    <where>
+      <if test="channelId!=null">
+         channel_id= #{channelId}
+      </if>
+       <if test="status!=null and status!=''">
+        and status in
+        <foreach collection="status" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+      </if>
+    </where>
+    order by ${order}
+    limit #{pageStart},#{pageSize}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_novel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectRecordByArgMap" resultMap="BaseResultMap">
+		select
+		novel.id, novel.pid, channel_id, name, author, create_user_id, introduce, novel.is_html, novel.publish_date, 
+    novel.create_time, novel.update_time, novel.status, is_download, image_url, novel.url, novel.origin, novel.template_id,novel.seq
+		<if test="getType!=null">
+				,channel.display_name as channel_name
+			</if>
+		from cms_novel novel
+			<if test="getType!=null">
+				left join cms_channel channel
+				on channel_id = channel.id
+			</if>
+		<where>
+			<if test="channelIds !=null">
+				channel_id in
+				<foreach collection="channelIds" item="item" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="model!=null">
+				<!-- <if test="model.channelId!=null">
+					and channel_id = #{model.channelId}
+				</if> -->
+				<if test="model.name != null">
+					and name like CONCAT(CONCAT('%', #{model.name}),'%')
+				</if>
+				<if test="model.status !=null">
+					and status = #{model.status}
+				</if>
+				<if test="model.createUserId !=null">
+					and create_user_id = #{model.createUserId}
+				</if>
+				<if test="model.isHtml !=null">
+					and novel.is_html = #{model.isHtml}
+				</if>
+			</if>
+		</where>
+		<if test="order!=null and order!=''">
+			order by ${order}
+		</if>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_novel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsNovel" 
+  useGeneratedKeys="true" keyProperty="id">
+    insert into cms_novel (id, pid, channel_id, 
+      name, author, create_user_id, 
+      introduce, is_html, publish_date, 
+      create_time, update_time, status, 
+      is_download, image_url, url, 
+      origin, template_id, seq, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{isHtml,jdbcType=VARCHAR}, #{publishDate,jdbcType=DATE}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{isDownload,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{origin,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsNovel" 
+  useGeneratedKeys="true" keyProperty="id">
+    insert into cms_novel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="isHtml != null" >
+        is_html,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDownload != null" >
+        is_download,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        #{isHtml,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isDownload != null" >
+        #{isDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsNovel" >
+    update cms_novel
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtml != null" >
+        is_html = #{isHtml,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isDownload != null" >
+        is_download = #{isDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+       <if test="type != null" >
+        type = #{type},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsNovel" >
+    update cms_novel
+    set pid = #{pid,jdbcType=INTEGER},
+      channel_id = #{channelId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      is_html = #{isHtml,jdbcType=VARCHAR},
+      publish_date = #{publishDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      is_download = #{isDownload,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      seq = #{seq,jdbcType=INTEGER},
+      type = #{type}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteAttaByNovelId">
+    delete from cms_novel_attach
+    where novel_id = #{novelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertAttachment"  >
+    insert into cms_novel_attach (novel_id,attachment_id)
+    values (#{novelId}, #{attachmentId})
+  </insert>
+  <select id="selectAttaIdsStringByNovelId" resultType="string">
+  	SELECT GROUP_CONCAT(t.attachment_id) FROM cms_novel_attach t WHERE t.novel_id=#{novelId}
+  </select>
+  <select id="selectNovelIdsByAttachmentId" resultType="string">
+ 	SELECT GROUP_CONCAT(t.novel_id) FROM cms_novel_attach t WHERE t.attachment_id=#{attachmentId}
+  </select>
+</mapper>

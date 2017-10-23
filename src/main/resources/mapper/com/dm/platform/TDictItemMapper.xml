@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.platform.sqldao.TDictItemMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.platform.model.TDictItem" >
+    <id column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_desc" property="itemDesc" jdbcType="VARCHAR" />
+    <result column="item_seq" property="itemSeq" jdbcType="BIGINT" />
+    <result column="dict_id" property="dictId" jdbcType="INTEGER" />
+    <result column="item_pid" property="itemPid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    item_id, item_code, item_name, item_seq, dict_id, item_pid,item_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dict_item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByDictId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dict_item
+    where dict_id = #{dictId,jdbcType=INTEGER}
+    order by item_seq asc
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dict_item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.platform.model.TDictItem" useGeneratedKeys="true"
+  	keyProperty="itemId">
+    insert into t_dict_item ( item_code, item_name, 
+      item_seq, dict_id, item_pid,item_desc
+      )
+    values ( #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemSeq,jdbcType=BIGINT}, #{dictId,jdbcType=INTEGER}, #{itemPid,jdbcType=INTEGER},#{itemDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.platform.model.TDictItem" useGeneratedKeys="true"
+  	keyProperty="itemId" >
+    insert into t_dict_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemCode != null" >
+        item_code,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="itemSeq != null" >
+        item_seq,
+      </if>
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="itemPid != null" >
+        item_pid,
+      </if>
+      <if test="itemDesc != null" >
+        item_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSeq != null" >
+        #{itemSeq,jdbcType=BIGINT},
+      </if>
+      <if test="dictId != null" >
+        #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="itemPid != null" >
+        #{itemPid,jdbcType=INTEGER},
+      </if>
+      <if test="itemDesc != null" >
+        #{itemDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.platform.model.TDictItem" >
+    update t_dict_item
+    <set >
+      <if test="itemCode != null" >
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSeq != null" >
+        item_seq = #{itemSeq,jdbcType=BIGINT},
+      </if>
+      <if test="dictId != null" >
+        dict_id = #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="itemPid != null" >
+        item_pid = #{itemPid,jdbcType=INTEGER},
+      </if>
+      <if test="itemDesc != null" >
+        item_desc = #{itemDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.platform.model.TDictItem" >
+    update t_dict_item
+    set item_code = #{itemCode,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_seq = #{itemSeq,jdbcType=BIGINT},
+      dict_id = #{dictId,jdbcType=INTEGER},
+      item_pid = #{itemPid,jdbcType=INTEGER},
+      item_desc = #{itemDesc,jdbcType=VARCHAR}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

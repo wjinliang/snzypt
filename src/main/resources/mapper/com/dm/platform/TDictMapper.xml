@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.platform.sqldao.TDictMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.platform.model.TDict" >
+    <id column="dict_id" property="dictId" jdbcType="INTEGER" />
+    <result column="dict_desc" property="dictDesc" jdbcType="VARCHAR" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="dict_seq" property="dictSeq" jdbcType="BIGINT" />
+    <result column="dict_status" property="dictStatus" jdbcType="BIGINT" />
+    <result column="dict_type" property="dictType" jdbcType="VARCHAR" />
+    <result column="dict_code" property="dictCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_id, dict_desc, dict_name, dict_seq, dict_status, dict_type, dict_code
+  </sql>
+  <select id="selectListByArg" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_dict
+    <where>
+    	<if test="model!=null">
+    		<if test="model.dictName!=null">
+    			dict_name like CONCAT(CONCAT('%', #{model.dictName}),'%')
+    		</if>
+    		<if test="model.dictStatus!=null">
+    			dict_status =#{model.dictStatus}
+    		</if>
+    	</if>
+    </where>
+    <if test="sort!=null and sort!='' ">
+			ORDER BY ${sort}
+	</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dict
+    where dict_id = #{dictId,jdbcType=INTEGER}
+  </select>
+  <select id="findTDictByDictCode"  resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List"/>
+    from t_dict
+    where dict_code = #{dictCode}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dict
+    where dict_id = #{dictId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.platform.model.TDict" >
+    insert into t_dict (dict_id, dict_desc, dict_name, 
+      dict_seq, dict_status, dict_type, 
+      dict_code)
+    values (#{dictId,jdbcType=INTEGER}, #{dictDesc,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, 
+      #{dictSeq,jdbcType=BIGINT}, #{dictStatus,jdbcType=BIGINT}, #{dictType,jdbcType=VARCHAR}, 
+      #{dictCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.platform.model.TDict" >
+    insert into t_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="dictDesc != null" >
+        dict_desc,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="dictSeq != null" >
+        dict_seq,
+      </if>
+      <if test="dictStatus != null" >
+        dict_status,
+      </if>
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+      <if test="dictCode != null" >
+        dict_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="dictDesc != null" >
+        #{dictDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSeq != null" >
+        #{dictSeq,jdbcType=BIGINT},
+      </if>
+      <if test="dictStatus != null" >
+        #{dictStatus,jdbcType=BIGINT},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.platform.model.TDict" >
+    update t_dict
+    <set >
+      <if test="dictDesc != null" >
+        dict_desc = #{dictDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSeq != null" >
+        dict_seq = #{dictSeq,jdbcType=BIGINT},
+      </if>
+      <if test="dictStatus != null" >
+        dict_status = #{dictStatus,jdbcType=BIGINT},
+      </if>
+      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.platform.model.TDict" >
+    update t_dict
+    set dict_desc = #{dictDesc,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_seq = #{dictSeq,jdbcType=BIGINT},
+      dict_status = #{dictStatus,jdbcType=BIGINT},
+      dict_type = #{dictType,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=VARCHAR}
+    where dict_id = #{dictId,jdbcType=INTEGER}
+  </update>
+</mapper>

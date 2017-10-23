@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.cms.sqldao.CmsVoteOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.cms.model.CmsVoteOption" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="vote_id" property="voteId" jdbcType="INTEGER" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="click_times" property="clickTimes" jdbcType="INTEGER" />
+    <result column="filed1" property="filed1" jdbcType="VARCHAR" />
+    <result column="filed2" property="filed2" jdbcType="VARCHAR" />
+    <result column="filed3" property="filed3" jdbcType="VARCHAR" />
+    <result column="filed4" property="filed4" jdbcType="VARCHAR" />
+    <result column="filed5" property="filed5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, vote_id, `option`, click_times, filed1, filed2, filed3, filed4, filed5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_vote_option
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_vote_option
+    where vote_id = #{model.voteId,jdbcType=INTEGER}
+    order by id
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_vote_option
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dm.cms.model.CmsVoteOption" >
+    insert into cms_vote_option (id, vote_id, `option`, 
+      click_times, filed1, filed2, 
+      filed3, filed4, filed5
+      )
+    values (#{id,jdbcType=INTEGER}, #{voteId,jdbcType=INTEGER}, #{option,jdbcType=VARCHAR}, 
+      #{clickTimes,jdbcType=INTEGER}, #{filed1,jdbcType=VARCHAR}, #{filed2,jdbcType=VARCHAR}, 
+      #{filed3,jdbcType=VARCHAR}, #{filed4,jdbcType=VARCHAR}, #{filed5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dm.cms.model.CmsVoteOption" >
+    insert into cms_vote_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="voteId != null" >
+        vote_id,
+      </if>
+      <if test="option != null" >
+        `option`,
+      </if>
+      <if test="clickTimes != null" >
+        click_times,
+      </if>
+      <if test="filed1 != null" >
+        filed1,
+      </if>
+      <if test="filed2 != null" >
+        filed2,
+      </if>
+      <if test="filed3 != null" >
+        filed3,
+      </if>
+      <if test="filed4 != null" >
+        filed4,
+      </if>
+      <if test="filed5 != null" >
+        filed5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="voteId != null" >
+        #{voteId,jdbcType=INTEGER},
+      </if>
+      <if test="option != null" >
+        #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="clickTimes != null" >
+        #{clickTimes,jdbcType=INTEGER},
+      </if>
+      <if test="filed1 != null" >
+        #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        #{filed3,jdbcType=VARCHAR},
+      </if>
+      <if test="filed4 != null" >
+        #{filed4,jdbcType=VARCHAR},
+      </if>
+      <if test="filed5 != null" >
+        #{filed5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.cms.model.CmsVoteOption" >
+    update cms_vote_option
+    <set >
+      <if test="voteId != null" >
+        vote_id = #{voteId,jdbcType=INTEGER},
+      </if>
+      <if test="option != null" >
+        `option` = #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="clickTimes != null" >
+        click_times = #{clickTimes,jdbcType=INTEGER},
+      </if>
+      <if test="filed1 != null" >
+        filed1 = #{filed1,jdbcType=VARCHAR},
+      </if>
+      <if test="filed2 != null" >
+        filed2 = #{filed2,jdbcType=VARCHAR},
+      </if>
+      <if test="filed3 != null" >
+        filed3 = #{filed3,jdbcType=VARCHAR},
+      </if>
+      <if test="filed4 != null" >
+        filed4 = #{filed4,jdbcType=VARCHAR},
+      </if>
+      <if test="filed5 != null" >
+        filed5 = #{filed5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dm.cms.model.CmsVoteOption" >
+    update cms_vote_option
+    set vote_id = #{voteId,jdbcType=INTEGER},
+      `option` = #{option,jdbcType=VARCHAR},
+      click_times = #{clickTimes,jdbcType=INTEGER},
+      filed1 = #{filed1,jdbcType=VARCHAR},
+      filed2 = #{filed2,jdbcType=VARCHAR},
+      filed3 = #{filed3,jdbcType=VARCHAR},
+      filed4 = #{filed4,jdbcType=VARCHAR},
+      filed5 = #{filed5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
