@@ -9,7 +9,7 @@
 	<#include "/template/sn_header.ftl">
     <div class="wrapper">
     	<div class="container">
-        	<div class="row mgt15"  style="margin-bottom:15px;">
+        	<div class="row mgt15">
             	<div class="col-md-4 col-lg-4">
                 	<div class="input-group" style="border:1px solid #CCC">
                     	<input type="text" class="form-control input-alter" placeholder="请输入关键字搜索">
@@ -18,161 +18,99 @@
                         </span>
                     </div>
                     <div class="mgt15">
+                    	<div class="real-map-info">
                             <div class="item-title">
                                 <div class="item-title-partl">
                                     <span>图层分类</span>
                                 </div>
                             </div>
-                            <div class="tabs-vertical">
+                            <div class="real-map-con">
                                  <ul class="map-list clearfix">
-                                     <li>
-                                         <a class="tab-active" data-index="2" href="#">畜牧养殖</a>
+                                     <li class="pull-left">
+                                         <a href="#snqy" data-toggle="tab" onclick="clearFeatures();">
+                                            <img src="/html/sn-static/static/image/icon5.png" width="50" height="46" alt="涉农企业">
+                                            <p>涉农企业</p>
+                                         </a>
                                      </li>
-                                     <li>
-                                         <a data-index="0" href="#">涉农企业</a>
+                                     <li class="pull-left">
+                                         <a href="#zzsc" data-toggle="tab" onclick="clearFeatures();">
+                                            <img src="/html/sn-static/static/image/icon6.png" width="39" height="46" alt="种植生产">
+                                            <p>种植生产</p>
+                                         </a>
                                      </li>
-                                     <li>
-                                         <a data-index="1" href="#">种植生产</a>
+                                     <li class="pull-left">
+                                         <a href="#xmsc" data-toggle="tab" onclick="clearFeatures();">
+                                            <img src="/html/sn-static/static/image/icon7.png" width="39" height="46" alt="畜牧养殖">
+                                            <p>畜牧养殖</p>
+                                         </a>
                                      </li>
-                                     <li>
-                                         <a data-index="3" href="#">市场资源</a>
+                                     <li class="pull-left">
+                                         <a href="#sczy" data-toggle="tab" onclick="clearFeatures();">
+                                            <img src="/html/sn-static/static/image/icon8.png" width="55" height="46" alt="市场资源">
+                                            <p>市场资源</p>
+                                         </a>
                                      </li>
-                                     <li>
-                                         <a data-index="4" href="#">农业科技</a>
+                                     <li class="pull-left">
+                                         <a href="#nykj" data-toggle="tab"  onclick="clearFeatures();">
+                                            <img src="/html/sn-static/static/image/icon08.png" width="49" height="45" alt="农业科技">
+                                            <p>农业科技</p>
+                                         </a>
                                      </li>
                                  </ul>
-                                 <div class="detail-con">
-                                    <div class="tabs-content-placeholder">
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
-                                            	<input type="checkbox" name="genre" id="sn1" value="action" />
-                								<label for="sn1">涉农企业</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
-                                            	<input type="checkbox" name="genre" id="sn2" value="action" />
-                								<label for="sn2">农加工企业</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
-                                            	<input type="checkbox" name="genre" id="sn3" value="action" />
-                								<label for="sn3">农机服务组织</label>
-                                            </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sn4" value="action" />
-                								<label for="sn4">观光农业示范园</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sn5" value="action" />
-                								<label for="sn5">兽药经营企业</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sn6" value="action" />
-                								<label for="sn6">观光果园</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sn7" value="action" />
-                								<label for="sn7">饲料企业</label>
-                                            </div>
-                                        </div>
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
-                                            	<input type="checkbox" name="genre" id="snp01" value="action" />
-                								<label for="snp01">果园基地</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
-                                            	<input type="checkbox" name="genre" id="snp02" value="action" />
-                								<label for="snp02">苗圃基地</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
-                                            	<input type="checkbox" name="genre" id="snp03" value="action" />
-                								<label for="snp03">花卉基地</label>
-                                            </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snp04" value="action" />
-                								<label for="snp04">三品基地</label>
-                                            </div>
-                                        </div>
-                                        <div class="tab-content-active" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
-                                            	<input type="checkbox" name="genre" id="snxm01" value="action" />
-                								<label for="snxm01">羊养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
-                                            	<input type="checkbox" name="genre" id="snxm02" value="action" />
-                								<label for="snxm02">鸭养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
-                                            	<input type="checkbox" name="genre" id="snxm03" value="action" />
-                								<label for="snxm03">生猪养殖场</label>
-                                            </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm04" value="action" />
-                								<label for="snxm04">蛋鸡养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm05" value="action" />
-                								<label for="snxm05">水产养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm06" value="action" />
-                								<label for="snxm06">肉牛养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm07" value="action" />
-                								<label for="snxm07">肉鸡养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm08" value="action" />
-                								<label for="snxm08">奶牛养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm09" value="action" />
-                								<label for="snxm09">畜禽养殖场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm10" value="action" />
-                								<label for="snxm10">动物诊疗单位</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snxm11" value="action" />
-                								<label for="snxm11">动物卫生防疫所</label>
-                                            </div>
-                                        </div>
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snm01" value="action" />
-                								<label for="snm01">经营市场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snm02" value="action" />
-                								<label for="snm02">农副市场</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="snm03" value="action" />
-                								<label for="snm03">超市</label>
-                                            </div>
-                                        </div>
-                                        <div class="" id="zzsc">
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sna01" value="action" />
-                								<label for="sna01">协调员工作站</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sna02" value="action" />
-                								<label for="sna02">田间学校</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sna03" value="action" />
-                								<label for="sna03">农业技术推广站</label>
-                                            </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
-                                            	<input type="checkbox" name="genre" id="sna04" value="action" />
-                								<label for="sna04">科技示范园区</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                        	<div class="detail-title icon-bg5">
+                                <span class="blue">详细内容</span>
+                            </div>
+                            <div class="detail-con">
+                                <div class="panel-body">
+                                    <div class="tab-content">
+					<div class="tab-pane fade in" id="xmsc">
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_YZC@221');"><label><input type="checkbox" value="">1养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_YANG@221');"><label><input type="checkbox" value="">羊养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_YA@221');"><label><input type="checkbox" value="">鸭养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_SHENGZHU@221');"><label><input type="checkbox" value="">生猪养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_DANJI@221');"><label><input type="checkbox" value="">蛋鸡养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_SCYZC@221');"><label><input type="checkbox" value="">水产养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_ROUNIU@221');"><label><input type="checkbox" value="">肉牛养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_ROUJI@221');"><label><input type="checkbox" value="">肉鸡养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_NAINIU@221');"><label><input type="checkbox" value="">奶牛养殖场</label></div>
+						<div class="checkbox" onclick="queryBySQL('ZYDP_ST_YZ_XQLZC@221');"><label><input type="checkbox" value="">畜禽良种场</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_DWZLDW@221');"><label><input type="checkbox" value="">动物诊疗单位</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_DWWSFYS@221');"><label><input type="checkbox" value="">动物卫生防疫所</label></div>
+					</div>
+					<div class="tab-pane fade in" id="zzsc">
+						<div class="checkbox" onclick="queryBySQL('LY_ST_GY@221');"><label><input type="checkbox" value="">果园基地</label></div>
+						<div class="checkbox" onclick="queryBySQL('LY_ST_MP@221');"><label><input type="checkbox" value="">苗圃基地</label></div>
+						<div class="checkbox" onclick="queryBySQL('LY_ST_HHJD@221');"><label><input type="checkbox" value="">花卉基地</label></div>	
+						<div class="checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');"><label><input type="checkbox" value="">三品基地</label></div>
+					</div>
+					<div class="tab-pane fade in" id="sczy">
+						<div class="checkbox" onclick="queryBySQL('SCDP_ST_JYSC@221');"><label><input type="checkbox" value="">经营市场</label></div>
+						<div class="checkbox" onclick="queryBySQL('SCDP_ST_CGXPT_NFSC@221');"><label><input type="checkbox" value="">农副市场</label></div>
+						<div class="checkbox" onclick="queryBySQL('SCDP_ST_CGXPT_CS@221');"><label><input type="checkbox" value="">超市</label></div>
+					</div>
+					<div class="tab-pane fade in" id="nykj">
+						<div class="checkbox" onclick="queryBySQL('KJZC_KJFW_ST_XTYGZZ@221');"><label><input type="checkbox" value="">协调员工作站</label></div>
+						<div class="checkbox" onclick="queryBySQL('KJZC_KJFW_ST_TJXX@221');"><label><input type="checkbox" value="">田间学校</label></div>
+						<div class="checkbox" onclick="queryBySQL('KJ_ST_NYJSTGZ@221');"><label><input type="checkbox" value="">农业技术推广站</label></div>
+						<div class="checkbox" onclick="queryBySQL('KJ_ST_KJSFYQ@221');"><label><input type="checkbox" value="">科技示范园区</label></div>
+					</div>
+					<div class="tab-pane fade in active" id="snqy">
+						<div class="checkbox" onclick="queryBySQL('ZH_ST_SNQY@221');"><label><input type="checkbox" value="">涉农企业</label></div>
+						<div class="checkbox" onclick="queryBySQL('ZH_ST_NJGQY@221');"><label><input type="checkbox" value="">农加工企业</label></div>
+						<div class="checkbox" onclick="queryBySQL('ZH_ST_NJFWZZ@221');"><label><input type="checkbox" value="">农机服务组织</label></div>
+						<div class="checkbox" onclick="queryBySQL('ZH_ST_GGNYSFY@221');"><label><input type="checkbox" value="">观光农业示范园</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_SYJYQY@221');"><label><input type="checkbox" value="">兽药经营企业</label></div>
+						<div class="checkbox" onclick="queryBySQL('ZYDP_ST_LY_GGGY@221');"><label><input type="checkbox" value="">观光果园</label></div>
+						<div class="checkbox" onclick="queryBySQL('YZ_ST_SLQY@221');"><label><input type="checkbox" value="">饲料企业</label></div>
+					</div>
                                 </div>
                             </div>
+                        </div>
                     </div>
+		    </div>
                 </div>
                 <div class="col-md-8 col-lg-8" style="padding-left:0px;">
                		<div class="real-map" id="mapDiv">
