@@ -151,7 +151,7 @@
                 								<label for="snm03">超市</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc">
+                                        <div class="" id="zzsc" style="height:367px;">
                                             <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
                                             	<input type="checkbox" name="genre" id="sna01" value="action" />
                 								<label for="sna01">协调员工作站</label>
