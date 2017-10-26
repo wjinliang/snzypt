@@ -93,10 +93,10 @@
                          </div>
                      </div>
                      <div class="dowload-con2 clearfix">
-                     	  <!-- <div class="pull-left"><a href="/html/shenong/lianxiwomen.html" target="_blank">
-			  <img src="/html/sn-static/static/image/map.png" width="250" height="100" style="border:1px solid #D0DEFB;"></a>
-			  </div>-->
-			   <div class="pull-left"><a href="/html/sn-static/static/image/map.png" target="_blank"><img src="/html/sn-static/static/image/map.png" width="250" height="100" style="border:1px solid #D0DEFB;"></a></div>
+                     	   <div class="pull-left"><a href="/html/shenong/baiduaddr.html" target="_blank">
+			  <img src="/html/sn-static/static/image/addr.png" width="250" height="100" style="border:1px solid #D0DEFB;"></a>
+			  </div>
+			   <!--<div class="pull-left"><a href="/html/sn-static/static/image/map.png" target="_blank"><img src="/html/sn-static/static/image/map.png" width="250" height="100" style="border:1px solid #D0DEFB;"></a></div>-->
                            <div class="pull-right">
                            		<ul>
                                 	<li>北京市朝阳区北沙滩7号院3号楼</li>

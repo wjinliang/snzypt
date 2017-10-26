@@ -43,128 +43,128 @@
                                  </ul>
                                  <div class="detail-con">
                                     <div class="tabs-content-placeholder">
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
+                                        <div class="" id="zzsc">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZH_ST_SNQY@221');">
                                             	<input type="checkbox" name="genre" id="sn1" value="action" />
                 								<label for="sn1">涉农企业</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZH_ST_NJGQY@221');">
                                             	<input type="checkbox" name="genre" id="sn2" value="action" />
                 								<label for="sn2">农加工企业</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZH_ST_NJFWZZ@221');">
                                             	<input type="checkbox" name="genre" id="sn3" value="action" />
                 								<label for="sn3">农机服务组织</label>
                                             </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZH_ST_GGNYSFY@221');">
                                             	<input type="checkbox" name="genre" id="sn4" value="action" />
                 								<label for="sn4">观光农业示范园</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_SYJYQY@221');">
                                             	<input type="checkbox" name="genre" id="sn5" value="action" />
                 								<label for="sn5">兽药经营企业</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZYDP_ST_LY_GGGY@221');">
                                             	<input type="checkbox" name="genre" id="sn6" value="action" />
                 								<label for="sn6">观光果园</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_SLQY@221');">
                                             	<input type="checkbox" name="genre" id="sn7" value="action" />
                 								<label for="sn7">饲料企业</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
+                                        <div class="" id="zzsc">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'LY_ST_GY@221');">
                                             	<input type="checkbox" name="genre" id="snp01" value="action" />
                 								<label for="snp01">果园基地</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'LY_ST_MP@221');">
                                             	<input type="checkbox" name="genre" id="snp02" value="action" />
                 								<label for="snp02">苗圃基地</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'LY_ST_HHJD@221');">
                                             	<input type="checkbox" name="genre" id="snp03" value="action" />
                 								<label for="snp03">花卉基地</label>
                                             </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZZ_ST_SPBASE@221');">
                                             	<input type="checkbox" name="genre" id="snp04" value="action" />
                 								<label for="snp04">三品基地</label>
                                             </div>
                                         </div>
-                                        <div class="tab-content-active" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_GY@221');">
+                                        <div class="tab-content-active" id="zzsc">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_YANG@221');">
                                             	<input type="checkbox" name="genre" id="snxm01" value="action" />
                 								<label for="snxm01">羊养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_MP@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_YA@221');">
                                             	<input type="checkbox" name="genre" id="snxm02" value="action" />
                 								<label for="snxm02">鸭养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('LY_ST_HHJD@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_SHENGZHU@221');">
                                             	<input type="checkbox" name="genre" id="snxm03" value="action" />
                 								<label for="snxm03">生猪养殖场</label>
                                             </div>	
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_DANJI@221');">
                                             	<input type="checkbox" name="genre" id="snxm04" value="action" />
                 								<label for="snxm04">蛋鸡养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_SCYZC@221');">
                                             	<input type="checkbox" name="genre" id="snxm05" value="action" />
                 								<label for="snxm05">水产养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_ROUNIU@221');">
                                             	<input type="checkbox" name="genre" id="snxm06" value="action" />
                 								<label for="snxm06">肉牛养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_ROUJI@221');">
                                             	<input type="checkbox" name="genre" id="snxm07" value="action" />
                 								<label for="snxm07">肉鸡养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_NAINIU@221');">
                                             	<input type="checkbox" name="genre" id="snxm08" value="action" />
                 								<label for="snxm08">奶牛养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'ZYDP_ST_YZ_XQLZC@221');">
                                             	<input type="checkbox" name="genre" id="snxm09" value="action" />
                 								<label for="snxm09">畜禽养殖场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_DWZLDW@221');">
                                             	<input type="checkbox" name="genre" id="snxm10" value="action" />
                 								<label for="snxm10">动物诊疗单位</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_DWWSFYS@221');">
                                             	<input type="checkbox" name="genre" id="snxm11" value="action" />
                 								<label for="snxm11">动物卫生防疫所</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                        <div class="" id="zzsc">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'SCDP_ST_JYSC@221');">
                                             	<input type="checkbox" name="genre" id="snm01" value="action" />
                 								<label for="snm01">经营市场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'SCDP_ST_CGXPT_NFSC@221');">
                                             	<input type="checkbox" name="genre" id="snm02" value="action" />
                 								<label for="snm02">农副市场</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'SCDP_ST_CGXPT_CS@221');">
                                             	<input type="checkbox" name="genre" id="snm03" value="action" />
                 								<label for="snm03">超市</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc" style="height:367px;">
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                        <div class="" id="zzsc">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'KJZC_KJFW_ST_XTYGZZ@221');">
                                             	<input type="checkbox" name="genre" id="sna01" value="action" />
                 								<label for="sna01">协调员工作站</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'KJZC_KJFW_ST_TJXX@221');">
                                             	<input type="checkbox" name="genre" id="sna02" value="action" />
                 								<label for="sna02">田间学校</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'KJ_ST_NYJSTGZ@221');">
                                             	<input type="checkbox" name="genre" id="sna03" value="action" />
                 								<label for="sna03">农业技术推广站</label>
                                             </div>
-                                            <div class="custom-checkbox" onclick="queryBySQL('ZZ_ST_SPBASE@221');">
+                                            <div class="custom-checkbox" onclick="queryBySQL(this,'KJ_ST_KJSFYQ@221');">
                                             	<input type="checkbox" name="genre" id="sna04" value="action" />
                 								<label for="sna04">科技示范园区</label>
                                             </div>
@@ -268,8 +268,8 @@
                 fillOpacity: 0.3
             },transformControl,
             host = "http://172.24.61.42:8090",
-            url1=host+"/iserver/services/map-Shenong/rest/maps/sheNongCQ";
-            function init(){
+            url1=host+"/iserver/services/map-Shenong4/rest/maps/sheNongCQ";
+           function init(){
                 /*
                  * 不支持canvas的浏览器不能运行该范例
                  * android 设备也不能运行该范例*/
@@ -319,7 +319,7 @@
             //添加图层
             function addLayer() {
                 map.addLayers([vectorLayer,markerLayer,layerWorld]);
-                map.setCenter(new SuperMap.LonLat(538039.74, 287458.17), 2);        
+                map.setCenter(new SuperMap.LonLat(527473.55725, 324968.17), 1);        
 				map.addControl(new SuperMap.Control.MousePosition()) ;
 				map.addControl(overviewmap);
             }
@@ -342,7 +342,7 @@
 					//contentHTML += "属地：" + feature.attributes["SZ_XZ"] + "<br>";
 					contentHTML += "名称：" + feature.attributes["MC"] + "<br>";
 				
-                    contentHTML += "ID：" + feature.attributes["ID"] + "<br>";
+                    //contentHTML += "ID：" + feature.attributes["ID"] + "<br>";
                     //初始化一个弹出窗口，当某个地图要素被选中时会弹出此窗口，用来显示选中地图要素的属性信息
                     popup = new SuperMap.Popup.FramedCloud("chicken",
                             feature.geometry.getBounds().getCenterLonLat(),
@@ -378,26 +378,38 @@
 			}
 			
             //SQL查询
-            function queryBySQL(valueParam) {
-               // vectorLayer.removeAllFeatures();
-                delIndex =0;
-                var queryParamCapital, queryBySQLParamsCapital, queryBySQLServiceCapital,params,type;
-				type = valueParam;
-				params = "ID > 0";
-				//type = "ST_BIG_RESERVOIR@221";
-				//params = "SZ_XZC='"+param+"'";
-                queryParamCapital = new SuperMap.REST.FilterParameter({
-                    name: type,
-					attributeFilter:params 
-				}),
-                    //初始化sql查询参数
-                        queryBySQLParamsCapital = new SuperMap.REST.QueryBySQLParameters({
-                            queryParams: [queryParamCapital]
-                        }),
-                    //SQL查询服务
-                        queryBySQLServiceCapital = new SuperMap.REST.QueryBySQLService(url1, {
-                            eventListeners: {"processCompleted": processCompletedCapital, "processFailed": processFailedCapital}});
-                queryBySQLServiceCapital.processAsync(queryBySQLParamsCapital);
+		    var types = "";
+			var featureType = [];
+            function queryBySQL(objs,valueParam) {
+				var valu = $(objs).find('label').attr('class');
+			    if(valu=='checked'){
+					featrues = featureType[valueParam];
+					vectorLayer.removeFeatures(featrues);
+				}else{ 
+					if(featureType[valueParam]){
+							vectorLayer.addFeatures(featureType[valueParam]);
+							return;
+					}			
+					   types = valueParam;
+						delIndex =0;
+						var queryParamCapital, queryBySQLParamsCapital, queryBySQLServiceCapital,params,type;
+						type = valueParam;
+						params = "ID > 0";
+						//type = "ST_BIG_RESERVOIR@221";
+						//params = "SZ_XZC='"+param+"'";
+						queryParamCapital = new SuperMap.REST.FilterParameter({
+							name: type,
+							attributeFilter:params 
+						}),
+							//初始化sql查询参数
+								queryBySQLParamsCapital = new SuperMap.REST.QueryBySQLParameters({
+									queryParams: [queryParamCapital]
+								}),
+							//SQL查询服务
+								queryBySQLServiceCapital = new SuperMap.REST.QueryBySQLService(url1, {
+									eventListeners: {"processCompleted": processCompletedCapital, "processFailed": processFailedCapital}});
+						queryBySQLServiceCapital.processAsync(queryBySQLParamsCapital);
+				}
             }
 			
 			
@@ -444,55 +456,37 @@
                         if (result.recordsets[i].features) {
                             for (j=0; j<result.recordsets[i].features.length; j++) {
                                 feature = result.recordsets[i].features[j];
-                                switch(num){
-									case 1:
+                               if(types=="YZ_ST_YZC@221" || types=="LY_ST_GY@221"|| types=="SCDP_ST_JYSC@221"|| types=="'KJZC_KJFW_ST_XTYGZZ@221"|| types=="ZH_ST_SNQY@221"){
 										feature.style = style1;
-										break;
-									case 2:
+									}else if(types=="YZ_ST_YANG@221"|| types=="LY_ST_MP@221"|| types=="SCDP_ST_CGXPT_NFSC@221"|| types=="KJZC_KJFW_ST_TJXX@221"|| types=="ZH_ST_NJGQY@221"){
 										feature.style = style2;
-										break;
-									case 3:
+									}else if(types=="YZ_ST_YA@221" || types=="LY_ST_HHJD@221"|| types=="SCDP_ST_CGXPT_CS@221"|| types=="KJ_ST_NYJSTGZ@221"|| types=="ZH_ST_NJFWZZ@221"){
 										feature.style = style3;
-										break;
-									case 4:
+									}else if(types=="YZ_ST_SHENGZHU@221"|| types=="ZZ_ST_SPBASE@221"|| types=="KJ_ST_KJSFYQ@221"|| types=="ZH_ST_GGNYSFY@221"){
 										feature.style = style4;
-										break;
-									case 5:
+									}else if(types=="YZ_ST_DANJI@221" ||types=="YZ_ST_SYJYQY@221"){
 										feature.style = style5;
-										break;
-									case 6:
+									}else if(types=="YZ_ST_SCYZC@221"||  types=="ZYDP_ST_LY_GGGY@221"){
 										feature.style = style6;
-										break;
-									case 7:
+									}else if(types=="YZ_ST_ROUNIU@221"||types=="YZ_ST_SLQY@221"){
 										feature.style = style7;
-										break;
-									case 8:
+									}else if(types=="YZ_ST_ROUJI@221"||types=="@221"){
 										feature.style = style8;
-										break;
-									case 9:
+									}else if(types=="YZ_ST_NAINIU@221" ||types=="@221"){
 										feature.style = style9;
-										break;
-									case 10:
+									}else if(types=="ZYDP_ST_YZ_XQLZC@221" || types=="@221"){
 										feature.style = style10;
-										break;
-									case 11:
+									}else if(types=="YZ_ST_DWZLDW@221" ){
 										feature.style = style11;
-										break;
-									case 12:
+									}else if(types=="YZ_ST_DWWSFYS@221"){
 										feature.style = style12;
-										break;
-									default:
-										feature.style = style1;
-										break;
-								}	
+									}
 								features.push(feature);
                             }
                         }
                     }
                 }
-			
-		
-				
+				featureType[types] = features;
                 vectorLayer.addFeatures(features);
                 select.activate();
 				
@@ -530,7 +524,7 @@
                                 var point = f.geometry,
                                         size = new SuperMap.Size(44, 33),
                                         offset = new SuperMap.Pixel(-(size.w/2), -size.h),
-                                        icon = new SuperMap.Icon("/html/sn-static/static/sumap/examples/images/marker_black.png", size, offset);
+                                        icon = new SuperMap.Icon("examples/images/marker_black.png", size, offset);
                                 marker = new SuperMap.Marker(new SuperMap.LonLat(point.x, point.y), icon);
                                 marker.sm_capital = f.attributes.CAPITAL;
                                 marker.events.on({
@@ -558,7 +552,7 @@
                 //contentHTML += "<div>"+marker+"</div></div>";
                 //var size = new SuperMap.Size(0, 33);
                 //var offset = new SuperMap.Pixel(0, -size.h);
-                //var icon = new SuperMap.Icon("/html/sn-static/static/sumap/examples/images/marker_black.png", size, offset);
+                //var icon = new SuperMap.Icon("examples/images/marker_black.png", size, offset);
                 //var popup = new SuperMap.Popup.FramedCloud("popwin",
                 //        new SuperMap.LonLat(lonlat.lon,lonlat.lat),
                 //        null,

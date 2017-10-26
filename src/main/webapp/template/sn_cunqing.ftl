@@ -557,18 +557,28 @@
 						for(var i=0;i<list.length;i++){
 							var item = list[i];
 							if(item.typeId=='1'){
-								$tuze.append('<li><a href="javascript:void(0);"><img src="/resource/countryPic/02/'+item.url+'" width="180" height="115"><p>'+item.fileName+'</p></a></li>');		
+								$tuze.append('<li><a href="javascript:void(0);"><img src="/resource/countryPic/02/'+item.url+'" width="180" height="115"><p>'+item.fileName.replace(".jpg",'')+'</p></a></li>');		
 							}else if(item.typeId=='2'){
 								$downtuze.append('<div><a href="/resource/countryPic/02/'+item.url+'">'+item.fileName+'</a></div>');
 							}
 						}
 						$tuze.find("li").click(function(){
-							var src = $(this).find('img').attr('src');
+							/*var src = $(this).find('img').attr('src');
+							src = src.replace("/02/",'/Layout/');
 							$("#imgLocation").find("li").find('img').attr('src',src);
 							$("#imgLocation").find("li").fadeIn().siblings().fadeOut(1000);
 							$("#imgLocation").find("li").find("span").click(function(){
 								$("#imgLocation").find("li").hide();										
-							});
+							});*/
+							var src = $(this).find('img').attr('src');
+							var title = $(this).find('p').html();
+							src = src.replace("/02/",'/Layout/');
+							method.msg_layer({
+								  type:'none',
+								  title: title,
+								  area: ['800px','550px'],
+								  content: '<img style="width: 100%;height: 100%;" src="'+src+'">'
+								});
 						});
 						$("#pic_list_1").cxScroll();
 						
@@ -583,6 +593,7 @@
 				}
 			}});
 	}
+
 
 /* 规划图则end*/
 
