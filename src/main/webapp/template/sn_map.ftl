@@ -43,7 +43,7 @@
                                  </ul>
                                  <div class="detail-con">
                                     <div class="tabs-content-placeholder">
-                                        <div class="" id="zzsc">
+                                        <div class="" id="zzsc" style=" height: 369px;">
                                             <div class="custom-checkbox" onclick="queryBySQL(this,'ZH_ST_SNQY@221');">
                                             	<input type="checkbox" name="genre" id="sn1" value="action" />
                 								<label for="sn1">涉农企业</label>
@@ -73,7 +73,7 @@
                 								<label for="sn7">饲料企业</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc">
+                                        <div class="" id="zzsc" style=" height: 369px;">
                                             <div class="custom-checkbox" onclick="queryBySQL(this,'LY_ST_GY@221');">
                                             	<input type="checkbox" name="genre" id="snp01" value="action" />
                 								<label for="snp01">果园基地</label>
@@ -91,7 +91,7 @@
                 								<label for="snp04">三品基地</label>
                                             </div>
                                         </div>
-                                        <div class="tab-content-active" id="zzsc">
+                                        <div class="tab-content-active" id="zzsc" style=" height: 369px;">
                                             <div class="custom-checkbox" onclick="queryBySQL(this,'YZ_ST_YANG@221');">
                                             	<input type="checkbox" name="genre" id="snxm01" value="action" />
                 								<label for="snxm01">羊养殖场</label>
@@ -137,7 +137,7 @@
                 								<label for="snxm11">动物卫生防疫所</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc">
+                                        <div class="" id="zzsc" style=" height: 369px;">
                                             <div class="custom-checkbox" onclick="queryBySQL(this,'SCDP_ST_JYSC@221');">
                                             	<input type="checkbox" name="genre" id="snm01" value="action" />
                 								<label for="snm01">经营市场</label>
@@ -151,7 +151,7 @@
                 								<label for="snm03">超市</label>
                                             </div>
                                         </div>
-                                        <div class="" id="zzsc">
+                                        <div class="" id="zzsc" style=" height: 369px;">
                                             <div class="custom-checkbox" onclick="queryBySQL(this,'KJZC_KJFW_ST_XTYGZZ@221');">
                                             	<input type="checkbox" name="genre" id="sna01" value="action" />
                 								<label for="sna01">协调员工作站</label>
