@@ -274,7 +274,7 @@
                 fillOpacity: 0.3
             },transformControl,
            host = "http://172.24.61.42:8090",
-           url1=host+"/iserver/services/map-Shenong/rest/maps/sheNongCQ";
+           url1=host+"/iserver/services/map-Shenong4/rest/maps/sheNongCQ";
            function init(){
                 /*
                  * 不支持canvas的浏览器不能运行该范例
