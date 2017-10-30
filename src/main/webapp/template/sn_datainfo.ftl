@@ -384,7 +384,7 @@
 			})
 			$root.find("ul").each(function(i,ele){
 				if($(ele).find("li").length==1){
-					ele.remove();
+					$(ele).remove();
 				}
 			});
 			

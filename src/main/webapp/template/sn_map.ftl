@@ -248,16 +248,22 @@
 			style10 = {
                 pointRadius: 15,
                 externalGraphic: "/html/sn-static/static/sumap/examples/images/20.png",
+                graphicWidth: 10,
+                graphicHeight: 10,
                 name: "captial"
             },
-			styleMP11 = {
+			style11 = {
                 pointRadius: 15,
                 externalGraphic: "/html/sn-static/static/sumap/examples/images/29.png",
+                graphicWidth: 12,
+                graphicHeight: 12,
                 name: "captial"
             },
-			styleMP12 = {
+			style12 = {
                 pointRadius: 15,
                 externalGraphic: "/html/sn-static/static/sumap/examples/images/circle.png",
+                graphicWidth: 10,
+                graphicHeight: 10,
                 name: "captial"
             },
 			styleBound = {
@@ -267,8 +273,8 @@
                 fillColor: "#304DBE",
                 fillOpacity: 0.3
             },transformControl,
-            host = "http://172.24.61.42:8090",
-            url1=host+"/iserver/services/map-Shenong4/rest/maps/sheNongCQ";
+           host = "http://172.24.61.42:8090",
+           url1=host+"/iserver/services/map-Shenong/rest/maps/sheNongCQ";
            function init(){
                 /*
                  * 不支持canvas的浏览器不能运行该范例
