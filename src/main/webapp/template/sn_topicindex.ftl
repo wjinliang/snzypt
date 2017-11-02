@@ -39,7 +39,7 @@
                     	<ul class="dataSubjt-right-top clearfix">
                         	<li>
                             	<div class="panel-body">
-                                    <p>行政村数量</p>
+                                    <p>行政村总数</p>
                                     <div class="lineH30">
                                         <i class="ico1">&nbsp;</i>
                                         <span class="num" id="num1">3936</span>
@@ -49,7 +49,7 @@
                             <li>
                             <li>
                             	<div class="panel-body">
-                                    <p>乡镇及行政村常住户数</p>
+                                    <p>农村地区常住户数</p>
                                     <div class="lineH30">
                                         <i class="ico2">&nbsp;</i>
                                         <span class="num" id="num2">221.4</span>
@@ -59,7 +59,7 @@
                             <li>
                             <li>
                             	<div class="panel-body">
-                                    <p>乡镇及行政村常住人口</p>
+                                    <p>农村地区常住人口</p>
                                     <div class="lineH30">
                                         <i class="ico3">&nbsp;</i>
                                         <span class="num" id="num3">593.5</span>
@@ -72,17 +72,17 @@
                                     <p>农业户籍人口</p>
                                     <div class="lineH30">
                                         <i class="ico4">&nbsp;</i>
-                                        <span class="num" id="num4">239.8348</span>
+                                        <span class="num" id="num4">239.8</span>
                                         <span>万人</span>
                                     </div>
                                 </div>
                             <li>
 			    <li>
                             	<div class="panel-body">
-                                    <p>农户家庭</p>
+                                    <p>农业户籍家庭</p>
                                     <div class="lineH30">
                                         <i class="ico5">&nbsp;</i>
-                                        <span class="num" id="num4">100.7382</span>
+                                        <span class="num" id="num4">100.7</span>
                                         <span>万户</span>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                     <p>农村劳动力</p>
                                     <div class="lineH30">
                                         <i class="ico6">&nbsp;</i>
-                                        <span class="num" id="num4">154.5133</span>
+                                        <span class="num" id="num4">154.5</span>
                                         <span>万人</span>
                                     </div>
                                 </div>

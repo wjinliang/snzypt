@@ -336,6 +336,7 @@
                 fillOpacity: 0.3
             },transformControl,
             host ="http://172.24.61.42:8090";// document.location.toString().match(/file:\/\//)?"http://localhost:8090":'http://' + document.location.host,
+            //host="http://10.0.64.67:8090";
            // url1=host+"/iserver/services/map-China/rest/maps/sheNongCQ";
 	    url1=host+"/iserver/services/map-Shenong/rest/maps/sheNongCQ";
             function initMap(name){

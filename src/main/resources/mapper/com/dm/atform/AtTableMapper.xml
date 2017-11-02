@@ -95,6 +95,7 @@
 		from at_table_config
 		where status ='1'
 		and pid = #{pid}
+		order by seq asc
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from

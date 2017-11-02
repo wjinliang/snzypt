@@ -20,7 +20,7 @@
                 	<ul class="agric_list1 clearfix">
                     	<li>
                         	<div>
-                            	<span class="topict_tit1">农村总数</span>
+                            	<span class="topict_tit1">行政村总数</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
                                 <span class="topict_tit3">2015</span>
                             </div>
@@ -28,7 +28,7 @@
                         </li>
                         <li>
                         	<div>
-                            	<span class="topict_tit1">常驻人口</span>
+                            	<span class="topict_tit1">农村地区常住人口</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
                                 <span class="topict_tit3">2015</span>
                             </div>
@@ -36,7 +36,7 @@
                         </li>
                         <li>
                         	<div>
-                            	<span class="topict_tit1">常住户数</span>
+                            	<span class="topict_tit1">农村地区常住户数</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
                                 <span class="topict_tit3">2015</span>
                             </div>
@@ -48,15 +48,15 @@
                                 <span class="topict_tit2">三资监管平台</span>
                                 <span class="topict_tit3">2016</span>
                             </div>
-                            <div class="topic_xcicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">239.8348</span>万人</div>
+                            <div class="topic_xcicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">239.8</span>万人</div>
                         </li>
                         <li class="mgt20">
                         	<div>
-                            	<span class="topict_tit1">农户家庭</span>
+                            	<span class="topict_tit1">农业户籍家庭</span>
                                 <span class="topict_tit2">三资监管平台</span>
                                 <span class="topict_tit3">2016</span>
                             </div>
-                            <div class="topic_xcicon topic_icon5 mgt10"><span class="topict_tit4" style="margin-right:30px;">100.7382</span>万户</div>
+                            <div class="topic_xcicon topic_icon5 mgt10"><span class="topict_tit4" style="margin-right:30px;">100.7</span>万户</div>
                         </li>
 						 <li class="mgt20">
                         	<div>
@@ -64,7 +64,7 @@
                                 <span class="topict_tit2">三资监管平台</span>
                                 <span class="topict_tit3">2016</span>
                             </div>
-                            <div class="topic_xcicon topic_icon6 mgt10"><span class="topict_tit4" style="margin-right:30px;">154.5133</span>万人</div>
+                            <div class="topic_xcicon topic_icon6 mgt10"><span class="topict_tit4" style="margin-right:30px;">154.5</span>万人</div>
                         </li>
                     </ul>	
                 </div>

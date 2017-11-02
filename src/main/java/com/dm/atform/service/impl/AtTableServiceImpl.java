@@ -70,7 +70,7 @@ public class AtTableServiceImpl implements AtTableService{
 			record.setId(UUIDUtils.getUUID8());
 			record.setCreateDate(new Date());
 			record.setCreateUser(UserAccountUtil.getInstance().getCurrentUser());
-			//设置编码start
+			/*//设置编码start
 			String code = "00";
 			String pId = record.getpId();
 			List<AtTable> list = tableMapper.selectByPid(pId);
@@ -94,7 +94,7 @@ public class AtTableServiceImpl implements AtTableService{
 					code="01";
 				}
 			}
-			record.setCode(code);
+			record.setCode(code);*/
 			//设置编码end
 			this.tableMapper.insert(record);
 	}
@@ -133,13 +133,33 @@ public class AtTableServiceImpl implements AtTableService{
 	}
 	@Override
 	public void sort(String id, String pid, String targetId, String moveType) {
-		AtTable t1 = this.tableMapper.selectByPrimaryKey(id);
-		AtTable t2 = this.tableMapper.selectByPrimaryKey(targetId);
+		AtTable t2 = this.tableMapper.selectByPrimaryKey(id);//要移动的项
+		AtTable t1 = this.tableMapper.selectByPrimaryKey(targetId);//基准项
 		if(t1==null || t2==null) return ;
-		int seq = t1.getSeq();
-		t1.setSeq(t2.getSeq());
-		t2.setSeq(seq);
-		this.tableMapper.updateByPrimaryKeySelective(t1);
+		if(t1.getpId().equals(t2.getpId())){//同级内移动
+		}else{//垮父级移动
+			t2.setpId(t1.getpId());
+		}
+		if(moveType.equals("next")){//当前节点的后面
+			t2.setSeq(t1.getSeq()+1);
+		}else{//当前节点的前面
+			t2.setSeq(t1.getSeq());
+		}
+		List<AtTable> list = this.tableMapper.selectByPid(t1.getpId());//order by seq asc
+		int seq = t2.getSeq();
+		for(AtTable t:list){
+			if(t.getId().equals(t2.getId())){//同级内移动才会出现   出现当前先不处理
+				continue;
+			}
+			if(t.getSeq()>seq){
+				break;
+			}
+			if(t.getSeq()==seq){
+				seq++;
+				t.setSeq(seq);
+				this.tableMapper.updateByPrimaryKeySelective(t);
+			}
+		}
 		this.tableMapper.updateByPrimaryKeySelective(t2);
 		
 	}

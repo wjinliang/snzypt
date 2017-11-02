@@ -237,7 +237,7 @@
 		}
 		//拖拽释放之后执行  
 		function beforeDrop(treeId, treeNodes, targetNode, moveType) {
-			if (targetNode.pId == dragId) {
+			//if (targetNode.pId == dragId) {
 				var data = {
 					id : treeNodes[0].id,
 					targetId : targetNode.id,
@@ -262,10 +262,10 @@
 					}
 				});
 				return confirmVal;
-			} else {
+			/* } else {
 				//bootbox.alert('亲，只能进行同级排序！');  
 				return false;
-			}
+			} */
 		}
 		var gridOption = {
 			url : "./gridlist", // ajax地址
