@@ -136,6 +136,11 @@ public class AtTableServiceImpl implements AtTableService{
 		AtTable t2 = this.tableMapper.selectByPrimaryKey(id);//要移动的项
 		AtTable t1 = this.tableMapper.selectByPrimaryKey(targetId);//基准项
 		if(t1==null || t2==null) return ;
+		if(moveType.equals("inner")){//inner
+			t2.setpId(targetId);
+			this.tableMapper.updateByPrimaryKeySelective(t2);
+			return;
+		}
 		if(t1.getpId().equals(t2.getpId())){//同级内移动
 		}else{//垮父级移动
 			t2.setpId(t1.getpId());

@@ -69,6 +69,13 @@
 											class="caption-subject theme-font bold uppercase">资源树</span>
 										<span class="caption-helper"></span>
 									</div>
+									<div class="actions">
+                                            <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                                <label class="btn btn-transparent grey-salsa btn-circle btn-sm active" onclick="refreshTree()">
+                                                    <input name="options" class="toggle" id="option1" type="radio">刷新
+                                                </label> 
+                                            </div>
+                                        </div>
 								</div>
 								<div class="portlet-body">
 									<div class="scroller" style="min-height: 500px;"
