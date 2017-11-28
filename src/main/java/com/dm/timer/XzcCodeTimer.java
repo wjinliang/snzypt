@@ -41,6 +41,11 @@ public class XzcCodeTimer {
 
 	@Autowired
 	private MongoTemplate mongo;
+	
+
+	public void setMongo(MongoTemplate mongo) {
+		this.mongo = mongo;
+	}
 
 	@Value("${spring.task.XzcCode.isRun}")
 	private boolean isRun;
@@ -122,7 +127,7 @@ public class XzcCodeTimer {
 		System.out.println(XzcCodeTimer.class+"结束:"+DmDateUtil.Current());
 	}
 	//在title 中获取村名  在content 中获取更详细的信息 区县乡镇村
-	private void updateTableCode6(String collectionName, String title,
+	public void updateTableCode6(String collectionName, String title,
 			String content, String id) {
 		int i = 0;
 		DBCollection regColl = null;
@@ -183,7 +188,7 @@ public class XzcCodeTimer {
 		
 	}
 
-	private String getCun(String title,int level) {
+	public String getCun(String title,int level) {
 		int index = title.indexOf("村");
 		if(index>0){
 			if(level<index)
@@ -192,7 +197,7 @@ public class XzcCodeTimer {
 		return null;
 	}
 	// 整理 221 与 村庄规划 2016年区划对应关系
-	private void xzqh2016() {
+	public void xzqh2016() {
 		DBCollection villageColl = mongo.getCollection("m_ST_REG_VILLAGE");
 		DBCollection townColl = mongo.getCollection("m_ST_REG_TOWN");
 		DBCollection contryColl = mongo.getCollection("m_ST_REG_COUNTY");
@@ -283,7 +288,7 @@ public class XzcCodeTimer {
 
 	}
 
-	private void updateTableCode4(String table, String qx, String xz, String c,
+	public void updateTableCode4(String table, String qx, String xz, String c,
 			String idFiled) {
 		DBCollection villageColl = mongo.getCollection("m_ST_REG_VILLAGE");
 		DBCollection area = mongo.getCollection("h_TA_Area");
@@ -433,7 +438,7 @@ public class XzcCodeTimer {
 	 * BulkWriteResult bulkWriteResult = collection.bulkWrite(requests);
 	 * System.out.println(bulkWriteResult.toString()); }
 	 */
-	private void updateTableCode3(String table, String qx, String xz, String c,
+	public void updateTableCode3(String table, String qx, String xz, String c,
 			String idFiled) {
 		DBCollection villageColl = mongo.getCollection("m_ST_REG_VILLAGE");
 		System.out.println(table);
@@ -549,7 +554,7 @@ public class XzcCodeTimer {
 
 	}
 
-	private void updateTableCode1(String table) {
+	public void updateTableCode1(String table) {
 		DBCollection regColl = mongo.getCollection("m_ZYDP_NCJJ_JQNYRKXB");
 		DBCollection tableColl = mongo.getCollection(table);
 		int limit = 2000;
@@ -612,7 +617,7 @@ public class XzcCodeTimer {
 
 	}
 
-	private void updateTableCode(String table, String filed, String idFiled) {
+	public void updateTableCode(String table, String filed, String idFiled) {
 		int i = 0;
 		DBCollection regColl = null;
 		String r = "REG";
@@ -715,7 +720,7 @@ public class XzcCodeTimer {
 
 	}
 
-	private void updateTableCode2(String table, String qx, String xz, String c,
+	public void updateTableCode2(String table, String qx, String xz, String c,
 			String idFiled) {
 		// DBCollection countyColl = mongo.getCollection("m_ST_REG_COUNTY");
 		// DBCollection townColl = mongo.getCollection("m_ST_REG_TOWN");

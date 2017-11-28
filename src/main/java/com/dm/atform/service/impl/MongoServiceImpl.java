@@ -491,6 +491,56 @@ public class MongoServiceImpl implements MongoService {
 		return false;
 	}
 
+/*	*//**
+	 * AND多条件查询,等于
+	 *//*
+	@Override
+	public PageInfo queryMulti(String tableName, Integer pageNum,
+			Integer pageSize, Map<String, Object> map, String sort) {
+		DBCollection coll = template.getCollection(tableName);
+		BasicDBObject query = new BasicDBObject();
+		for (Entry<String, Object> i : map.entrySet()) {
+			String key = i.getKey();
+			if (staticWords.contains(key)) {
+				continue;
+			}
+			Pattern john = Pattern.compile(i.getValue() + "+");
+			query.put(key, john);
+			
+			
+			 * if (isChinese(i.getValue().toString())) { Pattern john =
+			 * Pattern.compile(i.getValue() + "+"); query.put(key, john); } else
+			 * { query.put(key, i.getValue()); }
+			 
+		}
+		DBCursor cursor ;
+		long totalCount = coll.count(query);
+		BasicDBObject ord = new BasicDBObject();
+		int skip = (pageNum - 1) * pageSize;
+		cursor = coll.find(query).skip(skip).sort(ord).limit(pageSize);
+		List result = new ArrayList();
+		try {
+			while (cursor.hasNext()) {
+				// System.out.println(cursor.next());
+				DBObject o = cursor.next();
+				
+				 * String id = o.get("_id").toString(); o.put("id", id);
+				 
+				result.add(o);
+
+			}
+		} finally {
+			cursor.close();
+			Page p = new Page();
+			p.addAll(result);
+			p.setPageNum(pageNum);
+			p.setPageSize(pageSize);
+			p.setTotal(totalCount);
+			PageInfo page = new PageInfo(p);
+			return page;
+		}
+	}*/
+	
 	/**
 	 * AND多条件查询,等于
 	 */

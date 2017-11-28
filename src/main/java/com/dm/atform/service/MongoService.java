@@ -9,8 +9,13 @@ import com.mongodb.DBObject;
 
 public interface MongoService {
 
+	/**
+	 * AND多条件查询,等于
+	 */
 	PageInfo queryMulti(AtTable atTable, Integer pageNum,
 			Integer pageSize, Map<String,Object> searchMap, String sort);
+//	PageInfo queryMulti(String atTable, Integer pageNum,
+//			Integer pageSize, Map<String,Object> searchMap, String sort);
 
 	PageInfo queryMulti1(AtTable atTable, Integer pageNum,
 			Integer pageSize, Map<String,Object> searchMap, String sort);
