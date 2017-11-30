@@ -12,32 +12,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dm.atform.service.MongoService;
-import com.dm.dataprocessing.model.VillageNameProces;
-import com.dm.dataprocessing.service.VillageNameProcessingService;
+import com.dm.dataprocessing.model.ContentPublishProces;
+import com.dm.dataprocessing.service.ContentPublishProcessingService;
 import com.dm.platform.util.PageConvertUtil;
 import com.dm.platform.util.ResponseUtil;
 import com.github.pagehelper.PageInfo;
 
 @Controller
-@RequestMapping("/dataproces")
-public class DataProcessingController {
+@RequestMapping("/contentPub")
+public class ContentPublishController {
 
 	@Autowired
-	private  VillageNameProcessingService villageProces;
+	private  ContentPublishProcessingService publishProces;
 	
 	@Autowired
 	private MongoService mongo;
 	
 	@RequestMapping("/page")
 	public String page(){
-		return "/processing/dataproces/page";
+		return "/processing/publish/page";
 	}
 	@RequestMapping("list")
 	@ResponseBody
 	public Object list(@RequestParam(defaultValue="10",required=false)Integer pageSize,
 			@RequestParam(defaultValue="10",required=false)Integer pageNum){
 		Map searchMap = new HashMap();
-		PageInfo page = villageProces.list(pageNum, pageSize, searchMap);
+		PageInfo page = publishProces.list(pageNum, pageSize, searchMap);
 		return PageConvertUtil.grid(page);
 		
 	}
@@ -45,24 +45,24 @@ public class DataProcessingController {
 	@RequestMapping("load")
 	@ResponseBody
 	public Object load(String valiageCollId){
-		return villageProces.load(valiageCollId);
+		return publishProces.load(valiageCollId);
 		
 	}
 	
 	@RequestMapping("insertOrUpdate")
 	@ResponseBody
-	public Object insertOrUpdate(VillageNameProces v){
+	public Object insertOrUpdate(ContentPublishProces v){
 		if(StringUtils.isEmpty(v.getId())){
-			this.villageProces.insert(v);
+			this.publishProces.insert(v);
 		}else{
-			this.villageProces.update(v);
+			this.publishProces.update(v);
 		}
 		return ResponseUtil.success();
 	}
 	@RequestMapping("delete")
 	@ResponseBody
 	public Object delete(String id){
-		this.villageProces.delete(id);
+		this.publishProces.delete(id);
 		return ResponseUtil.success();
 	}
 	
@@ -74,7 +74,7 @@ public class DataProcessingController {
 	}
 	@Async
 	private void run(String id) {
-		villageProces.run(id);
+		publishProces.run(id);
 		
 	}
 	

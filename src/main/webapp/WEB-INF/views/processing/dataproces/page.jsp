@@ -22,8 +22,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <%@include file="../includejsps/style.jsp" %>
-    <%@include file="../includejsps/plugin-style.jsp" %>
+    <%@include file="../../includejsps/style.jsp" %>
+    <%@include file="../../includejsps/plugin-style.jsp" %>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -31,7 +31,7 @@
 <!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
 <body>
 <!-- BEGIN HEADER -->
-<%@include file="../includejsps/head.jsp" %>
+<%@include file="../../includejsps/head.jsp" %>
 <!-- END HEADER -->
 <!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
@@ -76,11 +76,11 @@
 </div>
 <!-- END PAGE CONTAINER -->
 <!-- BEGIN FOOTER -->
-<%@include file="../includejsps/foot.jsp" %>
+<%@include file="../../includejsps/foot.jsp" %>
 <!-- END FOOTER-->
 <!-- BEGIN JAVASCRIPTS-->
-<%@include file="../includejsps/js.jsp" %>
-<%@include file="../includejsps/plugin-js.jsp" %>
+<%@include file="../../includejsps/js.jsp" %>
+<%@include file="../../includejsps/plugin-js.jsp" %>
 <script type="text/javascript">
     var root = "<%=basePath%>"
     var grid;
@@ -133,6 +133,17 @@
                         	var type = res.type;
                         	dowItem(type);
                         });
+                        
+                    }
+                },
+                {
+                    text: "立即执行",
+                    cls: "green btn-sm",
+                    handle: function (index, data) {
+                        var url = "./start?id=" + data.id;
+                        $.ajax({url:url,type:"post",success:function(res){
+                        	bootbox.alert("后台执行中，请稍后。");
+                        }})
                         
                     }
                 },

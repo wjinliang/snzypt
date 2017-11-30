@@ -9,7 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "conf_detail")
 public class VillageNameProces implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5113368753602920839L;
+
 	@Id
 	private String id; // monggoId
 

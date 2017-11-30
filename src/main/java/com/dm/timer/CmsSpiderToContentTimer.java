@@ -31,13 +31,30 @@ public class CmsSpiderToContentTimer{
 	
 	private boolean isRun = true;
 	
+	
   
-    public void doAction(){
+    public void setMongo(MongoTemplate mongo) {
+		this.mongo = mongo;
+	}
+
+	public void setCmsChannelService(CmsChannelService cmsChannelService) {
+		this.cmsChannelService = cmsChannelService;
+	}
+
+	public void setCmsContentService(CmsContentService cmsContentService) {
+		this.cmsContentService = cmsContentService;
+	}
+
+	public void setRun(boolean isRun) {
+		this.isRun = isRun;
+	}
+
+	public void doAction(){
     	if(!isRun){
 			return;
 		}
     	 DBCollection coll = mongo.getCollection("conf_spider_to_content");// 获取要更新的表;
- 		//整理的 2016 对应221 对应村庄规划
+ 		//
  		BasicDBObject query = new BasicDBObject().append("type", "1");
  		DBCursor cur = coll.find(query);
  		while (cur.hasNext()) {
@@ -52,8 +69,16 @@ public class CmsSpiderToContentTimer{
  			String authorFiled = o.get("author").toString();
  			String origionFiled = o.get("origion").toString();
  			String idFiled = o.get("id").toString();
+ 			publish(contentCollection,channelId,templateId,publishTimeFiled,
+ 					publishTimeFormat,titleFiled,contentFiled,authorFiled,origionFiled,idFiled);
+ 		}
  			
-
+    }
+    
+ 		public void publish(String contentCollection, String channelId,
+ 				String templateId, String publishTimeFiled, String publishTimeFormat,
+ 				String titleFiled, String contentFiled, String authorFiled,
+ 				String origionFiled, String idFiled) {
  	    	 DBCollection tablecoll = mongo.getCollection(contentCollection);// 获取要更新的表;
  	    	 DBObject quy = new BasicDBObject().append("publishFlag",
 				new BasicDBObject().append(QueryOperators.EXISTS, false));
@@ -109,10 +134,10 @@ public class CmsSpiderToContentTimer{
 	 			}
  				
  	    	}
- 		}
- 			
-    }
- 		private void insert(CmsContent cmsContent) {
+		
+	}
+
+		private void insert(CmsContent cmsContent) {
  			CmsChannel cmsChannel = cmsChannelService.findOneById(cmsContent
  					.getChannelId());
  			cmsContent.setSiteDomain(cmsChannel.getSiteDomain());
