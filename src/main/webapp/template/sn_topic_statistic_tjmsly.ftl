@@ -78,7 +78,7 @@
 				    },
 				    legend: {
 				    top:'6%',
-				        data:['2014年','2013年','2014年为2013年百分比']
+				        data:['2017年','2016年','2017年为2016年百分比']
 				    },
 				    toolbox: {
 						    	show : true,
@@ -89,9 +89,9 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年</td>'
-												 + '<td>2013年</td>'
-												  + '<td>2014为2013百分比</td>'
+												 + '<td>2017年</td>'
+												 + '<td>2016年</td>'
+												  + '<td>2017为2016百分比</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -148,18 +148,18 @@
 				    series : [
 				       
 				        {
-				            name:'2014年',
+				            name:'2017年',
 				            type:'bar',
 				            data:seriesSi
 				          
 				        },
 				        {
-				            name:'2013年',
+				            name:'2016年',
 				            type:'bar',
 				            data:seriesSan
 				            },
 				            {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				            yAxisIndex: 1,
 				            data:data.serisZb

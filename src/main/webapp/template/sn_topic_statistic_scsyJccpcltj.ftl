@@ -32,14 +32,14 @@
 		function findxzqy() {
 			//牲畜
 			 xarys="";
-			 seriesSi="";//2014
-			 seriesSan="";//2013
-			 serisZb="";//2014年为2013年%
+			 seriesSi="";//2017
+			 seriesSan="";//2016
+			 serisZb="";//2017年为2016年%
 			 //产量
 			  xarys1="";
-			 seriesSi1="";//2014产量
-			 seriesSan1="";//2013产量
-			 serisZb1="";//2014年为2013年%
+			 seriesSi1="";//2017产量
+			 seriesSan1="";//2016产量
+			 serisZb1="";//2017年为2016年%
 			 
 			$.ajax({
 				type : "POST",
@@ -83,7 +83,7 @@
 	            },
 	           legend: {
 			        top:'10%',
-	                data:['2014年数量(万头)','2013年数量(万头)','2014年为2013年百分比']
+	                data:['2017年数量(万头)','2016年数量(万头)','2017年为2016年百分比']
 	            },
 				toolbox: {
 						    	show : true,
@@ -94,8 +94,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年</td>'
-												 + '<td>2013年</td>'
+												 + '<td>2017年</td>'
+												 + '<td>2016年</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -146,7 +146,7 @@
         },
         {
             type: 'value',
-            name: '2014年为2013年百分比',
+            name: '2017年为2016年百分比',
             interval: 5,
             min:60,
             axisLabel: {
@@ -155,17 +155,17 @@
         }
 	            ],
 	            series: [{
-	            name:'2014年数量(万头)',
+	            name:'2017年数量(万头)',
 	                type: 'bar',
 	                data: data.seriesSi
 	            },
 	            {
-	                name: '2013年数量(万头)',
+	                name: '2016年数量(万头)',
 	                type: 'bar',
 	                data: seriesSan
 	            },
 	            {
-	                name: '2014年为2013年百分比',
+	                name: '2017年为2016年百分比',
 	                yAxisIndex: 1,
 	                type: 'line',
 	                data: serisZb
@@ -202,7 +202,7 @@
 	            },
 	           legend: {
 			        top:'10%',
-	                data:['2014年产量(万吨)','2013年产量(万吨)','2014年为2013年百分比']
+	                data:['2017年产量(万吨)','2016年产量(万吨)','2017年为2016年百分比']
 	            },
 				toolbox: {
 						    	show : true,
@@ -213,8 +213,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年</td>'
-												 + '<td>2013年</td>'
+												 + '<td>2017年</td>'
+												 + '<td>2016年</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis1.length; i < l; i++) {
 										table += '<tr>'
@@ -266,7 +266,7 @@
         },
         {
             type: 'value',
-            name: '2014年为2013年百分比',
+            name: '2017年为2016年百分比',
             interval: 5,
             min:60,
             axisLabel: {
@@ -275,17 +275,17 @@
         }
 	            ],
 	            series: [{
-	            name:'2014年产量(万吨)',
+	            name:'2017年产量(万吨)',
 	                type: 'bar',
 	                data: seriesSi1
 	            },
 	            {
-	                name: '2013年产量(万吨)',
+	                name: '2016年产量(万吨)',
 	                type: 'bar',
 	                data: seriesSan1
 	            },
 	            {
-	                name: '2014年为2013年百分比',
+	                name: '2017年为2016年百分比',
 	                yAxisIndex: 1,
 	                type: 'line',
 	                data: serisZb1

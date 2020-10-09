@@ -20,15 +20,15 @@
 <body>
 	<#include "/template/sn_header.ftl">
     <!--轮播图效果-->
-    <div class="scroll">
+    <!--<div class="scroll">
             <div id="myCarousel" class="carousel slide">
-                <!-- 轮播（Carousel）指标 -->
+                
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
                     <li data-target="#myCarousel" data-slide-to="2"></li>
                 </ol>   
-                <!-- 轮播（Carousel）项目 -->
+               
                 <div class="carousel-inner">
 		<@contentListDirective pageSize=3 channelId=24>
 		<#list contents as co>
@@ -40,7 +40,7 @@
                     
                 </div>
             </div>
-            <!--自动轮播-->
+            
             <script>
 				$(document).ready(function() {
 				$('.carousel').carousel({
@@ -48,14 +48,14 @@
 				})
 				});
 		</script>
-    </div>
+    </div>-->
     <div class="wrapper">
         <div class="container">
         	<!--涉农数据整合情况-->
         	<div class="row">
             	<div class="col-md-3 col-lg-3" style="position:relative; padding-right:0px;">
                 	
-                    <div class="data-situation">
+                    <div class="data-situation" style="top:0px;">
                     	<div class="data-situation-tit icon2">
                         	<img src="/html/sn-static/static/image/font2.png">
                             <p>涉农数据整合情况</p>

@@ -22,25 +22,25 @@
                         	<div>
                             	<span class="topict_tit1">行政村总数</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
-                                <span class="topict_tit3">2015</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_xcicon topic_icon1 mgt10"><span class="topict_tit4" style="margin-right:30px;">3936</span>个</div>
-                        </li>
-                        <li>
-                        	<div>
-                            	<span class="topict_tit1">农村地区常住人口</span>
-                                <span class="topict_tit2">北京统计年鉴</span>
-                                <span class="topict_tit3">2015</span>
-                            </div>
-                            <div class="topic_xcicon topic_icon2 mgt10"><span class="topict_tit4" style="margin-right:30px;">539.5</span>万人</div>
+                            <div class="topic_xcicon topic_icon1 mgt10"><span class="topict_tit4" style="margin-right:30px;">3941</span>个</div>
                         </li>
                         <li>
                         	<div>
                             	<span class="topict_tit1">农村地区常住户数</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
-                                <span class="topict_tit3">2015</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_xcicon topic_icon3 mgt10"><span class="topict_tit4" style="margin-right:30px;">221.4</span>万户</div>
+                            <div class="topic_xcicon topic_icon3 mgt10"><span class="topict_tit4" style="margin-right:30px;">232.6</span>万户</div>
+                        </li>
+                        <li>
+                        	<div>
+                            	<span class="topict_tit1">农村地区常住人口</span>
+                                <span class="topict_tit2">北京统计年鉴</span>
+                                <span class="topict_tit3">2017</span>
+                            </div>
+                            <div class="topic_xcicon topic_icon2 mgt10"><span class="topict_tit4" style="margin-right:30px;">612.6</span>万人</div>
                         </li>
                         <li class="mgt20">
                         	<div>

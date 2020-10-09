@@ -20,41 +20,41 @@
                 	<ul class="agric_list1 clearfix">
                     	<li>
                         	<div>
-                            	<span class="topict_tit1">集体资产总额</span>
+                            	<span class="topict_tit1">资产总额</span>
                                 <span class="topict_tit2">三资监管平台</span>
-                                <span class="topict_tit3">2016</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_tjicon topic_icon1 mgt10"><span class="topict_tit4" style="margin-right:30px;">5849.8467</span>亿元</div>
+                            <div class="topic_tjicon topic_icon1 mgt10"><span class="topict_tit4" style="margin-right:30px;">6879.6</span>亿元</div>
                         </li>
                         <li>
                         	<div>
-                            	<span class="topict_tit1">经济组织总收入</span>
+                            	<span class="topict_tit1">集体经济总收入</span>
                                 <span class="topict_tit2">三资监管平台</span>
-                                <span class="topict_tit3">2016</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_tjicon topic_icon2 mgt10"><span class="topict_tit4" style="margin-right:30px;">6012.0999</span>亿元</div>
+                            <div class="topic_tjicon topic_icon2 mgt10"><span class="topict_tit4" style="margin-right:30px;">723.7</span>亿元</div>
                         </li>
                         <li>
                         	<div>
-                            	<span class="topict_tit1">经济组织利润总额</span>
+                            	<span class="topict_tit1">主营业务收入</span>
                                 <span class="topict_tit2">三资监管平台</span>
-                                <span class="topict_tit3">2016</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_tjicon topic_icon3 mgt10"><span class="topict_tit4" style="margin-right:30px;">214.1137</span>亿元</div>
+                            <div class="topic_tjicon topic_icon3 mgt10"><span class="topict_tit4" style="margin-right:30px;">498.8</span>亿元</div>
                         </li>
                         <li class="mgt20">
                         	<div>
-                            	<span class="topict_tit1">农村营业收入</span>
+                            	<span class="topict_tit1">主营业务成本</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
-                                <span class="topict_tit3">2015</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_tjicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">5614.7281</span>亿元</div>
+                            <div class="topic_tjicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">217.8</span>亿元</div>
                         </li>
                         <li class="mgt20">
                         	<div>
-                            	<span class="topict_tit1">农村营业利润总额</span>
+                            	<span class="topict_tit1">利润总额</span>
                                 <span class="topict_tit2">北京统计年鉴</span>
-                                <span class="topict_tit3">2015</span>
+                                <span class="topict_tit3">2017</span>
                             </div>
                             <div class="topic_tjicon topic_icon3 mgt10"><span class="topict_tit4" style="margin-right:30px;">213.5138</span>亿元</div>
                         </li>
@@ -77,7 +77,7 @@
                     	<div class="chart_title">
                             <ul class="clearfix">
                                 <li rel="zt_rep" class="hover"><span>农村基本情况</span></li>
-                                <li rel="zt_rep"><span>农村固定资产投资情况</span></li>
+                                <!--<li rel="zt_rep"><span>农村固定资产投资情况</span></li>-->
                                 <li rel="zt_rep"><span>耕地面积</span></li>
                                 <li rel="zt_rep"><span>农作物播种面积及造林面积</span></li>  
                             </ul>
@@ -96,7 +96,7 @@
 				</p>
                             </div>
                         </div>
-                        <div class="chart_con" rel="zt_rep_pad" style="display:block;">
+                        <!--<div class="chart_con" rel="zt_rep_pad" style="display:block;">
 			    <div class="show_chart1">
                             	<div id="chart03" style="width:100%; height:100%;"></div>
                             </div>
@@ -106,7 +106,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;<span>2.行业划分执行2011年国民经济行业分类标准(GB/T 4754-2011)。</span>
 				</p>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="chart_con" rel="zt_rep_pad" style="display:block;">
 				<div class="show_chart1">
 					<div id="chart04" style="width:100%; height:100%;"></div>
@@ -334,7 +334,7 @@
                                 <li rel="zt_rep2"><span>平均每一个从业人员创造的总价值</span></li>
                                 <li rel="zt_rep2"><span>农林牧渔业总产值</span></li>
                                 <li rel="zt_rep2"><span>乡镇企业各业基本情况</span></li> 
-                                <li rel="zt_rep2"><span>乡镇企业出口供货情况</span></li>
+                                <!--<li rel="zt_rep2"><span>乡镇企业出口供货情况</span></li>-->
                             </ul>
                         </div>
                         <!--"show_chart1"div块只显示一张图表-->
@@ -398,7 +398,7 @@
                                     </li>
                                 </ul>	
                         </div>
-                        <div class="chart_con" rel="zt_rep_pad2" style="display:block;">
+                        <!--<div class="chart_con" rel="zt_rep_pad2" style="display:block;">
                            <div class="show_chart1">
                             	<div id="chart33" style="width:100%; height:100%;"></div>
                             </div>
@@ -409,7 +409,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;<span>3.2010年按照新的《统计用产品分类目录》，将原归属林业产值的核桃、板栗等林产品调整至农业产值，并对2009年数据作了调整。</span>
 							</p>
                             </div>  
-                        </div>
+                        </div>-->
                 </div>
             </div>
         </div>

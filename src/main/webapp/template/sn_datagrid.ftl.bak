@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<#include "/template/sn_head.ftl">
+<link rel="stylesheet" type="text/css" href="/html/sn-static/static/css/jquery.treemenu.css">
+<style type="text/css">
+/*树结构样式设置开始*/
+.tree {color:#46CFB0; padding-left:0px;}
+.tree li,
+.tree li > a,
+.tree li > span {
+    padding: 4px;
+    border-radius: 4px;
+}
+.tree li a {
+    color:#000;
+    text-decoration: none;
+    line-height: 20pt;
+    border-radius: 4px;
+}
+.tree li a:hover {
+    background-color: #0e82d9;
+    color: #fff;
+}
+.tree .active {
+    background-color: #0e82d9;
+    color:#fff;
+}
+.tree .active a {
+    color: #fff;
+}
+.tree li a.active:hover {
+    background-color: #34BC9D;
+}
+/*树结构样式设置结束*/
+/*数据采集中*/
+.datagather{
+	position: relative;
+    top: 95px;
+    display: inline-block;
+    letter-spacing: -10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    line-height: 128px;
+    font-size: 128px;
+    font-weight: 300;
+    color: #E6E6E6;
+    text-align: right;
+	}
+</style>
+</head>
+
+<body>
+	<#include "/template/sn_header.ftl">
+    <div class="wrapper">
+    	<div class="container">
+        	<div class="row">
+                <div class="item-title clearfix">
+                    <div class="item-title-partl icon7 pull-left">
+                        <span>数据资源</span>
+                    </div>
+                    <!--<label class="pull-right">
+                    	<input type="text" value="" placeholder="关键词搜索">
+                        <button type="button" value="" class="b-btn fontSize12">搜索</button>
+                    </label>-->
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-3 col-lg-3" style="padding-left:0px;">
+                	<div class="tree-title">数据目录</div>
+                    <div class="tree-con">
+                        <div class="panel-body" id="dataSourceTree" style="padding-top:0px;">
+                        	
+                         </div>
+                     </div>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                	<div class="interact-item" style="background:#fafafa;;min-height:300px;">
+                    	<div class="interact-item-con">
+			<div class="abstracts">
+                            	<h4>【${table.gridName!}】</h4>
+<!--                                <p>${table.info!}</p>-->
+                            </div>
+					<@tableListDirective type=0  pId=typeId pageNum=pageNum pageSize=8>
+				<#if (tables?size==0)>
+						<div class="datagather">
+								数据采集中...
+							</div>
+				<#else>
+				
+								<ul id="interact-con-list">
+								<#list tables as t>
+									<li class="clearfix" style="border: solid #FFF 2px;">
+										<div class="panel-body">
+										<a class="pull-left interact-itemA" href="" target="_blank" title="${t.gridName!}">
+											<img src="/html/sn-static/static/image/realtime1.png" width="120" height="90">  
+										</a>
+										<div class="interact-box pull-right">
+										    <p>
+											<a href="${application!}/portal/data/info/${t.id!}.htm" class="fontSize16">${t.gridName!}
+											
+											<span id="depart">&nbsp;&nbsp;&nbsp;&nbsp;所属部门：${t.org!"城乡信息中心"}</span>
+											<span id="update-time" class="pull-right" style="margin-right:120px;">
+											采集时间：</span>    </a>
+										    </p>
+										     <p style="margin-bottom:5px;">
+											数据来源：
+											<span id="source1" style="padding-right:20px;">${t.origin!}</span>
+											<!--数据量：
+											<span id="data-count1">1000</span>-->
+										    </p>
+										    <p class="pText alter-text1">${t.info!}</p>
+										</div>	
+									    </div>
+									</li>
+								</#list>
+                            </ul>
+						${pagination!}
+						</#if>
+							</@tableListDirective>
+                        </div>
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </div>
+    <#include "/template/sn_footer.ftl">
+    <script type="text/javascript" src="/html/sn-static/static/js/jquery.treemenu.js"></script>
+	<script type="text/javascript">
+   $(function(){
+			mytree(zNodes);
+            $(".tree").treemenu({delay:300}).openActive();
+        });
+	<@tableListDirective type=1 >
+		var zNodes = ${tablesStr!};
+	</@tableListDirective>
+
+		function mytree(list){
+			var $root = $('<ul class="tree"><ul>');
+			for(var i=0;i<list.length;i++){
+				$root.append(toli(list[i]));
+			}
+			$root.children().each(function(i,ele){
+				var pid = $(ele).data("pid");
+				var parent = $root.find("#tree_"+pid);
+				if(parent.length>0){
+					parent.append($("<p>").append($(this).clone()).html());
+					$(ele).remove();
+				}
+				
+			})
+			
+			$("#dataSourceTree").append($root);
+		}
+		var currentTable = "${tableId!}";
+		function toli(data){
+		var active="";
+			if(data.id==currentTable){
+				active = "active";
+			}
+			return $('<li data-pid="'+data.pId+'"><a class="'+active+'" href="${application!}/portal/data/grid/'+data.id+'_1.htm">'+data.gridName+'</a><ul id="tree_'+data.id+'"><ul><li>');
+		}
+    </script>
+    <script type="text/javascript" src="/html/sn-static/static/js/webindex.js"></script>
+</body>
+</html>

@@ -13,13 +13,13 @@
     <sec:http pattern="/cmsStatic/**" security="none"/>
     <!-- <sec:http pattern="/checkunique" security="none"/> -->
     <sec:http pattern="/login" security="none"/> 
+    <sec:http pattern="/portalLogin" security="none"/> 
     <sec:http pattern="/calogin" security="none"/> 
     <sec:http pattern="/cacheck" security="none"/> 
     <!-- <sec:http pattern="/regiest" security="none"/>
     <sec:http pattern="/saveRegiest" security="none"/>
     <sec:http pattern="/ajaxSaveRegister" security="none"/> -->
     <sec:http pattern="/resetPassword" security="none"/>
-    <sec:http pattern="/portal/**" security="none"/>
     <sec:http pattern="/searchConfig/search" security="none"/>
     <sec:http pattern="/checkUrl" security="none"/>
     <sec:http pattern="/resource/**" security="none"/>
@@ -50,6 +50,7 @@
                            ref="myFilter"/>
 		<!-- <sec:custom-filter ref="ipFilter" before="FIRST"/> -->
         <sec:intercept-url pattern="/api/**" access="permitAll"/>
+    	<sec:intercept-url pattern="/portal/**" access="permitAll"/>
         <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
         <!-- <sec:intercept-url pattern="/login" access="hasIpAddress('172.16.10.1')"/> -->
         <sec:remember-me key="springDm" use-secure-cookie="true"/>

@@ -20,6 +20,8 @@
 		<result column="data_update_time" property="dataUpdateTime" jdbcType="VARCHAR" />
 		<result column="show_data_query" property="showDataQuery" jdbcType="VARCHAR" />
 		<result column="p_type_name" property="pTypeName" jdbcType="VARCHAR" />
+		<result column="public_type" property="publicType" jdbcType="VARCHAR" />
+		<result column="share_type" property="shareType" jdbcType="VARCHAR" />
 		<result column="origin" property="origin" jdbcType="VARCHAR" />
 		<result column="org" property="org" jdbcType="VARCHAR" />
 		<result column="data_count" property="dataCount" jdbcType="INTEGER" />
@@ -28,6 +30,7 @@
 		<result column="is_delete" property="isDelete" jdbcType="BIT" />
 		<result column="is_detail" property="isDetail" jdbcType="BIT" />
 		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
+		<result column="download_count" property="downloadCount" jdbcType="INTEGER" />
 	</resultMap> 
 	<resultMap id="treeNodeMap" type="com.dm.cms.model.TreeNode">
 		<id column="id" property="id" jdbcType="VARCHAR" />
@@ -39,7 +42,8 @@
 	<sql id="Base_Column_List">
 		id, table_name, status, sort_field, where_field, type, seq, org ,
 		create_date, create_user,id_field,info,data_time,data_update_time,origin,code,
-		grid_name,pid,is_detail,is_delete,is_update,is_insert,visit_count,show_data_query,data_count
+		grid_name,pid,is_detail,is_delete,is_update,is_insert,visit_count,show_data_query,
+		data_count,download_count,share_type,public_type
 	</sql>
 	<sql id="tree_Column_List">
 		id,(case when `status`='0' then concat(grid_name,'(隐藏)') else grid_name end ) grid_name, pid , type,data_count
@@ -56,7 +60,7 @@
 		t1.id, t1.table_name, t1.status, t1.sort_field, t1.where_field, t1.type, t1.seq, t1.org ,
 		t1.create_date, t1.create_user,t1.id_field,t1.info,t1.data_time,t1.data_update_time,t1.origin,t1.code,
 		t1.grid_name,t1.pid,t1.is_detail,t1.is_delete,t1.is_update,t1.is_insert,t1.visit_count,
-		t1.show_data_query,t1.data_count,
+		t1.show_data_query,t1.data_count,t1.download_count,t1.share_type,t1.public_type,
 		t2.grid_name p_type_name 
 		from at_table_config t1 left join at_table_config t2 on t1.pid=t2.id
 		where t1.status &lt;&gt; '9' 
@@ -79,6 +83,12 @@
 			</if>
 			<if test="model.type!=null and model.type!=''">
 				and t1.type = #{model.type,jdbcType=VARCHAR}
+			</if>
+			<if test="model.shareType!=null and model.shareType!=''">
+				and t1.share_type = #{model.shareType,jdbcType=VARCHAR}
+			</if>
+			<if test="model.publicType!=null and model.publicType!=''">
+				and t1.public_type = #{model.publicType,jdbcType=VARCHAR}
 			</if>
 			<if test="model.gridName!=null and model.gridName!=''">
 				and t1.grid_name like concat('%',#{model.gridName},'%')
@@ -109,7 +119,8 @@
 		seq,data_time,data_update_time,origin,
 		create_date, create_user,id_field,info,data_count,
 		grid_name,pid,is_detail,is_delete,is_update,
-		is_insert,visit_count,show_data_query)
+		is_insert,visit_count,public_type,share_type,
+		download_count,show_data_query)
 		values
 		(#{id,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR},
@@ -132,6 +143,9 @@
 		#{isUpdate,jdbcType=BIT},
 		#{isInsert,jdbcType=BIT},
 		#{visitCount,jdbcType=INTEGER},
+		#{publicType,jdbcType=VARCHAR},
+		#{shareType,jdbcType=VARCHAR},
+		#{downloadCount,jdbcType=INTEGER},
 		#{showDataQuery,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.dm.atform.model.AtTable">
@@ -209,8 +223,17 @@
 			<if test="visitCount !=null">
 				visit_count,
 			</if>
+			<if test="downloadCount !=null">
+				download_count,
+			</if>
 			<if test="showDataQuery !=null">
 				show_data_query,
+			</if>
+			<if test="shareType!=null">
+				share_type,
+			</if>
+			<if test="publicType!=null">
+				public_type,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -286,8 +309,17 @@
 			<if test="visitCount !=null">
 				#{visitCount,jdbcType=INTEGER},
 			</if>
+			<if test="downloadCount !=null">
+				#{downloadCount,jdbcType=INTEGER},
+			</if>
 			<if test="showDataQuery !=null">
 				#{showDataQuery,jdbcType=VARCHAR},
+			</if>
+			<if test="shareType!=null">
+				#{shareType,jdbcType=VARCHAR},
+			</if>
+			<if test="publicType!=null">
+				#{publicType,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -363,8 +395,17 @@
 			<if test="visitCount !=null">
 				visit_count = #{visitCount,jdbcType=INTEGER},
 			</if>
+			<if test="downloadCount !=null">
+				download_count = #{downloadCount,jdbcType=INTEGER},
+			</if>
 			<if test="showDataQuery !=null">
 				show_data_query = #{showDataQuery,jdbcType=VARCHAR},
+			</if>
+			<if test="shareType!=null">
+				share_type = #{shareType,jdbcType=VARCHAR},
+			</if>
+			<if test="publicType!=null">
+				public_type = #{publicType,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
@@ -402,7 +443,10 @@
 		is_delete = #{isDelete,jdbcType=BIT},
 		is_update = #{isUpdate,jdbcType=BIT},
 		is_insert = #{isInsert,jdbcType=BIT},
-		visit_count = #{visitCount,jdbcType=INTEGER}
+		share_type = #{shareType,jdbcType=VARCHAR},
+		public_type = #{publicType,jdbcType=VARCHAR},
+		visit_count = #{visitCount,jdbcType=INTEGER},
+		download_count = #{downloadCount,jdbcType=INTEGER}
 		where id
 		= #{id,jdbcType=VARCHAR}
 	</update>

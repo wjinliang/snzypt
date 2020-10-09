@@ -12,10 +12,12 @@
 <script type="text/javascript" src="/html/sn-static/static/js/agricultureScroller.js"></script>
 <script type="text/javascript" src="/html/sn-static/static/js/vector.js"></script>
 <script type="text/javascript" src="/html/sn-static/static/js/echarts.common.min.js"></script>
+<script type="text/javascript" src="/html/sn-static/static/login/layer/layer.js"></script>
+<script type="text/javascript" src="/html/sn-static/static/login/login.js"></script>
 <!--
 <script type="text/javascript" src="/html/sn-static/static/js/echarts.js"></script>-->
 <#assign tooltipalign="left">
-<#assign iserverIP="http://172.24.61.42:8090/">
+
 <!--[if lt IE 9]> 
 	<style type="text/css">
 		.head-bottom{background:url(/html/sn-static/static/image/navbanner.png) no-repeat;}

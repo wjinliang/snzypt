@@ -52,7 +52,7 @@
 				option = {
 	            title: {
 	            x:'center',
-	                text: '2014乡镇企业个数'
+	                text: '2017乡镇企业个数'
 	            },
 	            tooltip : {
 	                trigger: 'axis',
@@ -127,7 +127,7 @@
 	        option1 = {
 	            title: {
 	            x:'center',
-	                text: '2014从业人员'
+	                text: '2017从业人员'
 	            },
 	            tooltip : {
 	                trigger: 'axis',
@@ -202,7 +202,7 @@
 	        option2 = {
 	            title: {
 	            x:'center',
-	                text: '2014总收入'
+	                text: '2017总收入'
 	            },
 	            tooltip : {
 	                trigger: 'axis',
@@ -281,7 +281,7 @@
 	        option3 = {
 	            title: {
 	            	            x:'center',
-	                text: '2014利润总额(万元)'
+	                text: '2017利润总额(万元)'
 	            },
 	            tooltip : {
 	                trigger: 'axis',

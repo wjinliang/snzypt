@@ -17,7 +17,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8" />
-<title>后台管理 | 资源管理</title>
+<title>基础平台管理系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
@@ -477,6 +477,22 @@
 			cls : 'input-large',
 			items:[],
 			itemsUrl:'../dict/getItems?code=C07'
+		}, {
+			type : 'select',//类型
+			name : 'publicType',//name
+			id : 'publicType',//id
+			label : '公开方式',//左边label
+			cls : 'input-large',
+			items:[],
+			itemsUrl:'../dict/getItems?code=C08'
+		}, {
+			type : 'select',//类型
+			name : 'shareType',//name
+			id : 'shareType',//id
+			label : '共享方式',//左边label
+			cls : 'input-large',
+			items:[],
+			itemsUrl:'../dict/getItems?code=C09'
 		}, {
 			type : 'text',//类型
 			name : 'dataTime',//name

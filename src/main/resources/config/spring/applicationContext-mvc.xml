@@ -111,9 +111,13 @@
 				<entry key="cunqingItemInfoDirective" value-ref="cunqingItemInfoDirective"></entry>
 				<entry key="mongoDataListDirective" value-ref="mongoDataListDirective"></entry>
 				<entry key="tableListDirective" value-ref="tableListDirective"></entry>
+				<entry key="tableInfoDirective" value-ref="tableInfoDirective"></entry>
+				<entry key="tableInfoListDirective" value-ref="tableInfoListDirective"></entry>
 				<entry key="dataResourceRecordDirective" value-ref="dataResourceRecordDirective"></entry>
 				<entry key="directoryNumberDirective" value-ref="directoryNumberDirective"></entry>
 				<entry key="sysDataCountDirective" value-ref="sysDataCountDirective"></entry>
+				<entry key="datasourceApplyListDirective" value-ref="datasourceApplyListDirective"></entry>
+				<entry key="dataFieldListDirective" value-ref="dataFieldListDirective"></entry>
 				
 			</map>
 		</property>
@@ -172,9 +176,13 @@
  <bean id="cunqingItemInfoDirective" class ="com.dm.app.datatopic.cunqing.cunqinginfo.directive.CunqingItemInfoDirective"></bean>
  <bean id="mongoDataListDirective" class="com.dm.atform.directive.MongoDataListDirective"></bean>
  <bean id="tableListDirective" class="com.dm.atform.directive.AtTableListDirective"></bean>
+ <bean id="tableInfoDirective" class="com.dm.atform.directive.AtTableInfoDirective"></bean>
+ <bean id="tableInfoListDirective" class="com.dm.atform.directive.AtTableInfoListDirective"></bean>
  <bean id="directoryNumberDirective" class="com.dm.atform.directive.DirectoryNumberDirective"></bean>
  <bean id="dataResourceRecordDirective" class="com.dm.atform.directive.DataResourceRecordDirective"></bean>
  <bean id="sysDataCountDirective" class="com.dm.atform.directive.SysDataCountDirective"></bean>
+ <bean id="datasourceApplyListDirective" class="com.dm.atform.directive.DatasourceApplyListDirective"></bean>
+ <bean id="dataFieldListDirective" class="com.dm.atform.directive.DataFieldListDirective"></bean>
  
  <!-- 涉农前台自定义标签结束 -->
 	<!-- json格式设置 -->

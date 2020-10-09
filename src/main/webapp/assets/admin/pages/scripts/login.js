@@ -13,8 +13,8 @@ var DMLogin = function() {
                 j_password: {
                     required: true
                 },
-                _spring_security_remember_me: {
-                    required: false
+                j_captcha: {
+                    required: true
                 }
             },
 
@@ -24,6 +24,9 @@ var DMLogin = function() {
                 },
                 j_password: {
                     required: "请输入密码."
+                },
+                j_captcha: {
+                    required: "请输入验证码"
                 }
             },
 

@@ -68,7 +68,7 @@
 		       					  }
 	            },
 				    legend: {
-				        data:['2014年(台)','2013年(台)','2014年为2013年百分比']
+				        data:['2017年(台)','2016年(台)','2017年为2016年百分比']
 				    },
 				    toolbox: {
 				        show : true,
@@ -122,18 +122,18 @@
 				    series : [
 				       
 				        {
-				            name:'2014年(台)',
+				            name:'2017年(台)',
 				            type:'bar',
 				            data:seriesSi
 				          
 				        },
 				        {
-				            name:'2013年(台)',
+				            name:'2016年(台)',
 				            type:'bar',
 				            data:seriesSan
 				            },
 				            {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				            yAxisIndex: 1,
 				            data:data.serisZb
@@ -195,7 +195,7 @@
 		       					  }
 	            },
 				    legend: {
-				        data:['2014年(吨)','2013年(吨)','2014年为2013年百分比']
+				        data:['2017年(吨)','2016年(吨)','2017年为2016年百分比']
 				    },
 				    toolbox: {
 				        show : true,
@@ -248,18 +248,18 @@
 				    series : [
 				       
 				        {
-				            name:'2014年(吨)',
+				            name:'2017年(吨)',
 				            type:'bar',
 				            data:seriesSi
 				          
 				        },
 				        {
-				            name:'2013年(吨)',
+				            name:'2016年(吨)',
 				            type:'bar',
 				            data:seriesSan
 				            },
 				            {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				            yAxisIndex: 1,
 				            data:data.serisZb
@@ -328,7 +328,7 @@
         }
     },
     legend: {
-        data:['2014年(公顷)','2013年(公顷)','2014年为2013年百分比']
+        data:['2017年(公顷)','2016年(公顷)','2017年为2016年百分比']
     },
     xAxis: [
         {
@@ -361,17 +361,17 @@
     ],
     series: [
         {
-            name:'2014年(公顷)',
+            name:'2017年(公顷)',
             type:'bar',
             data:data.seriesSi
         },
         {
-            name:'2013年(公顷)',
+            name:'2016年(公顷)',
             type:'bar',
             data:data.seriesSan
         },
           {
-            name:'2014年为2013年百分比',
+            name:'2017年为2016年百分比',
             type:'line',
      		yAxisIndex: 1,
             data:data.serisZb

@@ -17,7 +17,7 @@ overflow: scroll;
                         <span>当前位置：</span>
                         <a href="${site.url!}">首页</a>
                             &nbsp;&gt;&nbsp;
-                        <a href="javascript:void(0);">农业生产条件(1978-2014年)</a>
+                        <a href="javascript:void(0);">农业生产条件</a>
                      </div>
                      <div class="base-info mgt15 mgb15">
                      	<div class="panel-body">
@@ -55,7 +55,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '年末实有耕地面积(1978-2014年)',
+						        text: '年末实有耕地面积',
 						    },
 						    tooltip: {
 						        trigger: 'axis',
@@ -138,7 +138,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						     x:'center',
-						        text: '有效灌溉面积(1978-2014年)',
+						        text: '有效灌溉面积',
 						    },
 						    tooltip: {
 						        trigger: 'axis',
@@ -209,7 +209,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '农用机械总动力(1978-2014年)',
+						        text: '农用机械总动力',
 								subtext:''
 						    },
 						    tooltip: {
@@ -280,7 +280,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '农村用电量(1978-2014年)',
+						        text: '农村用电量',
 								subtext:''
 						    },
 						    tooltip: {
@@ -356,7 +356,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						     x:'center',
-						        text: '化肥施用量(1978-2014年)',
+						        text: '化肥施用量',
 						    },
 						    tooltip: {
 						        trigger: 'axis',

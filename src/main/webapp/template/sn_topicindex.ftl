@@ -42,7 +42,7 @@
                                     <p>行政村总数</p>
                                     <div class="lineH30">
                                         <i class="ico1">&nbsp;</i>
-                                        <span class="num" id="num1">3936</span>
+                                        <span class="num" id="num1">3941</span>
                                         <span>个</span>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                     <p>农村地区常住户数</p>
                                     <div class="lineH30">
                                         <i class="ico2">&nbsp;</i>
-                                        <span class="num" id="num2">221.4</span>
+                                        <span class="num" id="num2">232.6</span>
                                         <span>万户</span>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                     <p>农村地区常住人口</p>
                                     <div class="lineH30">
                                         <i class="ico3">&nbsp;</i>
-                                        <span class="num" id="num3">593.5</span>
+                                        <span class="num" id="num3">612.6</span>
                                         <span>万人</span>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <p>农业户籍人口</p>
                                     <div class="lineH30">
                                         <i class="ico4">&nbsp;</i>
-                                        <span class="num" id="num4">239.8</span>
+                                        <span class="num" id="num4">310.7</span>
                                         <span>万人</span>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                     <p>农村劳动力</p>
                                     <div class="lineH30">
                                         <i class="ico6">&nbsp;</i>
-                                        <span class="num" id="num4">154.5</span>
+                                        <span class="num" id="num4">181.8</span>
                                         <span>万人</span>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                     <div class="lineH30">
                                         <i class="ico24">&nbsp;</i>
 
-                                        <span class="num" id="num024">28</span>
+                                        <span class="num" id="num024">101</span>
                                         <span>种</span>
 
                                     </div>
@@ -193,7 +193,7 @@
                                     <div class="lineH30">
                                         <i class="ico26">&nbsp;</i>
 
-                                        <span class="num" id="num025">29</span>
+                                        <span class="num" id="num025">93</span>
                                         <span>个</span>
 
                                     </div>
@@ -230,51 +230,51 @@
                     	<ul class="dataSubjt-right-top clearfix">
                         	<li>
                             	<div class="panel-body">
-                                    <p>集体资产总额</p>
+                                    <p>资产总额</p>
                                     <div class="lineH30">
                                         <i class="ico31">&nbsp;</i>
-                                        <span class="num" id="num021">5849.8467</span>
+                                        <span class="num" id="num021">6879.6</span>
                                         <span>亿元</span>
                                     </div>
                                 </div>
                             <li>
                             <li>
                             	<div class="panel-body">
-                                    <p>经济组织总收入</p>
+                                    <p>集体经济总收入</p>
                                     <div class="lineH30">
                                         <i class="ico32">&nbsp;</i>
-                                        <span class="num" id="num022">6012.0999</span>
+                                        <span class="num" id="num022">723.7</span>
                                         <span>亿元</span>
                                     </div>
                                 </div>
                             <li>
 			     <li>
                             	<div class="panel-body">
-                                    <p>经济组织利润总额</p>
+                                    <p>主营业务收入</p>
                                     <div class="lineH30">
                                         <i class="ico33">&nbsp;</i>
-                                        <span class="num" id="num022">214.1137</span>
+                                        <span class="num" id="num022">498.8</span>
                                         <span>亿元</span>
                                     </div>
                                 </div>
                             <li>
                             <li>
                             	<div class="panel-body">
-                                    <p>农村营业收入</p>
+                                    <p>主营业务成本</p>
                                     <div class="lineH30">
                                         <i class="ico34">&nbsp;</i>
-                                        <span class="num" id="num023">5614.7281</span>
+                                        <span class="num" id="num023">217.8</span>
                                         <span>亿元</span>
                                     </div>
                                 </div>
                             <li>
                             <li>
                             	<div class="panel-body">
-                                    <p>农村营业利润总额</p>
+                                    <p>利润总额</p>
                                     <div class="lineH30">
                                         <i class="ico35">&nbsp;</i>
 
-                                        <span class="num" id="num024">213.5138</span>
+                                        <span class="num" id="num024">43.3</span>
                                         <span>亿元</span>
 
                                     </div>

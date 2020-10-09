@@ -154,13 +154,13 @@
                          onsubmit="return LoginForm_onsubmit()"
                           method="post">
                             <p class="load"><input type="text"  
-                            id="username" value="cxxxzx" autocomplete="off" 
+                            id="username" value="" autocomplete="off" 
                 			name="j_username" placeholder="请输入账号" class="alter-text" />
 <!--                 			onblur="if(this.value == '')this.value='请输入账号';" -->
 <!--                 			onclick="if(this.value == '请输入账号')this.value='';" -->
 <!--                 			value="请输入账号" -->
                 			</p class="load">
-                            <p class="load"><input type="password" value="cxxxzx@2017" id="password" placeholder="请输入密码" class="ater-passwd"
+                            <p class="load"><input type="password" value="" id="password" placeholder="请输入密码" class="ater-passwd"
                              name="j_password" />
 <!--                              onblur="if(this.value == '')this.value='请输入密码';"  -->
 <!--                              onclick="if(this.value == '请输入密码')this.value='';"  -->
@@ -210,7 +210,6 @@
 
 <script src="<%=basePath%>assets/global/plugins/jquery.cokie.min.js"
         type="text/javascript"></script>
-
 <script
         src="<%=basePath%>assets/global/plugins/jquery-validation/js/jquery.validate.min.js"
         type="text/javascript"></script>

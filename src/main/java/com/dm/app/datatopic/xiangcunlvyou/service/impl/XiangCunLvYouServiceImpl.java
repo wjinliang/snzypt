@@ -149,7 +149,7 @@ public class XiangCunLvYouServiceImpl implements XiangCunLvYouService {
         DBObject sortFields = new BasicDBObject("_id", -1);
         DBObject sort = new BasicDBObject("$sort", sortFields );
         AggregationOutput output = myColl.aggregate(group, sort);
-      CommandResult com=  output.getCommandResult();
+        CommandResult com=  output.getCommandResult();
 		List list=(List)com.get("result");
 		redis.set(key,list);
 		return list;

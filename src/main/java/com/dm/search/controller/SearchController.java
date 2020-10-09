@@ -1,10 +1,7 @@
 package com.dm.search.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONObject;
 
 import org.apache.commons.collections.ListUtils;
 import org.slf4j.Logger;
@@ -141,6 +138,7 @@ public class SearchController {
 //			return callback+":("+jsonObject.toString()+")";
 //			return callback+":({'status':'0','mes', '请输入搜索关键词！'})";
 		}
+		textValue="中国";
 		 map = searchConfigService.searchResults(textValue,colum, pageNum, pageSize,sortField,entity,days,device);
 		return map;
 //		JSONObject jsonObject = JSONObject.fromObject(map);

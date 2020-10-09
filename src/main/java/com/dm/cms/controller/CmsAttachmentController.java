@@ -63,7 +63,7 @@ import com.dm.platform.util.ResponseUtil;
                 .substring(multipartFile.getOriginalFilename().lastIndexOf(".")+1);
             	String type="gif,jpg,jpeg,png,bmp,"+
                 "swf,flv,"+
-                "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,"+
+                "swf,pdf,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,"+
                 "flv,mp4,doc,docx,xls,xlsx,ppt,txt,zip,rar,gz,bz2";
             	if(!type.contains(fileType))
             	{
@@ -117,7 +117,7 @@ import com.dm.platform.util.ResponseUtil;
                 .substring(multipartFile.getOriginalFilename().lastIndexOf(".")+1);
             	String type="gif,jpg,jpeg,png,bmp,"+
                 "swf,flv,"+
-                "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,"+
+                "swf,pdf,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,"+
                 "flv,mp4,doc,docx,xls,xlsx,ppt,txt,zip,rar,gz,bz2";
             	if(!type.contains(fileType))
             	{

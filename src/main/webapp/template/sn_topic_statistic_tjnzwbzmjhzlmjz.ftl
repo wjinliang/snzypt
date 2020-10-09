@@ -17,7 +17,7 @@ overflow: scroll;
                         <span>当前位置：</span>
                         <a href="${site.url!}">首页</a>
                             &nbsp;&gt;&nbsp;
-                        <a href="javascript:void(0);">农作物播种面积和造林面积(1978-2014年)</a>
+                        <a href="javascript:void(0);">农作物播种面积和造林面积</a>
                      </div>
                      <div class="base-info mgt15 mgb15">
                      	<div class="panel-body">
@@ -46,7 +46,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '农作物播种面积和造林面积(1978-2014年)',
+						        text: '农作物播种面积和造林面积',
 						    },
 						    tooltip: {
 						        trigger: 'axis',
@@ -109,8 +109,8 @@ overflow: scroll;
 						    dataZoom:{
 						        orient:"horizontal", //水平显示
 						        show:true, //显示滚动条
-						        start:0, //起始值为20%
-						        end:50,  //结束值为60%
+						        start:50, //起始值为20%
+						        end:100,  //结束值为60%
 						    },
 						    series: [
 						          {

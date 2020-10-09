@@ -50,15 +50,15 @@
                                 <span class="topict_tit2">美丽乡村网站</span>
                                 <span class="topict_tit3">2014</span>
                             </div>
-                            <div class="topic_nyicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">28</span>种</div>
+                            <div class="topic_nyicon topic_icon4 mgt10"><span class="topict_tit4" style="margin-right:30px;">101</span>种</div>
                         </li>
                         <li class="mgt20">
                         	<div>
                             	<span class="topict_tit1">星级园区</span>
                                 <span class="topict_tit2">Hi乡村网站</span>
-                                <span class="topict_tit3">2016</span>
+                                <span class="topict_tit3">2018</span>
                             </div>
-                            <div class="topic_nyicon topic_icon5 mgt10"><span class="topict_tit4" style="margin-right:30px;">79</span>家</div>
+                            <div class="topic_nyicon topic_icon5 mgt10"><span class="topict_tit4" style="margin-right:30px;">150</span>家</div>
                         </li>
                         <li class="mgt20">
                         	<div>
@@ -66,7 +66,7 @@
                                 <span class="topict_tit2">美丽乡村网站</span>
                                 <span class="topict_tit3">2017</span>
                             </div>
-                            <div class="topic_nyicon topic_icon6 mgt10"><span class="topict_tit4" style="margin-right:30px;">29</span>个</div>
+                            <div class="topic_nyicon topic_icon6 mgt10"><span class="topict_tit4" style="margin-right:30px;">93</span>个</div>
                         </li>
                     </ul>	
                 </div>

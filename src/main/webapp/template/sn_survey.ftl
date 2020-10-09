@@ -7,19 +7,19 @@
    	var title=$("#title").val();
   	var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   	var email=$("#email").val();
-  	var weibanju=$('input:radio[name="weibanju"]:checked').val();
-  	var type=$('input:checkbox[name="type"]:checked').val();
+  	var weibanju=$('input[name="weibanju"]').val();
+  	var type=$('input[name="type"]:checked').val();
   	if(title!='' && email!='' && weibanju!=null && type!=null && regEmail.test(email)){
 	  		$.ajax({
 			type:'post',
 			url:'/topiecms/portal/que/save',
 			data:$('#questionForm').serialize(),
 			success:function(data){
-				alert("感谢您提供宝贵的意见!");
+				alert("申请成功，请下载附件进行线下流程审批!");
 				document.getElementById("questionForm").reset(); 
 			},
 			error:function(){
-				alert("表单提交错误");
+				alert("申请提交错误");
 			}
 	 	});
   	}else{
@@ -46,7 +46,7 @@
             <div class="row mgt15">
             	<div class="item-title clearfix alter-title">
                      <div class="item-title-partl icon6 pull-left">
-                         <span>问卷调查</span>
+                         <span>数据申请</span>
                      </div>
                </div>
                <div class="option-con">
@@ -78,7 +78,7 @@
                             </br>
                             <li class="clearfix">
                                 <span>委办局</span>
-				<input id="email" type="email" name="email"/>
+				<input id="weibanju" type="text" name="weibanju"/>
                                <!-- <div class="pull-left" style="width:70%; padding-bottom:10px">-->
                                    <#--
                                     <label for="commition-1"><input type="radio" id="commition-1" name="weibanju" value="社会局"><i>社会局</i></label>
@@ -107,6 +107,10 @@
                             <li>
                                 <span>功能描述</span>
                                 <textarea id="funDescrip" name="fundes" style="height:190px;"></textarea>
+                            </li>
+			    <li>
+                                <span>附件下载</span>
+                                <label style="font-weight: normal;"><a href="/html/resource/dataliucheng/jiekoushenpiliucheng.zip" target="_blank">资源共享对接流程.zip</a></label>
                             </li>
                             <li style="text-align:center; margin-bottom:10px;">
                             	<span>&nbsp;</span>

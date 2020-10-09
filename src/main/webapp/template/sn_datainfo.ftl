@@ -74,7 +74,8 @@
                                         <!--<span style="font-size:14px; color:#000;">数据来源：<i id="sourceone">${table.origin}</i></span>-->
                                         <!--<span style="font-size:14px;">更新频次：<i id="read">5</i></span>-->
                                            <#if (table_index==0)>
-                                             <a href='../export/${tableId}' style="color:red;font-size:16px">下载</a>
+                                             <a href='../../../table/data/export/${tableId}' target="_blank" style="color:red;font-size:16px;display:none;">下载</a>
+                                             <span style="color:#aaa;font-size:16px;display:none;">登录后可下载数据</span>
                                              </#if>
                                     </div>
                                 </h1>
@@ -94,12 +95,12 @@
                                         <!--<li>
                                         	<span>更新频次：<span>
                                             <span id="one4">每天一次</span>
-                                        </li>-->
+                                        </li>
 					<li>
                                         	<span>所属部门：<span>
                                             <span id="one5">${table.org!""}</span>
-                                        </li>
-					<!--<li>dmPlatform@163.com
+                                        </li>-->
+					<!--<li>
                                         	<span>采集时间：<span>
                                             <span id="one6">${table.dataTime!}</span>
                                         </li>-->

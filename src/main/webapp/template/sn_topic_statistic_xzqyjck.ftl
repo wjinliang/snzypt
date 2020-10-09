@@ -49,7 +49,7 @@
 				    },
 				    legend: {
 				        top:'6%',
-				        data:['2014年收入(万元)','2013年收入(万元)']
+				        data:['2017年收入(万元)','2016年收入(万元)']
 				    },
 				    toolbox: {
 				        show : true,
@@ -86,12 +86,12 @@
 				    series : [
 				       
 				        {
-				            name:'2014年收入(万元)',
+				            name:'2017年收入(万元)',
 				            type:'bar',
 				            data:seriesSi,
 				        },
 				        {
-				            name:'2013年收入(万元)',
+				            name:'2016年收入(万元)',
 				            type:'bar',
 				            data:seriesSan,
 				        }

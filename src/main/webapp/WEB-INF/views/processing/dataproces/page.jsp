@@ -356,7 +356,7 @@
             if (result) {
                 $.ajax({
                     type: "POST",
-                    data: "valiageCollId=" + id,
+                    data: "id=" + id,
                     dataType: "json",
                     url: "./delete",
                     success: function (data) {

@@ -317,6 +317,7 @@
 			
             //SQL查询
             function queryBySQL(valueParam) {
+	    console.log(1);
                // vectorLayer.removeAllFeatures();
                 delIndex =0;
                 var queryParamCapital, queryBySQLParamsCapital, queryBySQLServiceCapital,params,type;

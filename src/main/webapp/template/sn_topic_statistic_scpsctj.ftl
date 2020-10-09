@@ -37,9 +37,9 @@
 		// 指定图表的配置项和数据 (乡镇企业)
 		function findxzqy() {
 			 xarys="";
-			 seriesSi="";//2014产量
-			 seriesSan="";//2013产量
-			 serisZb="";//2014年为2013年%
+			 seriesSi="";//2017产量
+			 seriesSan="";//2016产量
+			 serisZb="";//2017年为2016年%
 			$.ajax({
 				type : "POST",
 				dataType : "json",
@@ -85,7 +85,7 @@
     left:'15%'
     },
     legend: {
-        data:['2014年(公顷)','2013年(公顷)','2014年为2013年百分比']
+        data:['2017年(公顷)','2016年(公顷)','2017年为2016年百分比']
     },
      toolbox: {
 						    	show : true,
@@ -96,8 +96,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年</td>'
-												 + '<td>2013年</td>'
+												 + '<td>2017年</td>'
+												 + '<td>2016年</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -155,19 +155,19 @@
     ],
     series : [
         {
-            name:'2014年(公顷)',
+            name:'2017年(公顷)',
             type:'bar',
             data:seriesSi
             
         },
         {
-            name:'2013年(公顷)',
+            name:'2016年(公顷)',
             type:'bar',
             data:seriesSan
         
         },
         {
-            name:'2014年为2013年百分比',
+            name:'2017年为2016年百分比',
             type:'line',
             yAxisIndex: 1,
             data:serisZb
@@ -202,7 +202,7 @@
 		       					  }
     },
     legend: {
-        data:['2014年(吨)','2013年(吨)','2014年为2013年百分比']
+        data:['2017年(吨)','2016年(吨)','2017年为2016年百分比']
     },
       grid:{
     left:'15%'
@@ -216,8 +216,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl1"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年</td>'
-												 + '<td>2013年</td>'
+												 + '<td>2017年</td>'
+												 + '<td>2016年</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis1.length; i < l; i++) {
 										table += '<tr>'
@@ -271,19 +271,19 @@
     ],
     series : [
         {
-            name:'2014年(吨)',
+            name:'2017年(吨)',
             type:'bar',
             data:seriesSi1
             
         },
         {
-            name:'2013年(吨)',
+            name:'2016年(吨)',
             type:'bar',
             data:seriesSan1
         
         },
          {
-            name:'2014年为2013年百分比',
+            name:'2017年为2016年百分比',
             type:'line',
             yAxisIndex: 1,
             data:serisZb1

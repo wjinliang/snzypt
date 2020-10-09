@@ -65,7 +65,7 @@
 				    },
 				    legend: {
 				    top:'6%',
-				        data:['2014年产量','2013年产量']
+				        data:['2017年产量','2016年产量']
 				    },
 				    toolbox: {
 						    	show : true,
@@ -76,8 +76,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>种类</td>'
-												 + '<td>2014年产量</td>'
-												 + '<td>2013年产量</td>'
+												 + '<td>2017年产量</td>'
+												 + '<td>2016年产量</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -123,12 +123,12 @@
 				    series : [
 				       
 				        {
-				            name:'2014年产量',
+				            name:'2017年产量',
 				            type:'bar',
 				            data:data.seriesclSi 
 				        },
 				        {
-				            name:'2013年产量',
+				            name:'2016年产量',
 				            type:'bar',
 				            data:data.seriesclSan 
 				        }
@@ -172,7 +172,7 @@
 			    },
 			    legend: {
 			    top:'6%',
-			        data:['2014年收入(万元)','2013年收入(万元)']
+			        data:['2017年收入(万元)','2016年收入(万元)']
 			    },
 			    toolbox: {
 			        show : true,
@@ -204,12 +204,12 @@
 			    series : [
 			       
 			        {
-			            name:'2014年收入(万元)',
+			            name:'2017年收入(万元)',
 			            type:'bar',
 			            data:data.seriessiSr 
 			        },
 			        {
-			            name:'2013年收入(万元)',
+			            name:'2016年收入(万元)',
 			            type:'bar',
 			            data:data.seriesclsanSr 
 			        }

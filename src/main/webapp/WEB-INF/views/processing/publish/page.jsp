@@ -101,7 +101,7 @@
                     sort: true
                 }, {
                     title: "集合",
-                    field: "coll",
+                    field: "collection",
                     width:"20%",
                     sort: true
                 }, {
@@ -129,7 +129,7 @@
                         	var type = $(this).val();
                         	dowItem(type);
                         })
-                        form.loadRemote("./load?contentPublishId=" + data.id,function(res){
+                        form.loadRemote("./load?valiageCollId=" + data.id,function(res){
                         	var type = res.type;
                         	dowItem(type);
                         });
@@ -231,8 +231,8 @@
             }
         }, {
             type: 'text',//类型
-            name: 'coll',//name
-            id: 'coll',//id
+            name: 'collection',//name
+            id: 'collection',//id
             label: '集合',//左边label
             cls: 'input-large',
             rule: {
@@ -241,16 +241,6 @@
             message: {
                 required: "请输入集合名"
             }
-        },{
-            type: 'select',
-            name: 'type',
-            id: 'type',
-            label: '类型',
-            cls: 'input-large',
-            items: [{
-                value: '1',
-                text: '1'
-            }]
         },{
         	type: 'text',//类型
             name: 'tableid',//name
@@ -293,7 +283,26 @@
             id: 'origion',//id
             label: '来源字段',//左边label
             cls: 'input-large'
-        }]
+        }, {
+			type : 'radioGroup',//类型
+			name : 'channelId',//name
+			id : 'channelId',//id
+			label : '发布到频道',//左边label
+			items:[{value:11,text:'农村资讯'}
+				,{value:12,text:'农经资讯'}
+				,{value:13,text:'农业资讯'}
+				,{value:14,text:'热点聚焦'}
+				,{value:15,text:'红色预警'}
+				,{value:16,text:'热点专题'}
+				,{value:17,text:'事件追踪'}
+			]
+		}, {
+			type : 'radioGroup',//类型
+			name : 'templateId',//name
+			id : 'templateId',//id
+			label : '模板类型',//左边label
+			items:[{value:12,text:'新闻通用模板'}]
+		}]
     };
    
 
@@ -302,7 +311,7 @@
             if (result) {
                 $.ajax({
                     type: "POST",
-                    data: "contentPublishId=" + id,
+                    data: "id=" + id,
                     dataType: "json",
                     url: "./delete",
                     success: function (data) {

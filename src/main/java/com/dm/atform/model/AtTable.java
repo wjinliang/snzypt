@@ -43,6 +43,7 @@ public class AtTable {
 	private Integer seq;
 	private String type;//s 1分类  0数据
 	private Integer visitCount;
+	private Integer downloadCount;
 	
 	private Boolean isInsert;
 	private Boolean isUpdate;
@@ -51,6 +52,9 @@ public class AtTable {
 	private String set;
 	private String showDataQuery;
 	
+	
+	private String publicType;//公开方式
+	private String shareType;//共享方式
 	
 
 	public String getSet() {
@@ -105,7 +109,12 @@ public class AtTable {
 				return true;else return false;
 		return isDetail == null ? true : isDetail;
 	}
-
+	public Integer getDownloadCount() {
+		return downloadCount;
+	}
+	public void setDownloadCount(Integer downloadCount) {
+		this.downloadCount = downloadCount;
+	}	
 	public void setIsDetail(Boolean isDetail) {
 		this.isDetail = isDetail;
 	}
@@ -286,6 +295,22 @@ public class AtTable {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public String getPublicType() {
+		return publicType;
+	}
+
+	public void setPublicType(String publicType) {
+		this.publicType = publicType;
+	}
+
+	public String getShareType() {
+		return shareType;
+	}
+
+	public void setShareType(String shareType) {
+		this.shareType = shareType;
+	}
 
 	@Override
 	public String toString() {
@@ -309,7 +334,8 @@ public class AtTable {
 					+ status + ", info=" + info + ", createDate=" + createDate
 					+ ", createUser=" + createUser + ", typeName=" + gridName
 					+ ", pId=" + pId
-					+ ", seq=" + seq + ", type=" + type + ", code=" + code + "]";
+					+ ", seq=" + seq + ", type=" + type + ", code=" + code +
+					", shareType=" + shareType + ", publicType=" + publicType + "]";
 		}
 		return "AtTable [id=" + id + ", tableName=" + tableName + ", status="
 				+ status + ", sortField=" + sortField + ", whereField="

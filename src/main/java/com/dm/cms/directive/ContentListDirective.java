@@ -113,6 +113,7 @@ public class ContentListDirective implements TemplateDirectiveModel{
 					if(ce.getBrief()==null||ce.getBrief().equals("")){
 						String h = ce.getContentText();
 						String html = HtmlCleanerUtil.getContent(h);
+						System.out.println("网页内容:"+h);
 						if(html!=null && html.length()>contentLeft)
 							ce.setBrief(html.substring(0,contentLeft)+"...");
 						else
@@ -122,6 +123,7 @@ public class ContentListDirective implements TemplateDirectiveModel{
 						if(html!=null && html.length()>contentLeft)
 							ce.setBrief(html.substring(0,contentLeft)+"...");
 					}
+					System.out.println("设置后网页内容:"+ce.getBrief());
 				}
 			}
 		}

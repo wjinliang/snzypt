@@ -12,7 +12,7 @@
                         <span>当前位置：</span>
                         <a href="${site.url!}">首页</a>
                             &nbsp;&gt;&nbsp;
-		                <a href="javascript:void(0);">主要农产品产量(1978-2014年)</a>
+		                <a href="javascript:void(0);">主要农产品产量</a>
                      </div>
                      <div class="base-info mgt15 mgb15">
                      	<div class="panel-body">
@@ -42,7 +42,7 @@
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '主要农业产品产量(1978-2014年)',
+						        text: '主要农业产品产量',
 						    },
 						    tooltip: {
 						        trigger: 'axis',

@@ -11,7 +11,11 @@ import com.dm.cms.model.CmsChannel;
 import com.dm.cms.model.CmsContent;
 import com.dm.cms.service.CmsChannelService;
 import com.dm.cms.service.CmsContentService;
+import com.dm.dataprocessing.model.ProcesLog;
+import com.dm.dataprocessing.service.ProcessingLogService;
 import com.dm.platform.model.UserAccount;
+import com.dm.platform.util.DmDateUtil;
+import com.dm.platform.util.UUIDUtils;
 import com.dm.platform.util.UserAccountUtil;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -27,6 +31,8 @@ public class CmsSpiderToContentTimer{
 	private CmsChannelService cmsChannelService;
 	@Autowired
 	private CmsContentService cmsContentService;
+	@Autowired
+	private ProcessingLogService processingLogService;
 	
 	
 	private boolean isRun = true;
@@ -53,29 +59,35 @@ public class CmsSpiderToContentTimer{
     	if(!isRun){
 			return;
 		}
+    	//开始发布
     	 DBCollection coll = mongo.getCollection("conf_spider_to_content");// 获取要更新的表;
  		//
  		BasicDBObject query = new BasicDBObject().append("type", "1");
  		DBCursor cur = coll.find(query);
  		while (cur.hasNext()) {
- 			DBObject o = cur.next();
- 			String contentCollection = o.get("collection").toString();
- 			String channelId = o.get("channelId").toString();
- 			String templateId = o.get("templateId").toString();
- 			String publishTimeFiled = o.get("publishTime").toString();
- 			String publishTimeFormat = o.get("publishTimeFormat").toString();
- 			String titleFiled = o.get("title").toString();
- 			String contentFiled = o.get("content").toString();
- 			String authorFiled = o.get("author").toString();
- 			String origionFiled = o.get("origion").toString();
- 			String idFiled = o.get("id").toString();
- 			publish(contentCollection,channelId,templateId,publishTimeFiled,
- 					publishTimeFormat,titleFiled,contentFiled,authorFiled,origionFiled,idFiled);
+ 			try{
+	 			DBObject o = cur.next();
+	 			String contentCollection = o.get("collection").toString();
+	 			String channelId = o.get("channelId").toString();
+	 			String templateId = o.get("templateId").toString();
+	 			String publishTimeFiled = o.get("publishTime").toString();
+	 			String publishTimeFormat = o.get("publishTimeFormat").toString();
+	 			String titleFiled = o.get("title").toString();
+	 			String contentFiled = o.get("content").toString();
+	 			String authorFiled = o.get("author").toString();
+	 			String name = o.get("name").toString();
+	 			String origionFiled = o.get("origion").toString();
+	 			String idFiled = o.get("id").toString();
+	 			publish(name,contentCollection,channelId,templateId,publishTimeFiled,
+	 					publishTimeFormat,titleFiled,contentFiled,authorFiled,origionFiled,idFiled);
+ 			}catch(Exception e){
+ 				e.printStackTrace();
+ 			}
  		}
  			
     }
     
- 		public void publish(String contentCollection, String channelId,
+ 		public void publish(String name,String contentCollection, String channelId,
  				String templateId, String publishTimeFiled, String publishTimeFormat,
  				String titleFiled, String contentFiled, String authorFiled,
  				String origionFiled, String idFiled) {
@@ -89,6 +101,9 @@ public class CmsSpiderToContentTimer{
  	    	}catch(Exception e){
  	    		
  	    	}
+ 	    	int success = 0;
+ 	    	int error = 0;
+ 	    	int nocontent = 0;
  	    	while(tablecur.hasNext()){
 	 	    	DBObject tableo = tablecur.next();
 	 			CmsContent content = new CmsContent();
@@ -97,12 +112,14 @@ public class CmsSpiderToContentTimer{
 	 			try{
 	 			if (cont == null) {
 	 				tableo.put("publishFlag","NOContent");
+	 				error++;
+	 				nocontent++;
 	 				tablecoll.update(new BasicDBObject().append(idFiled, id),tableo);
 	 				continue;
 	 			}
 	 			content.setContentText((String) cont);
-	 			content.setAuthor((String) tableo.get(authorFiled));
-	 			content.setTitle((String) tableo.get(titleFiled));
+	 			content.setAuthor(tableo.get(authorFiled)==null?"":(String)tableo.get(authorFiled));
+	 			content.setTitle(tableo.get(titleFiled)==null?"":(String)tableo.get(titleFiled));
 	 			Date publishDate = null;
 	 			Object pubo = tableo.get(publishTimeFiled);
 	 			if(pubo!=null){
@@ -114,7 +131,7 @@ public class CmsSpiderToContentTimer{
 	 				}
 	 			}
 	 			content.setPublishDate(publishDate);
-	 			content.setOrigin((String) tableo.get(origionFiled));
+	 			content.setOrigin( tableo.get(origionFiled)==null?"":(String) tableo.get(origionFiled));
 	 			content.setChannelId(Integer.valueOf(channelId));
 	 			content.setContentType(0);
 	 			content.setTemplateId(Integer.valueOf(templateId));
@@ -127,12 +144,25 @@ public class CmsSpiderToContentTimer{
 	 			System.out.println("成功发布新闻："+id+"，"+tableo.get(titleFiled));
 	 			tableo.put("publishFlag","yes");
 	 			tablecoll.update(new BasicDBObject().append(idFiled, id),tableo);
+	 			success++;
 	 			}catch(Exception e1){
+	 				error++;
 		 			tableo.put("publishFlag",e1.getMessage());
 		 			tablecoll.update(new BasicDBObject().append(idFiled, id),tableo);
 	 				
 	 			}
  				
+ 	    	}
+ 	    	if(success!=0 || error!=0){
+	 	    	ProcesLog v = new ProcesLog();
+	 	    	v.setContent("成功发布【"+success+"】条，错误条数【"+error+"】"+(nocontent==0?"":"其中没有内容条数【"+nocontent+"】"));
+	 	    	v.setId(UUIDUtils.getUUID16());
+	 	    	v.setType("信息发布");
+	 	    	v.setTitle(DmDateUtil.Current()+"成功发布【"+success+"】条");
+	 	    	v.setName(name);
+	 	    	v.setCollname(contentCollection);
+	 	    	v.setTime(DmDateUtil.Current());
+	 	    	this.processingLogService.insert(v);
  	    	}
 		
 	}

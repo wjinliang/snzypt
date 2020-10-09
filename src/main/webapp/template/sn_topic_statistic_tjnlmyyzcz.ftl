@@ -62,7 +62,7 @@
 		       					  }
 				    },
 				    legend: {
-				        data:['2014年产值(万元)','2013年产值(万元)','2014年为2013年百分比']
+				        data:['2017年产值(万元)','2016年产值(万元)','2017年为2016年百分比']
 				    },
 				    toolbox: {
 				        show : true,
@@ -108,18 +108,18 @@
 				    series : [
 				       
 				        {
-				            name:'2014年产值(万元)',
+				            name:'2017年产值(万元)',
 				            type:'bar',
 				            data:seriesSi
 				          
 				        },
 				        {
-				            name:'2013年产值(万元)',
+				            name:'2016年产值(万元)',
 				            type:'bar',
 				            data:seriesSan
 				            },
 				            {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				            yAxisIndex: 1,
 				            data:data.serisZb

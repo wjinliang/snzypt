@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import com.dm.dataprocessing.model.ProcesLog;
+import com.dm.dataprocessing.service.ProcessingLogService;
 import com.dm.platform.util.DmDateUtil;
+import com.dm.platform.util.UUIDUtils;
 import com.dm.timer.dto.Area;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -41,6 +44,8 @@ public class XzcCodeTimer {
 
 	@Autowired
 	private MongoTemplate mongo;
+	@Autowired
+	private ProcessingLogService processingLogService;
 	
 
 	public void setMongo(MongoTemplate mongo) {
@@ -74,7 +79,8 @@ public class XzcCodeTimer {
 			String xz = o.get("xz").toString();
 			String xzc = o.get("xzc").toString();
 			String id = o.get("id").toString();
-			updateTableCode2(collectionName, qx, xz, xzc, id);
+			String name = o.get("name").toString();
+			updateTableCode2(name,collectionName, qx, xz, xzc, id);
 		}
 		query.append("type", "3");
 		cur = coll.find(query);
@@ -85,7 +91,8 @@ public class XzcCodeTimer {
 			String xz = o.get("xz").toString();
 			String xzc = o.get("xzc").toString();
 			String id = o.get("id").toString();
-			updateTableCode3(collectionName, qx, xz, xzc, id);
+			String name = o.get("name").toString();
+			updateTableCode3(name,collectionName, qx, xz, xzc, id);
 		}
 		query.append("type", "0");
 		cur = coll.find(query);
@@ -94,14 +101,16 @@ public class XzcCodeTimer {
 			String collectionName = o.get("coll").toString();
 			String jg = o.get("jg").toString();
 			String id = o.get("id").toString();
-			updateTableCode(collectionName, jg, id);
+			String name = o.get("name").toString();
+			updateTableCode(name,collectionName, jg, id);
 		}
 		query.append("type", "1");
 		cur = coll.find(query);
 		while (cur.hasNext()) {
 			DBObject o = cur.next();
 			String collectionName = o.get("coll").toString();
-			updateTableCode1(collectionName);
+			String name = o.get("name").toString();
+			updateTableCode1(name,collectionName);
 		}
 		query.append("type", "4");
 		cur = coll.find(query);
@@ -112,7 +121,8 @@ public class XzcCodeTimer {
 			String xz = o.get("xz").toString();
 			String xzc = o.get("xzc").toString();
 			String id = o.get("id").toString();
-			updateTableCode4(collectionName, qx, xz, xzc, id);
+			String name = o.get("name").toString();
+			updateTableCode4(name,collectionName, qx, xz, xzc, id);
 		}
 		query.append("type", "6");
 		cur = coll.find(query);
@@ -122,12 +132,13 @@ public class XzcCodeTimer {
 			String title = o.get("title").toString();
 			String content = o.get("content").toString();
 			String id = o.get("id").toString();
-			updateTableCode6(collectionName, title, content, id);
+			String name = o.get("name").toString();
+			updateTableCode6(name,collectionName, title, content, id);
 		}
 		System.out.println(XzcCodeTimer.class+"结束:"+DmDateUtil.Current());
 	}
 	//在title 中获取村名  在content 中获取更详细的信息 区县乡镇村
-	public void updateTableCode6(String collectionName, String title,
+	public void updateTableCode6(String tname,String collectionName, String title,
 			String content, String id) {
 		int i = 0;
 		DBCollection regColl = null;
@@ -136,6 +147,8 @@ public class XzcCodeTimer {
 		DBCollection tableColl = mongo.getCollection(collectionName);
 		int limit = 2000;
 		int pagenum = 0;
+		int success=0;
+		int error = 0;
 		boolean flag = true;
 
 		BasicDBObject q = new BasicDBObject().append(QueryOperators.OR, new BasicDBObject[]{new  BasicDBObject().append(doflag,
@@ -144,6 +157,8 @@ public class XzcCodeTimer {
 			DBCursor cursor = getrecode(0, limit, "_id", q, tableColl);
 			// DBCursor cursor = tableColl.find(new
 			// BasicDBObject().append("JG_BH", "D11022720905"));
+			int su=0;
+			int er =0;
 			flag = false;
 			List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
@@ -168,6 +183,7 @@ public class XzcCodeTimer {
 							String xiangxicunming = getVillage(curContent);
 							cur.put("CODE", regObj.get("CODE"));
 							cur.put(doflag,doflagTRUE);
+							su++;
 							tableColl.update(curq, cur);
 							break;
 						}
@@ -175,6 +191,7 @@ public class XzcCodeTimer {
 				}while(cunming!=null &&f);
 				if(f){
 					cur.put(doflag,doflagFALSE);
+					er++;
 					tableColl.update(curq, cur);
 				}
 					
@@ -183,8 +200,13 @@ public class XzcCodeTimer {
 //				}
 				
 			}
-		}
+		success+=su;
+		error+=er;
 		
+			insertactiveLog(tname,collectionName,su,er);
+		}
+	insertLog(tname,collectionName, success, error);
+		System.out.println("updateTableCode6 ->结束");
 		
 	}
 
@@ -205,7 +227,8 @@ public class XzcCodeTimer {
 		DBCollection b_CountryPicColl = mongo.getCollection("b_CountryPic");
 		int limit = 2000;
 		int pagenum = 0;
-		int counts = 0;
+		int success = 0;
+		int error = 0;
 		boolean flag = true;
 		BasicDBObject b = new BasicDBObject().append(doflag,
 				new BasicDBObject().append(QueryOperators.EXISTS, false));
@@ -213,7 +236,8 @@ public class XzcCodeTimer {
 			DBCursor cursor = getrecode(0, limit, "tjyqhdm", b,
 					im_bjsqhdm2016Coll);
 			flag = false;
-
+			int su = 0;
+			int er = 0;
 			List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
 				flag = true;
@@ -271,8 +295,10 @@ public class XzcCodeTimer {
 				DBObject q2016 = new BasicDBObject().append("id", obj.get("id"));
 				obj.put(doflag, doflagTRUE);
 				im_bjsqhdm2016Coll.update(q2016, obj);
+				
 			}
 		}
+		
 
 	}
 
@@ -288,7 +314,7 @@ public class XzcCodeTimer {
 
 	}
 
-	public void updateTableCode4(String table, String qx, String xz, String c,
+	public void updateTableCode4(String tname,String table, String qx, String xz, String c,
 			String idFiled) {
 		DBCollection villageColl = mongo.getCollection("m_ST_REG_VILLAGE");
 		DBCollection area = mongo.getCollection("h_TA_Area");
@@ -297,13 +323,16 @@ public class XzcCodeTimer {
 		int limit = 2000;
 		int pagenum = 0;
 		int counts = 0;
+		int success = 0;
+		int error = 0;
 		boolean flag = true;
 		BasicDBObject q = new BasicDBObject().append(QueryOperators.OR, new BasicDBObject[]{new  BasicDBObject().append(doflag,
 				new BasicDBObject().append(QueryOperators.EXISTS, false)),new BasicDBObject().append(doflag, "1")});
 		while (flag) {
 			DBCursor cursor = getrecode(0, limit, c, q, tableColl);
 			flag = false;
-
+			int su = 0;
+			int er = 0;
 			List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
 				System.out.println(table + "==" + counts++);
@@ -318,6 +347,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				String xiangzhen = obj.get(xz) == null ? null : obj.get(xz)
@@ -328,6 +358,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				String quxian = obj.get(c) == null ? null : obj.get(qx)
@@ -338,6 +369,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				quxian = area
@@ -356,6 +388,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				cun = o.get("Area_Name").toString();
@@ -405,6 +438,7 @@ public class XzcCodeTimer {
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
 					obj.put(doflag, doflagFALSE);
+					er++;
 					tableColl.update(query, obj);
 					System.out.println(quxian + ":" + xiangzhen + ":" + cun
 							+ ":" + obj.get(idFiled));
@@ -415,12 +449,18 @@ public class XzcCodeTimer {
 				query.put(idFiled, obj.get(idFiled));
 				obj.put("XZC_CODE", code);
 				obj.put(doflag, doflagTRUE);
+				su++;
 				tableColl.update(query, obj);
 			}
 
 			// tableColl.insert(list);
 			pagenum++;
-		}
+			success+=su;
+			error+=er;
+			
+				insertactiveLog(tname,table,su,er);
+			}
+		insertLog(tname,table, success, error);
 
 	}
 
@@ -438,7 +478,7 @@ public class XzcCodeTimer {
 	 * BulkWriteResult bulkWriteResult = collection.bulkWrite(requests);
 	 * System.out.println(bulkWriteResult.toString()); }
 	 */
-	public void updateTableCode3(String table, String qx, String xz, String c,
+	public void updateTableCode3(String tname,String table, String qx, String xz, String c,
 			String idFiled) {
 		DBCollection villageColl = mongo.getCollection("m_ST_REG_VILLAGE");
 		System.out.println(table);
@@ -446,6 +486,8 @@ public class XzcCodeTimer {
 		int limit = 2000;
 		int pagenum = 0;
 		int counts = 0;
+		int success = 0;
+		int error = 0;
 		boolean flag = true;
 		BasicDBObject q = new BasicDBObject().append(QueryOperators.OR, new BasicDBObject[]{new  BasicDBObject().append(doflag,
 				new BasicDBObject().append(QueryOperators.EXISTS, false)),new BasicDBObject().append(doflag, "1")})
@@ -453,7 +495,8 @@ public class XzcCodeTimer {
 		while (flag) {
 			DBCursor cursor = getrecode(0, limit, c, q, tableColl);
 			flag = false;
-
+			int su = 0;
+			int er = 0;
 			// List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
 				System.out.println(table + "==" + counts++);
@@ -468,6 +511,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				String xiangzhen = obj.get(xz) == null ? null : obj.get(xz)
@@ -478,6 +522,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				String quxian = obj.get(c) == null ? null : obj.get(qx)
@@ -488,6 +533,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				DBObject rec = villageColl.findOne(new BasicDBObject()
@@ -535,6 +581,7 @@ public class XzcCodeTimer {
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
 					obj.put(doflag, doflagFALSE);
+					er++;
 					tableColl.update(query, obj);
 					System.out.println(quxian + ":" + xiangzhen + ":" + cun
 							+ ":" + obj.get(idFiled));
@@ -546,19 +593,27 @@ public class XzcCodeTimer {
 				obj.put("XZC_CODE", code);
 				obj.put(doflag, doflagTRUE);
 				tableColl.update(query, obj);
+				su++;
 
 			}
 			// //tableColl.insert(list);
 			pagenum++;
-		}
+			success+=su;
+			error+=er;
+			
+				insertactiveLog(tname,table,su,er);
+			}
+		insertLog(tname,table, success, error);
 
 	}
 
-	public void updateTableCode1(String table) {
+	public void updateTableCode1(String tname,String table) {
 		DBCollection regColl = mongo.getCollection("m_ZYDP_NCJJ_JQNYRKXB");
 		DBCollection tableColl = mongo.getCollection(table);
 		int limit = 2000;
 		int pagenum = 0;
+		int success = 0;
+		int error = 0;
 		boolean flag = true;
 		String r = "XZC_CODE";
 		BasicDBObject q = new BasicDBObject().append(QueryOperators.OR, new BasicDBObject[]{new  BasicDBObject().append(doflag,
@@ -567,6 +622,8 @@ public class XzcCodeTimer {
 		while (flag) {
 			DBCursor cursor = getrecode(0, limit, r, q, tableColl);
 			flag = false;
+			int su = 0;
+			int er = 0;
 			// List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
 				flag = true;
@@ -580,6 +637,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					nullcount++;
+					er++;
 					continue;
 				}
 				String name = JGCODE;
@@ -592,6 +650,7 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					bucunzai++;
+					er++;
 					continue;
 				}
 				String code = (String) rec.get(r);
@@ -602,22 +661,29 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					bucunzai++;
+					er++;
 					continue;
 				}
 				DBObject query = new BasicDBObject();
 				query.put(ID, obj.get(ID));
 				obj.put(r, code);
-				obj.put(doflag, doflagFALSE);
+				obj.put(doflag, doflagTRUE);
+				su++;
 				tableColl.update(query, obj);
 
 			}
 			// tableColl.insert(list);
 			pagenum++;
-		}
+			success+=su;
+			error+=er;
+			
+				insertactiveLog(tname,table,su,er);
+			}
+		insertLog(tname,table, success, error);
 
 	}
 
-	public void updateTableCode(String table, String filed, String idFiled) {
+	public void updateTableCode(String tname,String table, String filed, String idFiled) {
 		int i = 0;
 		DBCollection regColl = null;
 		String r = "REG";
@@ -637,13 +703,16 @@ public class XzcCodeTimer {
 		int limit = 2000;
 		int pagenum = 0;
 		boolean flag = true;
-
+		int success = 0;
+		int error = 0;
 		BasicDBObject q = new BasicDBObject().append(QueryOperators.OR, new BasicDBObject[]{new  BasicDBObject().append(doflag,
 				new BasicDBObject().append(QueryOperators.EXISTS, false)),new BasicDBObject().append(doflag, "1")});
 		while (flag) {
 			DBCursor cursor = getrecode(0, limit, filed, q, tableColl);
 			// DBCursor cursor = tableColl.find(new
 			// BasicDBObject().append("JG_BH", "D11022720905"));
+			int su = 0;
+			int er = 0;
 			flag = false;
 			List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
@@ -656,6 +725,7 @@ public class XzcCodeTimer {
 						.get(filed).toString());
 				if (fullName == null || fullName.toString().trim().equals("")) {
 					nullcount++;
+					er++;
 					System.out.println("null");
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
@@ -704,23 +774,30 @@ public class XzcCodeTimer {
 					obj.put(doflag, doflagFALSE);
 					tableColl.update(query, obj);
 					bucunzai++;
+					er++;
 					continue;
 				}
 				String code = (String) rec.get(CODE);
 				DBObject query = new BasicDBObject();
 				query.put(idFiled, obj.get(idFiled));
 				obj.put(doflag, doflagTRUE);
+				su++;
 				obj.put(r, code);
 				tableColl.update(query, obj);
 
 			}
 
 			pagenum++;
-		}
+			success+=su;
+			error+=er;
+			
+				insertactiveLog(tname,table,su,er);
+			}
+		insertLog(tname,table, success, error);
 
 	}
 
-	public void updateTableCode2(String table, String qx, String xz, String c,
+	public void updateTableCode2(String name,String table, String qx, String xz, String c,
 			String idFiled) {
 		// DBCollection countyColl = mongo.getCollection("m_ST_REG_COUNTY");
 		// DBCollection townColl = mongo.getCollection("m_ST_REG_TOWN");
@@ -731,11 +808,14 @@ public class XzcCodeTimer {
 				new BasicDBObject().append(QueryOperators.EXISTS, false)),new BasicDBObject().append(doflag, "1")});
 		int limit = 50;
 		int pagenum = 0;
-		int counts = 0;
+		int success = 0;
+		int error = 0;
 		boolean flag = true;
 		while (flag) {
 			DBCursor cursor = getrecode(0, limit, c, q, tableColl);
 			flag = false;
+			int su = 0;
+			int er = 0;
 			// List<DBObject> list = new ArrayList<DBObject>();
 			while (cursor.hasNext()) {
 				flag = true;
@@ -745,6 +825,7 @@ public class XzcCodeTimer {
 						.trim();
 				if (cun == null) {
 					nullcount++;
+					er++;
 					obj.put(doflag, doflagFALSE);
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
@@ -755,6 +836,7 @@ public class XzcCodeTimer {
 						.toString().trim();
 				if (xiangzhen == null) {
 					nullcount++;
+					er++;
 					obj.put(doflag, doflagFALSE);
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
@@ -765,6 +847,7 @@ public class XzcCodeTimer {
 						.toString().trim();
 				if (quxian == null) {
 					nullcount++;
+					er++;
 					obj.put(doflag, doflagFALSE);
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
@@ -813,6 +896,7 @@ public class XzcCodeTimer {
 				}
 				if (rec == null) {
 					bucunzai++;
+					er++;
 					obj.put(doflag, doflagFALSE);
 					DBObject query = new BasicDBObject();
 					query.put(idFiled, obj.get(idFiled));
@@ -827,13 +911,44 @@ public class XzcCodeTimer {
 				obj.put("XZC_CODE", code);
 				obj.put(doflag, doflagTRUE);
 				tableColl.update(query, obj);
+				su++;
 
 			}
 			// tableColl.r
 			// tableColl.insert(list);
 			pagenum++;
+			success+=su;
+			error+=er;
+			
+				insertactiveLog(name,table,su,er);
 		}
+		insertLog(name,table, success, error);
 
+	}
+	private void insertactiveLog(String name,String collname, int success, int error) {
+		if(success==0 && error==0) return;
+		ProcesLog v = new ProcesLog();
+    	v.setContent("处理成功【"+success+"】条，处理失败【"+error+"】");
+    	v.setId(UUIDUtils.getUUID16());
+    	v.setType("统一编码");
+    	v.setTitle("_"+DmDateUtil.Current()+"处理成功【"+success+"】条");
+    	v.setName(name);
+    	v.setCollname(collname);
+    	v.setTime(DmDateUtil.Current());
+    	this.processingLogService.insert(v);
+		
+	}
+	private void  insertLog(String name,String collname , int success,int error){
+		if(success==0 && error==0) return;
+		ProcesLog v = new ProcesLog();
+	    	v.setContent("处理成功【"+success+"】条，处理失败【"+error+"】");
+	    	v.setId(UUIDUtils.getUUID16());
+	    	v.setType("统一编码");
+	    	v.setTitle(DmDateUtil.Current()+"处理成功【"+success+"】条");
+	    	v.setName(name);
+	    	v.setCollname(collname);
+	    	v.setTime(DmDateUtil.Current());
+	    	this.processingLogService.insert(v);
 	}
 
 	private static void spdoaction1(DBCollection villageColl, DBObject rec,

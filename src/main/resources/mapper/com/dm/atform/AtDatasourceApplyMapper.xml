@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.atform.sqldao.AtDatasourceApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.dm.atform.model.AtDatasourceApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="apply_user" property="applyUser" jdbcType="VARCHAR" />
+    <result column="apply_user_id" property="applyUserId" jdbcType="VARCHAR" />
+    <result column="apply_content" property="applyContent" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="VARCHAR" />
+    <result column="apply_link" property="applyLink" jdbcType="VARCHAR" />
+    <result column="apply_email" property="applyEmail" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="check_user" property="checkUser" jdbcType="VARCHAR" />
+    <result column="check_user_id" property="checkUserId" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="check_opinion" property="checkOpinion" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="apply_for" property="applyFor" jdbcType="VARCHAR" />
+    <result column="apply_org" property="applyOrg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, resource_id, resource_name, resource_code, apply_user, apply_user_id, apply_content,
+     apply_type, apply_link, apply_email,apply_time,  check_user, check_user_id,check_time, 
+      check_opinion, check_status,apply_for,apply_org
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from at_datasource_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByArgMap" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from at_datasource_apply
+    <where>
+    	<if test="model!=null">
+    		<if test="model.applyUserId!=null and model.applyUserId!=''">
+    			and apply_user_id =#{model.applyUserId}
+    		</if>
+    		<if test="model.applyUser!=null and model.applyUser!=''">
+    			and apply_user like concat('%',#{model.applyUser},'%')
+    		</if>
+    		<if test="model.applyOrg!=null and model.applyOrg!=''">
+    			and apply_org like concat('%',#{model.applyOrg},'%')
+    		</if>
+    		<if test="model.applyFor!=null and model.applyFor!=''">
+    			and apply_for like concat('%',#{model.applyFor},'%')
+    		</if>
+    		<if test="model.applyType!=null and model.applyType!=''">
+    			and apply_type = #{model.applyType}
+    		</if>
+    		<if test="model.checkStatus!=null and model.checkStatus!=''">
+    			and check_status = #{model.checkStatus}
+    		</if>
+    	</if>
+    </where>
+    <if test="sort!=null and sort!=''">
+    	order by ${sort}
+    </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from at_datasource_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dm.atform.model.AtDatasourceApply" >
+    insert into at_datasource_apply (id, resource_id, resource_name, resource_code, apply_user,
+     apply_user_id, apply_content,
+     apply_type, apply_link, apply_email,apply_time,  check_user, check_user_id,check_time, 
+      check_opinion, check_status,apply_for,apply_org)
+    values (#{id,jdbcType=VARCHAR}, #{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, 
+      #{resourceCode,jdbcType=VARCHAR}, #{applyUser,jdbcType=VARCHAR}, #{applyUserId,jdbcType=VARCHAR}, 
+      #{applyContent,jdbcType=VARCHAR}, #{applyType,jdbcType=VARCHAR}, #{applyLink,jdbcType=VARCHAR}, 
+      #{applyEmail,jdbcType=VARCHAR},#{applyTime,jdbcType=VARCHAR}, #{checkUser,jdbcType=VARCHAR}, 
+      #{checkUserId,jdbcType=VARCHAR},#{checkTime,jdbcType=VARCHAR}, #{checkOpinion,jdbcType=VARCHAR}, 
+      #{checkStatus,jdbcType=VARCHAR},#{applyFor,jdbcType=VARCHAR}, #{applyOrg,jdbcType=VARCHAR})
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.dm.atform.model.AtDatasourceApply" >
+    update at_datasource_apply
+    <set >
+      <if test="checkUser != null" >
+        check_user = #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUserId != null" >
+        check_user_id = #{checkUserId,jdbcType==VARCHAR},
+      </if>
+      <if test="checkOpinion != null" >
+        check_opinion = #{checkOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

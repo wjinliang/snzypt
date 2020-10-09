@@ -1,464 +1,464 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0,minimum-scale=1.0, user-scalabele=no"/><!-- 手机屏幕网页初始大小占屏幕面积100% -->
-<title>视频</title>
-<!--css-->
-<link type="text/css" rel="stylesheet" href="${htmlFolder}${htmlMobileDir}/css/global.css"><!--全局样式-->
-<link type="text/css" rel="stylesheet" href="${htmlFolder}${htmlMobileDir}/css/main.css">
-<!--javaScript-->
-<script src="j${htmlFolder}${htmlMobileDir}/s/retina.js"></script><!--适应2倍屏-->
-</head>
-
-<body>
-
-<!--头部开始-->
-<header id="header" class="ub ub-pj">
-    <div class="ub ub-ac ub-pc f20 cWh mg-l2"><span>首页</span><div class="jtRit mg-l2 mg-r2 ub ub-ac ub-pc"></div><span>视频</span></div>
-    <span class="right"></span>
-</header>
-<#include "/template/mobile/daohang.ftl" />
-<!-- 头部结束 -->
-
-<!--MainBody-->
-<!--Card News-->
-<@channelListDirective channelId=own>
-<#list channels as chanenl>
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj mg-t2">
-        <div class="ub zwywTit">${channel.displayName}</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link"><a href="${channel.mUrl}">查看更多&nbsp;&bull;&bull;&bull;</a></div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-            <div class="ub mg-b2">
-              <@contentListDirective channelId=own pageSize=2 pageNum=1 titleLeft=25 order=1>
-              <#list contents as content>
-             
-				     <div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              
-              </#list>
-              </@contentListDirective>
-              </div>
-        </div>
-    </div>
-</div>
-</#list>
-</@channelListDirective>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">原创视频</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">海洋</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">动作</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">悬疑</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">爱情</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">科幻</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">搞笑</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="ub ub-ver">
-    <div class="ub lineB-blu1 ub-pj">
-        <div class="ub zwywTit">科技</div>
-        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
-    </div>
-    <div>
-        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-           <div class="ub mg-b2">
-				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
-                	<img src="img/video-pic1.png">
-                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
-                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
-                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
-                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-</div>
-
-<!--End-->
-
-<!--End MainBody-->
-
-</body>
-<script src="js/jquery.min.js"></script><!--Menu-->
-<script><!--Menu-->
-$(function(){
-	$("#header span.right").on("click",function(){
-        var val = $(this).attr('class');
-        if(val.indexOf('on') == -1){
-            $(this).addClass('on');
-            $(".menu").show(0).stop().animate({
-                height:'59.5rem'
-            },0);
-        }else{
-            $(this).removeClass('on');
-            $(".menu").hide(0).stop().animate({
-                height:'0'
-            },0);
-        }
-    })
-	
-	$(".menu a").on("click",function(){
-        $(this).parents(".menu").hide();
-        $("#header span.right").removeClass('on');
-    })
-	
-});
-</script>
-<script type="text/javascript" src="js/public.js"></script><!--Tab & Public-->
-</html>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0,minimum-scale=1.0, user-scalabele=no"/><!-- 手机屏幕网页初始大小占屏幕面积100% -->
+<title>视频</title>
+<!--css-->
+<link type="text/css" rel="stylesheet" href="${htmlFolder}${htmlMobileDir}/css/global.css"><!--全局样式-->
+<link type="text/css" rel="stylesheet" href="${htmlFolder}${htmlMobileDir}/css/main.css">
+<!--javaScript-->
+<script src="j${htmlFolder}${htmlMobileDir}/s/retina.js"></script><!--适应2倍屏-->
+</head>
+
+<body>
+
+<!--头部开始-->
+<header id="header" class="ub ub-pj">
+    <div class="ub ub-ac ub-pc f20 cWh mg-l2"><span>首页</span><div class="jtRit mg-l2 mg-r2 ub ub-ac ub-pc"></div><span>视频</span></div>
+    <span class="right"></span>
+</header>
+<#include "/template/mobile/daohang.ftl" />
+<!-- 头部结束 -->
+
+<!--MainBody-->
+<!--Card News-->
+<@channelListDirective channelId=own>
+<#list channels as chanenl>
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj mg-t2">
+        <div class="ub zwywTit">${channel.displayName}</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link"><a href="${channel.mUrl}">查看更多&nbsp;&bull;&bull;&bull;</a></div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+            <div class="ub mg-b2">
+              <@contentListDirective channelId=own pageSize=2 pageNum=1 titleLeft=25 order=1>
+              <#list contents as content>
+             
+				     <div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              
+              </#list>
+              </@contentListDirective>
+              </div>
+        </div>
+    </div>
+</div>
+</#list>
+</@channelListDirective>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">原创视频</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">海洋</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">动作</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">悬疑</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">爱情</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">科幻</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">搞笑</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="ub ub-ver">
+    <div class="ub lineB-blu1 ub-pj">
+        <div class="ub zwywTit">科技</div>
+        <div class="ub ub-ac mg-r2 f16 cBla1 link">查看更多&nbsp;&bull;&bull;&bull;</div>
+    </div>
+    <div>
+        <div class="ub mg-a2 mg-b0 pd-b2 ub-ver">
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+           <div class="ub mg-b2">
+				<div class="ub ub-f1 videoWrap mg-r1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+              <div class="ub ub-f1 videoWrap mg-l1 bgGra1 ub-ver link">
+                	<img src="img/video-pic1.png">
+                  <div class="ub ub-f1 f16 pd-a1">金星追问陈坤儿子生母 回应:我自己生的</div>
+                  <div class="v-cont ub ub-f1 ub-ac f14 mg-b2">
+                  	<div class="ub mg-r2"><img src="img/ico-video.png"><div class="ub">14.7万 </div></div>
+                    	<div class="ub"><img src="img/ico-message.png"><div class="ub">18</div></div>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<!--End-->
+
+<!--End MainBody-->
+
+</body>
+<script src="js/jquery.min.js"></script><!--Menu-->
+<script><!--Menu-->
+$(function(){
+	$("#header span.right").on("click",function(){
+        var val = $(this).attr('class');
+        if(val.indexOf('on') == -1){
+            $(this).addClass('on');
+            $(".menu").show(0).stop().animate({
+                height:'59.5rem'
+            },0);
+        }else{
+            $(this).removeClass('on');
+            $(".menu").hide(0).stop().animate({
+                height:'0'
+            },0);
+        }
+    })
+	
+	$(".menu a").on("click",function(){
+        $(this).parents(".menu").hide();
+        $("#header span.right").removeClass('on');
+    })
+	
+});
+</script>
+<script type="text/javascript" src="js/public.js"></script><!--Tab & Public-->
+</html>

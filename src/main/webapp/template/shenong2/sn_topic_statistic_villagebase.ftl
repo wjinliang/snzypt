@@ -44,7 +44,7 @@
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '农村基本情况(1978-2014年)',
+						        text: '农村基本情况',
 						    },
 						    tooltip: {
 						        trigger: 'axis',

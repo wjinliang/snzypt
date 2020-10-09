@@ -26,7 +26,6 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +57,7 @@ import com.dm.platform.util.ResponseUtil;
 import com.dm.platform.util.UUIDUtils;
 import com.dm.platform.util.UserAccountUtil;
 
-@Controller
+//@Controller
 
 public class BaseController extends DefaultController {
 

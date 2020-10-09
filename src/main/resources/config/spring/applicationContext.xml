@@ -200,6 +200,7 @@
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongoDbFactory"/>
 		   <constructor-arg ref="mongoConverter"/> 
+<!-- 		   <property name="typeMapper" ref="defaultMongoTypeMapper" /> -->
 		<property name="writeConcern" value="${mongo.writeConcern}" />
 	</bean> 
 	          <import resource="classpath*:/config/spring/spring-redis.xml"/>

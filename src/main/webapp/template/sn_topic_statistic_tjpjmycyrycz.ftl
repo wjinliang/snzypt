@@ -17,7 +17,7 @@ overflow: scroll;
                         <span>当前位置：</span>
                         <a href="${site.url!}">首页</a>
                             &nbsp;&gt;&nbsp;
-                        <a href="javascript:void(0);">平均每一从业人员创造农、林、牧、渔业产值(1990-2014年)</a>
+                        <a href="javascript:void(0);">平均每一从业人员创造农、林、牧、渔业产值</a>
                      </div>
                      <div class="base-info mgt15 mgb15">
                      	<div class="panel-body">
@@ -47,7 +47,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '平均每一从业人员创造农、林、牧、渔业产值(1990-2014年)',
+						        text: '平均每一从业人员创造农、林、牧、渔业产值',
 						    },
 						    tooltip: {
 						        trigger: 'axis',

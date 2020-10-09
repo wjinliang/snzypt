@@ -39,6 +39,7 @@ public class AtTableListDirective implements TemplateDirectiveModel{
 	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars,
 			TemplateDirectiveBody body) throws TemplateException, IOException {
+		
 		Object type = params.get("type");
 		String sort = params.get("sort")==null?"seq_asc":params.get("sort").toString();
 		String t = type==null?null:type.toString();

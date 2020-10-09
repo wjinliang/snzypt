@@ -41,6 +41,8 @@ public class NykjYcjyzdJbxx implements Serializable {
 	private Double pxGm  ;//培训规模
 	@Field("LXR")
 	private String lxr  ;//联系人
+	@Field("ZD_MC")
+	private String zdMc  ;//站点名称
 	@Field("LX_DH")
 	private String lxDh  ;//联系电话
 	@Field("YD_DH")
@@ -52,7 +54,12 @@ public class NykjYcjyzdJbxx implements Serializable {
 	public String getXzcCode() {
 		return xzcCode;
 	}
-
+public String getZdMc() {
+	return zdMc;
+}
+public void setZdMc(String zdMc) {
+	this.zdMc = zdMc;
+}
 
 	public void setXzcCode(String xzcCode) {
 		this.xzcCode = xzcCode;

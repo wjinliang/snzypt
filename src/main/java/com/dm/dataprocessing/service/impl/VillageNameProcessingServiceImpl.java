@@ -56,6 +56,7 @@ public class VillageNameProcessingServiceImpl implements VillageNameProcessingSe
 		String xz =v.getXz();
 		String xzc = v.getXz();
 		String cid =v.getCollid();
+		String name = v.getName();
 		String jg = v.getJg();
 		String title = v.getTitle();
 		String content = v.getContent();
@@ -63,23 +64,23 @@ public class VillageNameProcessingServiceImpl implements VillageNameProcessingSe
 		xzctimer.setMongo(mongoTemplate);
 		String type = v.getType();
 		if(type.equals("2")){
-			xzctimer.updateTableCode2(collectionName, qx, xz, xzc, cid);
+			xzctimer.updateTableCode2(name,collectionName, qx, xz, xzc, cid);
 		}
 		if(type.equals("3")){
-			xzctimer.updateTableCode3(collectionName, qx, xz, xzc, cid);
+			xzctimer.updateTableCode3(name,collectionName, qx, xz, xzc, cid);
 		}
 		if(type.equals("4")){
-			xzctimer.updateTableCode4(collectionName, qx, xz, xzc, cid);
+			xzctimer.updateTableCode4(name,collectionName, qx, xz, xzc, cid);
 		}
 		if(type.equals("6")){
-			xzctimer.updateTableCode6(collectionName, title, content, cid);
+			xzctimer.updateTableCode6(name,collectionName, title, content, cid);
 		}
 		if(type.equals("0")){
-			xzctimer.updateTableCode(collectionName, jg, cid);
+			xzctimer.updateTableCode(name,collectionName, jg, cid);
 		}
 		
 		if(type.equals("1")){
-			xzctimer.updateTableCode1(collectionName);
+			xzctimer.updateTableCode1(name,collectionName);
 		}
 		
 	}

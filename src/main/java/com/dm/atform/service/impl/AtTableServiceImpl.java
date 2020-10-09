@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.dm.atform.model.AtTable;
 import com.dm.atform.service.AtTableService;
 import com.dm.atform.sqldao.AtTableMapper;
-import com.dm.atform.util.CODEUtil;
 import com.dm.cms.model.TreeNode;
 import com.dm.platform.util.UUIDUtils;
 import com.dm.platform.util.UserAccountUtil;
@@ -44,6 +43,7 @@ public class AtTableServiceImpl implements AtTableService{
 	}
 	//获取子分类
 	private List<String> getChild(AtTable parent,List<String> ids) {
+		if(parent==null)return ids;
 		if(parent.getType()!=null && parent.getType().equals("1")){//1分类 2 数据表
 		List<AtTable> list = this.tableMapper.selectByPid(parent.getId());
 		ids.add(parent.getId());

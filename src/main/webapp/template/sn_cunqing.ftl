@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <!--<link href='/html/sn-static/static/sumap/examples/css/bootstrap.min.css' rel='stylesheet' />
@@ -335,10 +335,11 @@
                 fillColor: "#304DBE",
                 fillOpacity: 0.3
             },transformControl,
-            host ="http://172.24.61.42:8090";// document.location.toString().match(/file:\/\//)?"http://localhost:8090":'http://' + document.location.host,
-            //host="http://10.0.64.67:8090";
-           // url1=host+"/iserver/services/map-China/rest/maps/sheNongCQ";
-	    url1=host+"/iserver/services/map-Shenong/rest/maps/sheNongCQ";
+            host ="http://172.24.61.42:8090";
+	    //url1=host+"/iserver/services/map-Shenong2/rest/maps/sheNongCQ";
+	    url1=host+"/iserver/services/map-ugcv5-cunqing/rest/maps/cunqing";
+	    //url2=host+"/iserver/services/map-basemap3/rest/maps/cunqing"
+	    url2=host+"/iserver/services/map-basemap/rest/maps/cunqing"
             function initMap(name){
                 /*
                  * 不支持canvas的浏览器不能运行该范例
@@ -365,31 +366,19 @@
                     })], units: "m"
                 });
                 //初始化图层
-                layerWorld = new SuperMap.Layer.TiledDynamicRESTLayer("sheNongCQ", url1, {transparent: true, cacheEnabled: true}, {maxResolution:"auto"});
+                layerWorld = new SuperMap.Layer.TiledDynamicRESTLayer("cunqing", url1, {transparent: true, cacheEnabled: true}, {maxResolution:"auto"});
                 layerWorld.events.on({"layerInitialized":addLayer});
                 //初始化Vector图层
                 vectorLayer = new SuperMap.Layer.Vector("Vector Layer", {renderers: ["Canvas2"]});
-				//鹰眼控件
-				overviewmap = new SuperMap.Control.OverviewMap();
-				//属性minRectSize：鹰眼范围矩形边框的最小的宽度和高度。默认为8pixels
-				overviewmap.minRectSize = 20;
-				//layerWorld = new SuperMap.Layer.TiledDynamicRESTLayer("ZTshenong", url1);     //获取图层服务地址
-				layerWorld.events.on({"layerInitialized": addLayer});
-
-				//给在vector图层上所选择的要素初始化
+		//给在vector图层上所选择的要素初始化
                 select = new SuperMap.Control.SelectFeature(vectorLayer, {onSelect: onFeatureSelect, onUnselect: onFeatureUnselect, repeat:true});
                 map.addControl(select);
-		//queryBySQL(name);	
-
                
             }
-			
             //添加图层
             function addLayer() {
-                map.addLayers([vectorLayer,layerWorld]);
-                map.setCenter(new SuperMap.LonLat(524221.11, 337620.34), 2);        
-				//map.addControl(new SuperMap.Control.MousePosition()) ;
-				map.addControl(overviewmap);
+                map.addLayers([layerWorld,vectorLayer]);
+                map.setCenter(new SuperMap.LonLat(12974732.78 , 4821537.75), 1);         
             }
             //要素被选中时调用此函数
             function onFeatureSelect(feature) {
@@ -404,8 +393,8 @@
                     }
 					
                     var contentHTML = "<div style='font-size:.8em; opacity: 0.8; overflow-y:hidden;'>" +
-                            "<span style='font-weight: bold; font-size: 18px;'>详细信息</span><br>";
-			 contentHTML += "名称：" + feature.attributes["MC"] + "<br>";	
+                            "<span style='font-weight: bold; font-size: 12px;'>详细信息</span><br>";
+			contentHTML += "名称：" + feature.attributes["MC"] + "<br>";	
 			contentHTML += "ID：" + feature.attributes["ID"] + "<br>";
                     //初始化一个弹出窗口，当某个地图要素被选中时会弹出此窗口，用来显示选中地图要素的属性信息
                     popup = new SuperMap.Popup.FramedCloud("chicken",
@@ -420,7 +409,7 @@
                     map.addPopup(popup);
 					var a = feature.attributes["SmX"];
 					var b = feature.attributes["SmY"];
-					map.setCenter(new SuperMap.LonLat(a,b),8); 
+					map.setCenter(new SuperMap.LonLat(a,b),1); 
                 }
             }
 				
@@ -434,12 +423,11 @@
                 feature.popup.destroy();
                 feature.popup = null;
             }
-			 function drawGeometry() {
-					//先清除上次的显示结果
-					clearFeatures();
-
-					drawFeature.activate();
-			}
+	    function drawGeometry() {
+		//先清除上次的显示结果
+		clearFeatures();
+		drawFeature.activate();
+	    }
 			
             //SQL查询
             function queryBySQL(Pname) {
@@ -456,8 +444,6 @@
 						
 				}
 			
-			
-			
                 queryParamCapital = new SuperMap.REST.FilterParameter({
                     name: type,
 					attributeFilter:params 
@@ -467,10 +453,9 @@
                             queryParams: [queryParamCapital]
                         }),
                     //SQL查询服务
-                        queryBySQLServiceCapital = new SuperMap.REST.QueryBySQLService(url1, {
+                        queryBySQLServiceCapital = new SuperMap.REST.QueryBySQLService(url2, {
                             eventListeners: {"processCompleted": processCompletedCapital, "processFailed": processFailedCapital}});
                 queryBySQLServiceCapital.processAsync(queryBySQLParamsCapital);
-				//$("#text1").val("");
             }
 
             //SQL查询(省会)成功时触发此事件
@@ -488,13 +473,11 @@
 				var a = feature.attributes["SmX"];
 				var b = feature.attributes["SmY"];
 				//alert("地图服务:" + a +":"+b);
-				map.setCenter(new SuperMap.LonLat(a,b),9); 
+				map.setCenter(new SuperMap.LonLat(a,b),1); 
                             }
                         }
                     }
                 }
-			
-		
 				
                 vectorLayer.addFeatures(features);
                 select.activate();
@@ -515,7 +498,7 @@
                 if(vectorLayer.selectedFeatures.length > 0) {
                     map.removePopup(vectorLayer.selectedFeatures[0].popup);
                 }
-				map.setCenter(new SuperMap.LonLat(524221.11, 337620.34), 2);        
+				map.setCenter(new SuperMap.LonLat(12974732.78 , 4821537.75), 0);        
                 vectorLayer.removeAllFeatures();
                 markerLayer.clearMarkers();
                 closeInfoWin();
@@ -537,10 +520,10 @@
 			data:{name:cname},
 			success:function(res){
 				if(res.status==1){
+					$("#pic_list_1").remove();
+					$("#downtuze").remove();
 					var list = res.data;
 					if(list && list.length>0){
-						$("#pic_list_parent").html('');
-						$("#downtuze").remove();
 						var tuzeparent = '<div id="pic_list_1">'
 							+'<a class="prev" href="javascript:void(0)"><img src="/html/sn-static/static/image/prev.png" width="35" height="54"></a>'
 							+'<a class="next" href="javascript:void(0)"><img src="/html/sn-static/static/image/next.png" width="35" height="54"></a>'
@@ -586,7 +569,7 @@
 					}else{
 						
 						console.log("没有村庄规划图则");
-						$("#pic_list_1").hide();
+						$("#pic_list_1").remove();
 					}
 
 				}else{
@@ -741,9 +724,9 @@
                                     	<div style="margin-bottom:10px;"><span class="info_tit info_tit3">种植生产</span></div>
                                         <ul>
                                             <li>
-						<a href="javascript:void(0);" title="点击查看详情"  class="cqLinks"  onclick="findItemInfoInVillage('SanpinJbxx');" data-toggle="modal" data-target="#myModal1">
+						<a href="javascript:void(0);" title="点击查看详情"  class="cqLinks"  onclick="findItemInfoInVillage('ZzSpbase');" data-toggle="modal" data-target="#myModal1">
                                             <span>种植基地:</span>
-                                            <span class="add-num SanpinJbxx" id="garden1_base_num" data-toggle="modal" data-target="#myModal1">0</span>
+                                            <span class="add-num ZzSpbase" id="garden1_base_num" data-toggle="modal" data-target="#myModal1">0</span>
                                             <span class="un">个</span>
                                             </a>
                                         </li>

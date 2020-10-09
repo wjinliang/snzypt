@@ -68,7 +68,7 @@
 	            },
 				    legend: {
 				        top:'6%',
-				        data:['2014年面积(公顷)','2013年面积(公顷)']
+				        data:['2017年面积(公顷)','2016年面积(公顷)']
 				    },
 				    toolbox: {
 				        show : true,
@@ -105,12 +105,12 @@
 				    series : [
 				       
 				        {
-				            name:'2014年面积(公顷)',
+				            name:'2017年面积(公顷)',
 				            type:'bar',
 				            data:data.seriesmjSi
 				        },
 				        {
-				            name:'2013年面积(公顷)',
+				            name:'2016年面积(公顷)',
 				            type:'bar',
 				            data:data.seriesmjsan
 				        }
@@ -168,7 +168,7 @@
 			    },
 			    legend: {
 			        top:'6%',
-			        data:['2014年单产(公斤/公顷)','2013年单产(公斤/公顷)']
+			        data:['2017年单产(公斤/公顷)','2016年单产(公斤/公顷)']
 			    },
 			    toolbox: {
 			        show : true,
@@ -201,12 +201,12 @@
 			    series : [
 			       
 			        {
-			            name:'2014年单产(公斤/公顷)',
+			            name:'2017年单产(公斤/公顷)',
 			            type:'bar',
 			            data:data.seriesdcSi
 			        },
 			        {
-			            name:'2013年单产(公斤/公顷)',
+			            name:'2016年单产(公斤/公顷)',
 			            type:'bar',
 			            data:data.seriesdcsan
 			        }
@@ -265,7 +265,7 @@
 			    },
 			    legend: {
 			        top:'6%',
-			        data:['2014年总产量(吨)','2013年总产量(吨)']
+			        data:['2017年总产量(吨)','2016年总产量(吨)']
 			    },
 			    toolbox: {
 			        show : true,
@@ -298,13 +298,13 @@
 			    series : [
 			       
 			        {
-			            name:'2014年总产量(吨)',
+			            name:'2017年总产量(吨)',
 			            type:'bar',
 			            data:data.serieszcSi
 			           
 			        },
 			        {
-			            name:'2013年总产量(吨)',
+			            name:'2016年总产量(吨)',
 			            type:'bar',
 			            data:data.serieszcsan
 			        }

@@ -29,7 +29,7 @@ public class CountryPicServiceImpl implements CountryPicService {
 	public List<CountryPic> findListByCunName(String name) {
 		Map searchMap = new HashMap<String,String>();
 		searchMap.put("COUNTRYNAME", name);
-		searchMap.put("exsit", "1");
+		//searchMap.put("exsit", "1");
 		return countryPicDao.findAll(searchMap);
 	}
 

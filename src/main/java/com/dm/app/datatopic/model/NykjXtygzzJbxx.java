@@ -31,6 +31,8 @@ public class NykjXtygzzJbxx implements Serializable {
 	private String ytDw  ;//依托单位
 	@Field("RY_SL")
 	private String rySl  ;//人员数量
+	@Field("ZD_MC")
+	private String zdMc  ;//站点名称
 	
 	
 	@Field("FW_DX")
@@ -50,7 +52,12 @@ public class NykjXtygzzJbxx implements Serializable {
 	private String dzYj  ;//E-mail；(电子邮件)	
 	
 	
-	
+	public String getZdMc() {
+		return zdMc;
+	}
+	public void setZdMc(String zdMc) {
+		this.zdMc = zdMc;
+	}
 
 	public String getXzcCode() {
 		return xzcCode;

@@ -74,7 +74,7 @@
                                         <!--<span style="font-size:14px; color:#000;">数据来源：<i id="sourceone">${table.origin}</i></span>-->
                                         <!--<span style="font-size:14px;">更新频次：<i id="read">5</i></span>-->
                                            <!--  <#if (table_index==0)>
-                                             <a href='../export/${tableId}' style="color:red;font-size:16px">数据目录下载</a>
+                                             <a href='../../../table/data/export/${tableId}' style="color:red;font-size:16px">数据目录下载</a>
                                              </#if>-->
                                     </div>
                                 </h1>

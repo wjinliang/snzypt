@@ -1,11 +1,13 @@
 <div class="header" >
     	<div class="head-top" id="headtop">
         	<div class="container">
-            	<!--<div class="row">
+            	<div class="row">
                 	<span>您好,欢迎光临北京市涉农信息资源平台</span>
-                    <a href="javasrcipt:void(0)">登录</a>|
-                    <a href="javascript:void(0)">免费注册</a>
-                </div>-->
+                    <a id="login" href="javascript:void(0)">登录</a>
+                    <a id="userInfo" href="javascript:void(0)"></a>
+                    <a id="logout" href="javascript:void(0)"></a>
+		    <!--|<a href="javascript:void(0)">免费注册</a>-->
+                </div>
             </div>
         </div>
         <div class="head-bottom">

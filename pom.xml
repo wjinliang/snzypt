@@ -5,8 +5,8 @@
 	<artifactId>topiecms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<properties> 
-		<!-- spring版本号 --> 
+	<properties>
+		<!-- spring版本号 -->
 		<spring.version>3.2.5.RELEASE</spring.version>
 		<!-- security版本号 -->
 		<spring.security.version>3.2.8.RELEASE</spring.security.version>
@@ -18,11 +18,11 @@
 		<log4j.version>1.2.17</log4j.version>
 		<logback.version>1.1.3</logback.version>
 		<junit.version>4.8.1</junit.version>
-		
+
 		<poi.version>3.9</poi.version>
-		
-        <spring.data.redis.version>1.7.1.RELEASE</spring.data.redis.version>
-        <jedis.version>2.7.3</jedis.version>
+
+		<spring.data.redis.version>1.7.1.RELEASE</spring.data.redis.version>
+		<jedis.version>2.7.3</jedis.version>
 	</properties>
 	<build>
 		<finalName>topiecms</finalName>
@@ -87,13 +87,13 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		
+
 		<dependency>
-		  <groupId>redis.clients</groupId>
-		  <artifactId>jedis</artifactId>
-		  <version>2.7.3</version>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.7.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -109,7 +109,7 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		
+
 		<!-- spring ext -->
 		<dependency>
 			<groupId>org.logback-extensions</groupId>
@@ -241,7 +241,7 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -253,11 +253,8 @@
 			<version>${org.springframework.mobile-version}</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>1.9.1.RELEASE</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-commons</artifactId> 
+			<version>1.9.1.RELEASE</version> </dependency> -->
 		<!-- springframe end -->
 
 		<!-- security start -->
@@ -370,266 +367,267 @@
 			<artifactId>json-lib-ext-spring</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
 			<version>1.9.6</version>
 		</dependency>
-        
+
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.20</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.0.13</version>
 		</dependency>
-		
-       <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j-core</artifactId>
-            <version>0.7.2</version>
-        </dependency>
-        
-		<dependency>
-		    <groupId>commons-codec</groupId>
-		    <artifactId>commons-codec</artifactId>
-		    <version>1.9</version>
-		</dependency>
-       
-      <dependency>
-       <groupId>annogen</groupId>
-        <artifactId>annogen</artifactId>
-       <version>0.1.0</version>
-       </dependency>
-   <dependency>
-    <groupId>org.mongodb</groupId>
-     <artifactId>mongo-java-driver</artifactId>
-     <version>2.11.0</version>
-</dependency>
 
-<!-- poi start -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-schemas</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-scratchpad</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <!-- redis -->
-        <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-redis</artifactId>
-                <version>${spring.data.redis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${jedis.version}</version>
-            </dependency> 
-            
-            <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
-<dependency>
-    <groupId>com.belerweb</groupId>
-    <artifactId>pinyin4j</artifactId>
-    <version>2.5.0</version>
-</dependency>
-          <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator 图片压缩-->
-<dependency>
-    <groupId>net.coobird</groupId>
-    <artifactId>thumbnailator</artifactId>
-    <version>0.4.8</version>
-</dependency>
-            
-<!--  添加基础模块-->
-<dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.james</groupId>
+			<artifactId>apache-mime4j-core</artifactId>
+			<version>0.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>annogen</groupId>
+			<artifactId>annogen</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+
+		<!-- poi start -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<!-- redis -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring.data.redis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${jedis.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator 图片压缩 -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.8</version>
+		</dependency>
+
+		<!-- 添加基础模块 -->
+		<dependency>
 			<groupId>com.dm.platform</groupId>
 			<artifactId>platform</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/platform.jar</systemPath>
 		</dependency>
-<!--  基础模块end-->
-		
-		            
-<!--  BJCA-->
+		<!-- 基础模块end -->
+
+
+		<!-- BJCA -->
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>bjcaticketsso_For_P12.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/bjcaticketsso_For_P12.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>uumsinterface_JDK1.4.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/uumsinterface_JDK1.4.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>BJCA-SecX2.5.11.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-SecX2.5.11.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>BJCA_multi_LOG_1.4.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA_multi_LOG_1.4.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>BJCA-JCE.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-JCE.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>BJCA-JCE2.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-JCE2.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>BJCA-JDOM.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-JDOM.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>cos.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/cos.jar</systemPath>
-		</dependency><dependency>
+		</dependency>
+		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>SmartUpload.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/SmartUpload.jar</systemPath>
-		</dependency><dependency>
+		</dependency>
+		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>xercesImpl.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/xercesImpl.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>xml-apis.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/xml-apis.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>axis.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/axis.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.bjca.sso</groupId>
 			<artifactId>activation.jar</artifactId>
 			<version>1.0</version>
-			<scope>system</scope> 
+			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/activation.jar</systemPath>
 		</dependency>
-<!--  BJCA-->
-<!-- axis1 -->
-<!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
-	<dependency>  
-		<groupId>org.springframework</groupId>  
-        <artifactId>spring-remoting</artifactId>  
-        <version>2.0.8</version>  
-    </dependency>  
-<!-- 	<dependency> -->
-<!-- 	    <groupId>org.apache.axis</groupId> -->
-<!-- 	    <artifactId>axis</artifactId> -->
-<!-- 	    <version>1.4</version> -->
-<!-- 	</dependency> -->
-       <dependency>  
-           <groupId>axis</groupId>  
-           <artifactId>axis-jaxrpc</artifactId>  
-           <version>1.2.1</version>  
-       </dependency>  
-       <dependency>  
-           <groupId>wsdl4j</groupId>  
-           <artifactId>wsdl4j</artifactId>  
-           <version>1.6.3</version>  
-       </dependency>
-       <!-- https://mvnrepository.com/artifact/commons-discovery/commons-discovery -->
+		<!-- 新CA -->
 		<dependency>
-		    <groupId>commons-discovery</groupId>
-		    <artifactId>commons-discovery</artifactId>
-		    <version>0.2</version>
+			<groupId>com.bjca.sso</groupId>
+			<artifactId>BJCA-UAMS-SDK-1.4.jar</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-UAMS-SDK-1.4.jar</systemPath>
 		</dependency>
- <!-- axis1 -->        
-<!-- https://mvnrepository.com/artifact/javax.xml.rpc/javax.xml.rpc-api -->
-<!-- <dependency>
-    <groupId>javax.xml.rpc</groupId>
-    <artifactId>javax.xml.rpc-api</artifactId>
-    <version>1.1.1</version>
-</dependency> -->
-		
-<!--
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-mongodb</artifactId>
-    <version>1.9.1.RELEASE</version>
-</dependency> -->
-<!--<dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-mongodb</artifactId>
-        <version>1.4.1.RELEASE</version>
-    </dependency> -->
-      <dependency>
+		<!-- BJCA -->
+		<!-- axis1 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-remoting</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.axis</groupId> -->
+		<!-- <artifactId>axis</artifactId> -->
+		<!-- <version>1.4</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-discovery/commons-discovery -->
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<!-- axis1 -->
+		<!-- https://mvnrepository.com/artifact/javax.xml.rpc/javax.xml.rpc-api -->
+		<!-- <dependency> <groupId>javax.xml.rpc</groupId> <artifactId>javax.xml.rpc-api</artifactId> 
+			<version>1.1.1</version> </dependency> -->
+
+		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-mongodb</artifactId> 
+			<version>1.9.1.RELEASE</version> </dependency> -->
+		<!--<dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-mongodb</artifactId> 
+			<version>1.4.1.RELEASE</version> </dependency> -->
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
 			<version>1.2.0.RELEASE</version>
-		</dependency> 
-		<!--添加Quartz框架-->
-    <dependency>
-        <groupId>org.quartz-scheduler</groupId>
-        <artifactId>quartz</artifactId>
-        <version>2.2.1</version>
-    </dependency>
-    
-     <dependency>
-		<groupId>net.sourceforge.jexcelapi</groupId>
-		<artifactId>jxl</artifactId>
-		<version>2.6.10</version>
-	</dependency>
-   </dependencies> 
-       
+		</dependency>
+		<!--添加Quartz框架 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.10</version>
+		</dependency>
+	</dependencies>
+
+
 </project>

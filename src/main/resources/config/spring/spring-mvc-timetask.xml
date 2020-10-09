@@ -78,7 +78,7 @@
   
     <bean id="redisRecordDataCountTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
         <property name="jobDetail" ref="redisRecordDataCountTimerDispatcher" />  
-        <property name="cronExpression" value="0 50 23 * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
+        <property name="cronExpression" value="0 30 16 * * ?" /><!-- cronExpression用于指明该方法被调用的时机 秒分时 日周月年 -->  
     </bean>  
 	<!-- 发布新闻 --> 
     <bean id="cmsSpiderToContentTimerDispatcher" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  

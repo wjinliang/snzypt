@@ -62,7 +62,7 @@ public class CntentPublishServiceImpl implements ContentPublishProcessingService
 		time.setMongo(mongoTemplate);
 		time.setCmsChannelService(cmsChannelService);
 		time.setCmsContentService(cmsContentService);
-		time.publish(v.getCollection(), v.getChannelId(), v.getTemplateId(), v.getPublishTime(),
+		time.publish(v.getName(),v.getCollection(), v.getChannelId(), v.getTemplateId(), v.getPublishTime(),
 				v.getPublishTimeFormat(), v.getTitle(), v.getContent(), v.getAuthor(), v.getOrigion(), v.getTableid());
 		
 	}

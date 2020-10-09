@@ -17,7 +17,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8" />
-<title>后台管理 | 问卷调查</title>
+<title>后台管理 | 数据申请</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
@@ -65,7 +65,7 @@
 							<div class="portlet-title">
 								<div class="caption caption-md">
 									<i class="icon-bar-chart theme-font hide"></i> <span
-										class="caption-subject theme-font bold uppercase">问卷调查列表</span>
+										class="caption-subject theme-font bold uppercase">数据申请管理</span>
 									<span class="caption-helper"></span>
 								</div>
 							</div>

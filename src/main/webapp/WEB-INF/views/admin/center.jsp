@@ -17,7 +17,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>后台管理 | 个人中心</title>
+    <title>基础平台管理系统</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -447,7 +447,7 @@
 	jQuery.validator.addMethod("isPassword", function(value, element) {    
 	    var tel = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={} :";'<>?,.\/]).{8,30}$/;
 	    return this.optional(element) || (tel.test(value));
-	}, "必须字母数字符号汇合且大于8位");
+	}, "必须字母数字符号混合且大于8位");
 		jQuery(document).ready(
 				function() {
 					$('#passwordForm').validate(

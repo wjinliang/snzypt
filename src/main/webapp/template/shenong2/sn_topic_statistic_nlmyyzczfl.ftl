@@ -17,7 +17,7 @@ overflow: scroll;
                         <span>当前位置：</span>
                         <a href="${site.url!}">首页</a>
                             &nbsp;&gt;&nbsp;
-                        <a href="javascript:void(0);">农林牧渔业总产值(1978-2014年)</a>
+                        <a href="javascript:void(0);">农林牧渔业总产值</a>
                      </div>
                      <div class="base-info mgt15 mgb15">
                      	<div class="panel-body">
@@ -51,7 +51,7 @@ overflow: scroll;
 							//backgroundColor:'#F0F0F0',
 						    title: {
 						    x:'center',
-						        text: '农林牧渔业总产值(1978-2014年)',
+						        text: '农林牧渔业总产值',
 								
 						    },
 						    tooltip: {

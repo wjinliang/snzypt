@@ -76,7 +76,7 @@
 				    legend: {
 				    top:'6%',
 				    
-				        data:['2014年产量(吨)','2013年产量(吨)','2014年为2013年百分比']
+				        data:['2017年产量(吨)','2016年产量(吨)','2017年为2016年百分比']
 				    },
 				      toolbox: {
 						    	show : true,
@@ -87,8 +87,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年产量</td>'
-												 + '<td>2013年产量</td>'
+												 + '<td>2017年产量</td>'
+												 + '<td>2016年产量</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -150,17 +150,17 @@
 				    series : [
 				       
 				        {
-				            name:'2014年产量(吨)',
+				            name:'2017年产量(吨)',
 				            type:'bar',
 				            data:data.seriesSi1,
 				        },
 				        {
-				            name:'2013年产量(吨)',
+				            name:'2016年产量(吨)',
 				            type:'bar',
 				            data:data.seriesSan1,
 				        },
 				        {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				             yAxisIndex: 1,
 				            data:data.seriesZb1,
@@ -198,7 +198,7 @@
 				    legend: {
 				    top:'6%',
 				    
-				        data:['2014年产量(吨)','2013年产量(吨)','2014年为2013年百分比']
+				        data:['2017年产量(吨)','2016年产量(吨)','2017年为2016年百分比']
 				    },
 				      toolbox: {
 						    	show : true,
@@ -209,8 +209,8 @@
 									optionToContent: function(opt) {
 									var table = '<table id="dataviewl"  border="1" style="width:100%;text-align:center;overflow:scroll-y;"><tbody><tr>'
 												 + '<td>项目</td>'
-												 + '<td>2014年产量</td>'
-												 + '<td>2013年产量</td>'
+												 + '<td>2017年产量</td>'
+												 + '<td>2016年产量</td>'
 												 + '</tr>';
 									for (var i = 0, l = data.xAxis.length; i < l; i++) {
 										table += '<tr>'
@@ -268,17 +268,17 @@
 				    series : [
 				       
 				        {
-				            name:'2014年产量(吨)',
+				            name:'2017年产量(吨)',
 				            type:'bar',
 				            data:data.seriesSi1,
 				        },
 				        {
-				            name:'2013年产量(吨)',
+				            name:'2016年产量(吨)',
 				            type:'bar',
 				            data:data.seriesSan1,
 				        },
 				        {
-				            name:'2014年为2013年百分比',
+				            name:'2017年为2016年百分比',
 				            type:'line',
 				             yAxisIndex: 1,
 				            data:data.seriesZb1,
