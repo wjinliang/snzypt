@@ -68,21 +68,26 @@
 		</@tableInfoDirective>
                 <div class="resource-box">
                   <!--<h2>行政区域</h2>-->
-		  <@tableListDirective type=0  pId=param pageNum=pageNum pageSize=16 >
+		  <@tableListDirective type=0  pId=param gridName=param channelId=41 pageNum=pageNum pageSize=16 >
 			  <div class="box-head">
 			    <span>所属分类</span>
+			    <span>资源名称</span>
 			    <span>数据来源</span>
 			    <span>数据量</span>
 			  </div>
 			 <ul>
 			    <#list tables as t>
 				    <li>
+				      <span>${t.pTypeName!}</span>
 				      <span><a href="../sjzyxq/42_1.htm?param=${t.id!}" class="fontSize16 pText1">${t.gridName!}</a></span>
 				      <span>${t.org!}</span>
 				      <span>${t.dataCount!}</span>
 				    </li>
                             </#list>
 			</ul>
+			<#if (totalPage gt 0)>
+			 ${pagination!}
+			</#if>
 		</@tableListDirective>
                   
                 </div>

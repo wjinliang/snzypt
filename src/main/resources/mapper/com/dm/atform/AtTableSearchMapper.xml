@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dm.atform.sqldao.AtTableSearchMapper">
+	<resultMap id="BaseResultMap" type="com.dm.atform.model.AtTableSearch">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="search_name" property="searchName" jdbcType="VARCHAR" />
+		<result column="info" property="info" jdbcType="VARCHAR" />
+		<result column="table_name" property="tableName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="sort_field" property="sortField" jdbcType="VARCHAR" />
+		<result column="where_field" property="whereField" jdbcType="VARCHAR" />
+		<result column="search_field" property="searchField" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="id_field" property="idField" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="data_count" property="dataCount" jdbcType="INTEGER" />
+		<result column="search_count" property="searchCount" jdbcType="INTEGER" />
+	</resultMap> 
+	<sql id="Base_Column_List">
+		id, table_name,search_name,info, status, sort_field, where_field, search_field,type, 
+		create_date, create_user,id_field,code,search_count,data_count
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from at_table_search
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByArgMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from at_table_search t1 where 1=1
+		<if test="model!=null">
+			<if test="model.tableName!=null and model.tableName!=''">
+				 and t1.table_name like concat('%',#{model.tableName},'%')
+			</if>
+			<if test="model.status!=null and model.status!=''">
+				and t1.status = #{model.status}
+			</if>
+			<if test="model.type!=null and model.type!=''">
+				and t1.type = #{model.type,jdbcType=VARCHAR}
+			</if>
+			<if test="model.code!=null and model.code!=''">
+				and t1.code = #{model.code,jdbcType=VARCHAR}
+			</if>
+			<if test="model.searchName!=null and model.searchName!=''">
+				and t1.search_name like concat('%',#{model.searchName},'%')
+			</if>
+		</if>
+		
+		<if test="sort!=null and sort!=''">
+			order by ${sort}
+		</if>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		at_table_search
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.dm.atform.model.AtTableSearch">
+		insert into at_table_search
+		(id, table_name, status,code,
+		sort_field, where_field, type,
+		create_date, create_user,id_field,info,data_count,
+		search_name,search_count,search_field)
+		values
+		(#{id,jdbcType=VARCHAR}, 
+		#{tableName,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{sortField,jdbcType=VARCHAR},
+		#{whereField,jdbcType=VARCHAR}, 
+		#{type,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createUser,jdbcType=VARCHAR},
+		#{idField,jdbcType=VARCHAR},
+		#{info,jdbcType=VARCHAR},
+		#{dataCount,jdbcType=INTEGER},
+		#{searchName,jdbcType=VARCHAR},
+		#{searchCount,jdbcType=INTEGER},
+		#{searchField,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dm.atform.model.AtTableSearch">
+		insert into at_table_search
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tableName != null">
+				table_name,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="sortField != null">
+				sort_field,
+			</if>
+			<if test="whereField != null">
+				where_field,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="dataCount != null">
+				data_ccount,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="searchName != null">
+				search_name,
+			</if>
+			<if test="idField ! =null">
+				id_field,
+			</if>
+			<if test="info != null">
+				info,
+			</if>
+			<if test="searchCount !=null">
+				search_count,
+			</if>
+			<if test="searchField !=null">
+				search_field
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="sortField != null">
+				#{sortField,jdbcType=VARCHAR},
+			</if>
+			<if test="whereField != null">
+				#{whereField,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="dataCount != null">
+				#{dataCount,jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="searchName != null">
+				#{searchName,jdbcType=VARCHAR},
+			</if>
+			<if test="idField !=null">
+				#{idField,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				#{info,jdbcType=VARCHAR},
+			</if>
+			<if test="searchCount !=null">
+				#{searchCount,jdbcType=INTEGER},
+			</if>
+			<if test="downloadCount !=null">
+				#{downloadCount,jdbcType=INTEGER},
+			</if>
+			<if test="searchField !=null">
+				#{searchField,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dm.atform.model.AtTableSearch">
+		update at_table_search
+		<set>
+			<if test="tableName != null">
+				table_name = #{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="sortField != null">
+				sort_field = #{sortField,jdbcType=VARCHAR},
+			</if>
+			<if test="whereField != null">
+				where_field = #{whereField,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="searchName != null">
+				search_name = #{searchName,jdbcType=VARCHAR},
+			</if>
+			<if test="dataCount != null">
+				data_count = #{dataCount},
+			</if>
+			<if test="idField !=null">
+				id_field = #{idField,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test="searchCount !=null">
+				search_count = #{searchCount,jdbcType=INTEGER},
+			</if>
+			<if test="searchField !=null">
+				search_field = #{searchField,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dm.atform.model.AtTableSearch">
+		update
+		at_table_search
+		set table_name = #{tableName,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=VARCHAR},
+		sort_field = #{sortField,jdbcType=VARCHAR},
+		where_field = #{whereField,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
+		data_count =
+		#{dataCount},
+		code = #{code,jdbcType=VARCHAR},
+		seq = #{seq,jdbcType=INTEGER},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		create_user =
+		#{createUser,jdbcType=VARCHAR},
+		search_name =
+		#{searchName,jdbcType=VARCHAR},
+		id_field = #{idField,jdbcType=VARCHAR},
+		info = #{info,jdbcType=VARCHAR},
+		search_field = #{searchField,jdbcType=VARCHAR},
+		search_count = #{searchCount,jdbcType=INTEGER}
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

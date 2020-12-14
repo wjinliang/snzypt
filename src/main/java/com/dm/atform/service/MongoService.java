@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.dm.atform.model.AtTable;
+import com.dm.atform.model.AtTableSearch;
 import com.github.pagehelper.PageInfo;
 import com.mongodb.DBObject;
 
@@ -37,4 +38,7 @@ public interface MongoService {
 
 	long getCount(AtTable atTable);
 	long getCount(String atTable);
+
+	PageInfo queryMulti(AtTableSearch tableName, Integer pageNum,
+			Integer pageSize);
 }

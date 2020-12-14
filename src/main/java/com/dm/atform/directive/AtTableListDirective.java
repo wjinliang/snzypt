@@ -44,9 +44,14 @@ public class AtTableListDirective implements TemplateDirectiveModel{
 		String sort = params.get("sort")==null?"seq_asc":params.get("sort").toString();
 		String t = type==null?null:type.toString();
 		String pid = params.get("pId")==null?null:params.get("pId").toString();
+		//v2 
+		String channelId = params.get("channelId")==null?null:params.get("channelId").toString();
 		String gridName = params.get("gridName")==null?null:params.get("gridName").toString();
 		String projectName = ConfigUtil.getConfigContent("cms","projectName");
 		String url = "/"+projectName+"/portal/data/grid/"+pid+"_1.htm";
+		if(channelId!=null){//v2 
+			url = "/"+projectName+"/portal/channel/sjzylb/"+channelId+"_1.htm";
+		}
 		AtTable record = new AtTable();
 		String tableId = pid;
 		record.setType(t);
@@ -54,9 +59,16 @@ public class AtTableListDirective implements TemplateDirectiveModel{
 		if(StringUtils.hasText(gridName)){
 			record.setpId(null);
 			tableId=null;
+			if(channelId!=null){//v2 
+				tableId = pid;
+			}
 			url+="?param="+gridName;
 		}
 		record.setGridName(gridName);
+		//v2
+		if(channelId!=null){
+			record.setGridName(null);
+		}
 		Integer pageNum = params.get("pageNum")==null?1:Integer.valueOf(params.get("pageNum").toString());
 		Integer pageSize = params.get("pageSize")==null?1000:Integer.valueOf(params.get("pageSize").toString());
 		Map map =new SqlParam().autoParam(record, sort,pageNum,pageSize);
@@ -70,9 +82,12 @@ public class AtTableListDirective implements TemplateDirectiveModel{
 //		return "/"+projectName+"/portal/channel/"+enName+"/"+id+"_"+1+".htm";
 		channel.setUrl(url);
 		Long total = page.getTotal();
+		int totalPage = page.getPages();
 		env.setVariable("pagination", ObjectWrapper.DEFAULT_WRAPPER
 				.wrap(PageUtil.getInstance().channelPagination(channel,
 						pageNum, total, pageSize)));
+		env.setVariable("totalPage", ObjectWrapper.DEFAULT_WRAPPER
+				.wrap(totalPage));
 		env.setVariable("paginationMobile", ObjectWrapper.DEFAULT_WRAPPER
 				.wrap(PageUtil.getInstance().channelMobilePagination(channel, pageNum, total, pageSize)));
 		env.setVariable("paginationlist",

@@ -88,10 +88,12 @@
 		    <label>共享方式:</label>
 		    <span>${table.shareType!}</span>
 		  </li>
+		  <#if table.dataUpdateTime??>
 		  <li class="clearfix">
-		    <label>更新时间:</label>
+		    <label>采集时间:</label>
 		    <span>${table.dataUpdateTime!"- -"}</span>
 		  </li>
+		  </#if>
 		  <li class="clearfix">
 		    <label>是否开放:</label>
 		    <span>${table.publicType!}</span>

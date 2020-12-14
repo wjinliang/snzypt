@@ -61,22 +61,22 @@
                     <li>农业生产</li>
                     <li>农业科技</li>
                     <li>市场行情</li>
-                    <li>农村经济</li>
+                    <li>农村改革</li>
                     <li>休闲农业</li>
                   </ul>
                 </div>
                 <div class="data-center">
                   <div class="data-topic topic1">基础地理</div>
-                  <div class="data-topic topic2">农产品</div>
-                  <div class="data-topic topic3">涉农机构</div>
-                  <div class="data-topic topic4">涉农人员</div>
+                  <div class="data-topic topic2">涉农机构</div>
+                  <div class="data-topic topic3">涉农人员</div>
+                  <!--<div class="data-topic topic4">农产品</div>-->
                 </div>
                 <div class="data-right">
                   <ul class="source-nav">
-                    <li>预警监测</li>
+                    <li>监测预警</li>
                     <li>标准规范</li>
-                    <li>行政办公</li>
-                    <li>政务资讯</li>
+                    <li>美丽乡村</li>
+                    <li>舆情资讯</li>
                     <li>质量安全</li>
                   </ul>
                 </div>
@@ -252,20 +252,21 @@
 	  { id: 1, pId: 0, name: '平台介绍',code:'jieshao',type:'jieshao', iconSkin: 'icon-0' },
 	  { id: 2, pId: 0, name: '基础库', code:'jichu',type:'typeParent',open: true, iconSkin: 'icon-1' },
 	  { id: 21, pId: 2, name: '基础地理信息',code:'bCIbFy4Y', iconSkin: 'icon-11' },
-	  { id: 24, pId: 2, name: '涉农人员信息',code:'8n5CbiZT', iconSkin: 'icon-14' },
 	  { id: 23, pId: 2, name: '涉农机构信息',code:'a1RtGRtM', iconSkin: 'icon-13' },
-	  { id: 22, pId: 2, name: '农产品信息',code:'znFoIvFr', iconSkin: 'icon-12' },
+	  { id: 24, pId: 2, name: '涉农人员信息',code:'8n5CbiZT', iconSkin: 'icon-14' },
+	 // { id: 22, pId: 2, name: '农产品信息',code:'znFoIvFr', iconSkin: 'icon-12' },
 	  { id: 3, pId: 0, name: '主题库',code:'zhuti',type:'typeParent', iconSkin: 'icon-2' },
-	  { id: 31, pId: 3, name: '政务资讯信息',code:'gtTEogrR', iconSkin: 'icon-27' },
 	  { id: 32, pId: 3, name: '标准规范信息',code:'ubQfMxwl', iconSkin: 'icon-28' },
-	  { id: 33, pId: 3, name: '行政办公信息',code:'SB7TABfi', iconSkin: 'icon-29' },
 	  { id: 31, pId: 3, name: '农业生产信息',code:'tlEgf4kl', iconSkin: 'icon-210' },
+	  { id: 31, pId: 3, name: '农业科技信息',code:'oadjmLpy', iconSkin: 'icon-21' },
 	  { id: 32, pId: 3, name: '市场行情信息',code:'c2Ci5cj0', iconSkin: 'icon-22' },
 	  { id: 32, pId: 3, name: '质量安全信息',code:'QuHM4Myr', iconSkin: 'icon-25' },
-	  { id: 31, pId: 3, name: '预警监测信息',code:'2jA5V8Qh', iconSkin: 'icon-24' },
-	  { id: 33, pId: 3, name: '农村经济信息',code:'hznuuul3', iconSkin: 'icon-26' },
-	  { id: 31, pId: 3, name: '农业科技信息',code:'oadjmLpy', iconSkin: 'icon-21' },
 	  { id: 33, pId: 3, name: '休闲农业信息',code:'V5xYUnWp', iconSkin: 'icon-23' },
+	  { id: 31, pId: 3, name: '监测预警信息',code:'2jA5V8Qh', iconSkin: 'icon-24' },
+	  { id: 33, pId: 3, name: '美丽乡村信息',code:'SB7TABfi', iconSkin: 'icon-29' },
+	  { id: 33, pId: 3, name: '农村改革信息',code:'hznuuul3', iconSkin: 'icon-26' },
+	  { id: 31, pId: 3, name: '舆情资讯信息',code:'gtTEogrR', iconSkin: 'icon-27' },
+	  { id: 33, pId: 3, name: '统计年鉴信息',code:'cL3i8PR4', iconSkin: 'icon-12' },
 	]
       $(document).ready(function () {
         //点击事件

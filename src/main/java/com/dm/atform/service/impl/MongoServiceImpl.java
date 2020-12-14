@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import com.dm.atform.model.AtField;
 import com.dm.atform.model.AtTable;
+import com.dm.atform.model.AtTableSearch;
 import com.dm.atform.service.MongoService;
 import com.dm.atform.sqldao.AtFieldMapper;
 import com.dm.platform.util.UUIDUtils;
@@ -848,5 +849,56 @@ public class MongoServiceImpl implements MongoService {
 			list.add(map);
 		}
 		return list;
+	}
+	/**
+	 * AND多条件查询,等于
+	 */
+	@Override
+	public PageInfo queryMulti(AtTableSearch atTable, Integer pageNum,
+			Integer pageSize) {
+		DBCollection coll = template.getCollection(atTable.getTableName());
+		BasicDBObject query = new BasicDBObject();
+		String where = atTable.getWhereField();
+		activeQueryWhere(where,query);
+		DBObject fields = new BasicDBObject();
+		
+		DBCursor cursor ;
+		long totalCount = coll.count(query);
+		BasicDBObject ord = new BasicDBObject();
+		String sort = atTable.getSortField();
+		if (StringUtils.hasText(sort)) {
+			
+			String f = sort.substring(0, sort.lastIndexOf("_"));
+			int ad = sort.substring(sort.lastIndexOf("_") + 1).equals("asc") ? 1
+					: -1;
+			ord.put(f, ad);
+		}
+		int skip = (pageNum - 1) * pageSize;
+		if(!StringUtils.isEmpty(atTable.getSearchField())){
+			for (String field:atTable.getSearchField().split(",")) {
+				fields.put(field, "1");
+			}
+			 cursor = coll.find(query, fields).skip(skip)
+					.sort(ord).limit(pageSize);
+		}else{
+			cursor = coll.find(query).skip(skip).sort(ord).limit(pageSize);
+		}
+		List result = new ArrayList();
+		try {
+			while (cursor.hasNext()) {
+				DBObject o = cursor.next();
+				result.add(o);
+				o.removeField("_id");
+			}
+		} finally {
+			cursor.close();
+			Page p = new Page();
+			p.addAll(result);
+			p.setPageNum(pageNum);
+			p.setPageSize(pageSize);
+			p.setTotal(totalCount);
+			PageInfo page = new PageInfo(p);
+			return page;
+		}
 	}
 }
