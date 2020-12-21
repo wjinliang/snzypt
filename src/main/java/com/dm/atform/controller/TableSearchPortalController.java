@@ -19,6 +19,11 @@ import com.dm.platform.util.PageConvertUtil;
 import com.dm.platform.util.ResponseUtil;
 import com.github.pagehelper.PageInfo;
 
+/**
+ * 
+ * @author root
+ *
+ */
 @Controller
 @RequestMapping("/portal")
 public class TableSearchPortalController {

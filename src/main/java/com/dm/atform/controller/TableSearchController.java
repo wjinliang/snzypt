@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -65,14 +66,38 @@ public class TableSearchController {
 	}
 	@RequestMapping("/insertOrUpdate")
 	@ResponseBody
-	public Object addOrUpdate(AtTableSearch AtTableSearch){
-		if(AtTableSearch.getId()==null||AtTableSearch.getId().equals("")){
-			this.tableSearchService.save(AtTableSearch);
-		}else{
-			this.tableSearchService.update(AtTableSearch);
+	public Object addOrUpdate(AtTableSearch atTableSearch){
+		if(StringUtils.isEmpty(atTableSearch.getCode())){
+			return ResponseUtil.error("code 不能为空");
+		}
+		if(StringUtils.isEmpty(atTableSearch.getId())){//新增
+			List<AtTableSearch> list = selectByCode(atTableSearch.getCode());
+			if(list.size()>0){
+				return ResponseUtil.error("编码重复");
+				
+			}
+			this.tableSearchService.save(atTableSearch);
+		}else{//编辑
+			List<AtTableSearch> list = selectByCode(atTableSearch.getCode());
+			if(list.size()>0){
+				if(!list.get(0).getId().equals(atTableSearch.getId())){
+					return ResponseUtil.error("编码重复");
+				}
+				
+			}
+			this.tableSearchService.update(atTableSearch);
 		}
 		return ResponseUtil.success();
 	}
+	private List<AtTableSearch> selectByCode(String code) {
+		Map map0 = new HashMap(); 
+		AtTableSearch record = new AtTableSearch();
+		record.setCode(code);
+		map0.put("model", record);
+		map0.put("sort","create_date desc" );
+		return this.tableSearchService.findAllByArg(map0);
+	}
+	
 	@RequestMapping("delete")
 	@ResponseBody
 	public Object delte(AtTableSearch AtTableSearch){
@@ -85,12 +110,7 @@ public class TableSearchController {
 			@RequestParam(value = "pageNum", required = false,defaultValue="1") Integer pageNum,
 			@RequestParam(value = "pageSize", required = false,defaultValue="10") Integer pageSize,
 			@PathVariable("code") String code){
-		Map map0 = new HashMap(); 
-		AtTableSearch record = new AtTableSearch();
-		record.setCode(code);
-		map0.put("model", record);
-		map0.put("sort","create_date desc" );
-		List<AtTableSearch> list = this.tableSearchService.findAllByArg(map0);
+		List<AtTableSearch> list = selectByCode(code);
 		if(list.size()==0){
 			return ResponseUtil.error("code 不存在");
 			
