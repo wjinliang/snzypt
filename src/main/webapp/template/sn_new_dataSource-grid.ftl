@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/style.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/font.css" />
-    <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />
+    <link rel="stylesheet" href="/html/sn-static209/jl/style.css?v=2" />
   </head>
 
   <body>
@@ -63,34 +63,50 @@
             </div>
             <div class="resource-cons pull-box-right">
               <div class="bg-white source-panel">
-	      <@tableInfoDirective id=param >
+	    <#assign parentType=param>
+	      <@tableInfoDirective id=parentType >
                 <h1>${tableInfo.gridName!}</h1>
 		</@tableInfoDirective>
-                <div class="resource-box">
-                  <!--<h2>行政区域</h2>-->
-		  <@tableListDirective type=0  pId=param gridName=param channelId=41 pageNum=pageNum pageSize=16 >
+		  <@tableListDirective type=0  pId=param gridName=param channelId=41 pageNum=pageNum pageSize=15 >
+		  <#assign typeName='typeName' />
+			    <#list tables as t>
+		<#if typeName != t.pTypeName>
+			<#if (t_index gt 0)>
+				</ul> 
+				</div>
+			</#if>
+                  <div class="resource-box">
+			<#assign typeName=t.pTypeName />
+                  <h2>${typeName}</h2>
 			  <div class="box-head">
-			    <span>所属分类</span>
 			    <span>资源名称</span>
-			    <span>数据来源</span>
+			    <span>系统名称</span>
 			    <span>数据量</span>
 			  </div>
 			 <ul>
-			    <#list tables as t>
-				    <li>
-				      <span>${t.pTypeName!}</span>
-				      <span><a href="../sjzyxq/42_1.htm?param=${t.id!}" class="fontSize16 pText1">${t.gridName!}</a></span>
-				      <span>${t.org!}</span>
-				      <span>${t.dataCount!}</span>
-				    </li>
-                            </#list>
-			</ul>
+			 <li>
+			      <span><a href="../sjzyxq/42_1.htm?param=${parentType}_${t.id!}" class="fontSize16 pText1">${t.gridName!}</a></span>
+			      <span>${t.origin!}</span>
+			      <span>${t.dataCount!}</span>
+			    </li>
+		 <#else>
+			<li>
+		      <span><a href="../sjzyxq/42_1.htm?param=${parentType}_${t.id!}" class="fontSize16 pText1">${t.gridName!}</a></span>
+		      <span>${t.origin!}</span>
+		      <span>${t.dataCount!}</span>
+		    </li>
+		</#if>
+				    
+			
+                 </#list>
+		 
+		 </ul> 
+                </div>
 			<#if (totalPage gt 0)>
 			 ${pagination!}
 			</#if>
+		
 		</@tableListDirective>
-                  
-                </div>
               </div>
             </div>
           </div>

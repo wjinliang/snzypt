@@ -51,16 +51,6 @@
         </div>
       </div>
       <div class="main-data-reasource">
-        <div class="bg-white">
-          <div class="setWidth topic-box">
-            <div class="topic-desc">
-              <h1>村情</h1>
-              <p>此处可添加一句村情概括</p>
-              <button class="more-btn btn-primary">了解更多》</button>
-            </div>
-            <div class="topic-img topic-img1"></div>
-          </div>
-        </div>
         <div class="bg-gray">
           <div class="setWidth topic-box clearfix">
             <div class="topic-desc pull-topic-right">
@@ -74,13 +64,23 @@
         <div class="bg-white">
           <div class="setWidth topic-box">
             <div class="topic-desc">
+              <h1>村情</h1>
+              <p>此处可添加一句村情概括</p>
+              <button class="more-btn btn-primary">了解更多》</button>
+            </div>
+            <div class="topic-img topic-img1"></div>
+          </div>
+        </div>
+        <#--<div class="bg-white">
+          <div class="setWidth topic-box">
+            <div class="topic-desc">
               <h1>美丽乡村</h1>
               <p>此处可添加一句美丽乡村概括</p>
               <button class="more-btn btn-primary">了解更多》</button>
             </div>
             <div class="topic-img topic-img3"></div>
           </div>
-        </div>
+        </div>-->
         <div class="bg-gray">
           <div class="topic-box setWidth clearfix">
             <div class="topic-desc pull-topic-right">
@@ -105,8 +105,8 @@
           <div class="topic-box setWidth clearfix">
             <div class="topic-desc pull-topic-right">
               <h1>统计年鉴</h1>
-              <p>此处可添加一句统计年鉴概括</p>
-              <button class="more-btn btn-default">《了解更多</button>
+              <p>全面反映北京农村经济和社会发展</p>
+              <button id="nianjian_btn" class="more-btn btn-default">《了解更多</button>
             </div>
             <div class="topic-img topic-img6"></div>
           </div>
@@ -115,4 +115,9 @@
       <#include "/template/sn_new_footer.ftl">
     </div>
   </body>
+  <script>
+  $("#nianjian_btn").on("click",function(){
+    window.location.href = "/topiecms/portal/channel/ntjnj/43_1.htm";
+  });
+  </script>
 </html>

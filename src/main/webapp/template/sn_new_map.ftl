@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="main-data-reasource">
-        <div class="bg-white"></div>
+        <iframe runat="server" src="https://172.26.72.221:8090/map/mxbt.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" style="height: 615px;width: 100%;"></iframe>
           
       </div>
       <#include "/template/sn_new_footer.ftl">

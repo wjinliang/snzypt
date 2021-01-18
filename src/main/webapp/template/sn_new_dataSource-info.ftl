@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/style.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/font.css" />
-    <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />
+    <link rel="stylesheet" href="/html/sn-static209/jl/style.css?v=2" />
   </head>
 
   <body>
@@ -61,12 +61,14 @@
               <!-- <ul id="treeDemo" class="ztree"></ul> -->
               <div id="platPane" class="menu_list"></div>
             </div>
+	    <#assign parentType=param?split("_")[0]>
+	    <#assign cType=param?split("_")[1]>
             <div class="resource-cons pull-box-right">
               <div class="bg-white source-panel">
-	      <@tableInfoDirective id=param >
+	      <@tableInfoDirective id=cType >
                 <h1>${tableInfo.gridName!}</h1>
 		</@tableInfoDirective>
-		<@tableInfoListDirective id=param >
+		<@tableInfoListDirective id=cType >
 		<#list tables as table>
 		 <#if (table_index==0)>
                 <p class="login-get-file" style="display:none;">登录后即可下载数据</p>
@@ -126,7 +128,7 @@
 			  <li>
 			      <span>${item.aTitle!}</span>
 			      <span>${item.aField!}</span>
-			      <span>${item.aFormat!}</span>
+			      <span>${item.aFormat!item.aTitle}</span>
 			    </li>
 			</#if>
 			</#list>
