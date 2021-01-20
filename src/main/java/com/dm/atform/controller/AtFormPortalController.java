@@ -78,6 +78,12 @@ public class AtFormPortalController {
 		return PageConvertUtil.grid(page);
 	}
 
+	@RequestMapping("listTreeOfSec")
+	@ResponseBody
+	public Object listTreeOfSec() {
+		return this.table.listTreeOfSec();
+	}
+	
 	@RequestMapping("beforlist")
 	@ResponseBody
 	public Object beforlist(HttpServletRequest request,

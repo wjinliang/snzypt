@@ -146,6 +146,6 @@
       </div>
       <#include "/template/sn_new_footer.ftl">
     </div>
-    <script src="/html/sn-static209/jl/resourceZtreeMenu.js"></script>
+    <script src="/html/sn-static209/jl/resourceZtreeMenu.js?v=1"></script>
   </body>
 </html>

@@ -168,5 +168,11 @@ public class AtTableServiceImpl implements AtTableService{
 		this.tableMapper.updateByPrimaryKeySelective(t2);
 		
 	}
+	@Override
+	public Object listTreeOfSec() {
+		// TODO Auto-generated method stub
+		List<Map<String, String>> res =	this.tableMapper.listTreeOfSec();
+		return res;
+	}
 	
 }

@@ -460,7 +460,13 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.8</version>
 		</dependency>
-
+	
+		<!-- https://mvnrepository.com/artifact/javax.xml.soap/javax.xml.soap-api -->
+		<dependency>
+		    <groupId>javax.xml.soap</groupId>
+		    <artifactId>javax.xml.soap-api</artifactId>
+		    <version>1.4.0</version>
+		</dependency>
 		<!-- 添加基础模块 -->
 		<dependency>
 			<groupId>com.dm.platform</groupId>
@@ -470,7 +476,13 @@
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/platform.jar</systemPath>
 		</dependency>
 		<!-- 基础模块end -->
-
+		<!-- axis1 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-remoting</artifactId>
+			<version>2.0.8</version>
+		</dependency>
 
 		<!-- BJCA -->
 		<dependency>
@@ -573,13 +585,6 @@
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BJCA-UAMS-SDK-1.4.jar</systemPath>
 		</dependency>
 		<!-- BJCA -->
-		<!-- axis1 -->
-		<!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-remoting</artifactId>
-			<version>2.0.8</version>
-		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.axis</groupId> -->
 		<!-- <artifactId>axis</artifactId> -->

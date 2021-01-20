@@ -28,4 +28,6 @@ public interface AtTableMapper {
 	Long countByArg(Map map);
 	
 	List<AtTable> selectByPid(String pid);
+
+	List<Map<String, String>> listTreeOfSec();
 }

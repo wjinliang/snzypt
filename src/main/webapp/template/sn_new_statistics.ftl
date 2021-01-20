@@ -68,72 +68,33 @@
         </div>
       </div>
       <#include "/template/sn_new_footer.ftl">
-    <script src="/html/sn-static209/jl/statistics.js"></script>
+    <script type="text/javascript" src="/html/sn-static/static/js/echarts.common.min.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCJBQK2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYSCTJ2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NZWBZMJHZLMJ2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NLMYYZCZ2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_ZYNCPCL2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_PJYNCYRYZNLMYZCZ2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_GDMJ2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYGGY2019FP.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYSCTJ2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NLMYYZCZZB2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_ZYNZWBZMJJCL2019zb.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_LYJGGXCPSC2019bd.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SCSYJCCPCL2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SCPSC2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYGGY2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_tjZZSC2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_MSLY2019db.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SSNY2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_XZQY2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_XZQYCKGHQK2019.js"></script>
+    <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCSCJYZYZBQK2019.js"></script>
+    
+    <script type="text/javascript" src="/html/sn-static209/jl/statistics.js"></script>
     </div>
     <script>
-      $(function () {
-        var parentNodes = zNodes.filter(function (ele) {
-          return ele.pId === 0
-        })
-        var htmlStr = ''
-        parentNodes.forEach(function (ele, index) {
-          var cHtmlStr = ''
-          zNodes.forEach(function (ele1, index1) {
-            if (ele.id === ele1.pId) {
-              cHtmlStr +=
-                '<li><i class="icon ' +
-                ele1.iconSkin +
-                '"></i>' +
-                ele1.name +
-                '</li>'
-            }
-          })
-          if (cHtmlStr !== '') {
-            htmlStr +=
-              '<h3 class="menu_head set-icon"><i class="icon ' +
-              ele.iconSkin +
-              '"></i>' +
-              ele.name +
-              '</h3>' +
-              '<ul class="menu_body">' +
-              cHtmlStr +
-              '</ul>'
-          } else {
-            htmlStr +=
-              '<h3 class="menu_head_noc"><i class="icon ' +
-              ele.iconSkin +
-              '"></i>' +
-              ele.name +
-              '</h3>' +
-              '<ul class="menu_body">' +
-              cHtmlStr +
-              '</ul>'
-          }
-        })
-        $('#platPane').append(htmlStr)
-        // $('#platPane .menu_body:eq(1)').show()
-        $('#platPane h3.menu_head_noc').click(function () {
-          alert(1)
-        })
-        $('#platPane h3.menu_head').click(function () {
-          $(this)
-            .addClass('current')
-            .next('.menu_body')
-            .slideToggle(300)
-            .siblings('.menu_body')
-            .slideUp('normal')
-          $(this).siblings().removeClass('current')
-          $(this).next('.menu_body').addClass('open')
-          $(this)
-            .next('.menu_body')
-            .children('li')
-            .on('click', function () {
-              Statistics.open($(this));
-              $(this).addClass('navs-active')
-              $(this).siblings().removeClass('navs-active')
-            })
-        })
-      })
+      
     </script>
   </body>
 </html>

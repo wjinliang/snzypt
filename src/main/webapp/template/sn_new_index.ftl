@@ -6,7 +6,7 @@
     <title>${site.displayName!}</title>
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/style.css" />
-    <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />
+    <link rel="stylesheet" href="/html/sn-static209/jl/style.css?v=1" />
   </head>
 
   <body>

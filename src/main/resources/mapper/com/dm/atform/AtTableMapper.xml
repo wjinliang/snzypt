@@ -487,4 +487,8 @@
 		select max(seq) seq from
 		at_table_config
 	</select>
+	<select id="listTreeOfSec" resultType="java.util.Map">
+		SELECT id, grid_name as 'gridName', info, origin, data_count as 'dataCount', col_type as 'colType', col_icon as 'colIcon' 
+		 FROM `at_table_config` WHERE (pid IS NULL OR pid = '') AND `status` = '1' ORDER BY seq
+	</select>
 </mapper>

@@ -35,6 +35,8 @@ public interface AtTableService {
 
 	void sort(String id, String pid, String targetId, String moveType);
 
+	Object listTreeOfSec();
+
 
 	
 }
