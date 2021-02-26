@@ -27,6 +27,10 @@ public enum NongQingResEnum {
 	 * 农作物类型
 	 */
 	SEARCH_TYPE_PLANT_TYPE("plant"),
+	/**
+	 * 按地区搜索
+	 */
+	SEARCH_TYPE_AREA("area"),
 	
 	/**
 	 * null类型

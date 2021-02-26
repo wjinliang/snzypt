@@ -1,9 +1,8 @@
 package com.dm.atform.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,38 +39,37 @@ import com.github.pagehelper.PageInfo;
 @RequestMapping("/portal")
 public class NongqingPortalController {
 
-	@Autowired
-	private AtFieldService colService;
+    @Autowired
+    private AtFieldService colService;
 
-	@Autowired
-	private AtTableService table;
-	
-	@Autowired
-	private CmsSiteService siteService;
+    @Autowired
+    private AtTableService table;
 
-	@Autowired
-	private MongoService mongo;
-	
-	@Autowired
-	private NongqingService nongqingService;
-	
-	@Autowired
-	private MongoTemplate mongoTemplate;
+    @Autowired
+    private CmsSiteService siteService;
 
-	@Autowired
-	private LogService logService;
-	
-	@RequestMapping("/nongqing/getAllData")
-	@ResponseBody
-	public Object listTreeOfSec(@RequestParam(required = false) String areaCode, @RequestParam(required = false) String year,
-			@RequestParam(required = false) String searchType, @RequestParam(required = false) String searchParam) {
-		
-		if(StringUtils.isBlank(areaCode) && StringUtils.isBlank(searchParam)
-				&& StringUtils.isBlank(year) && StringUtils.isBlank(searchType)) {
-			return ResponseUtil.error("请至少约束一个筛选条件。");
-		}
-		
-		return nongqingService.getResultFormMongo(areaCode, searchParam, year, searchType);
-	
-	}
+    @Autowired
+    private MongoService mongo;
+
+    @Autowired
+    private NongqingService nongqingService;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private LogService logService;
+
+    @RequestMapping("/nongqing/getAllData")
+    @ResponseBody
+    public Object listTreeOfSec(@RequestParam(required = false) String areaCode, @RequestParam(required = false) String year,
+                                @RequestParam(required = false) String searchType, @RequestParam(required = false) String searchParam) {
+        if (StringUtils.isBlank(areaCode) && StringUtils.isBlank(searchParam)
+                && StringUtils.isBlank(year) && StringUtils.isBlank(searchType)) {
+            return ResponseUtil.error("请至少约束一个筛选条件。");
+        }
+
+        return nongqingService.getResultFormMongo(areaCode, searchParam, year, searchType);
+
+    }
 }
