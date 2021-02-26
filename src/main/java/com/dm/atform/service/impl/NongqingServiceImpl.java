@@ -163,9 +163,9 @@ public class NongqingServiceImpl implements NongqingService {
         });
         System.out.println(realPlants.size());
         System.out.println(realPlantsTunId.size());
-        long l2 = System.currentTimeMillis();
-        System.out.println("第二段耗时：" + (l2-l1));
+        // 涉农用地
         resMap.put("totalLandArea", totalLandArea);
+        // 农业用地块数量
         resMap.put("agriculturalLandCount", tunInfos.keySet().size());
         double parAllMu = 0;
         for (String parId : parInfos.keySet()) {
@@ -181,7 +181,7 @@ public class NongqingServiceImpl implements NongqingService {
         }
         resMap.put("newestPlantMu", newestPlantMu);
         // 可种植面积
-        resMap.put("plantMuAvailable", parAllMu - newestPlantMu);
+        resMap.put("plantMuAvailable", totalLandArea - newestPlantMu);
         // 地块数量
         resMap.put("tunCount", tunInfos.size());
         // 传感器数量
