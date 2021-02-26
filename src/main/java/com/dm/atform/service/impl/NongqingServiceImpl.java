@@ -2,6 +2,7 @@ package com.dm.atform.service.impl;
 
 import java.util.*;
 
+import com.dm.platform.util.ResponseUtil;
 import com.mongodb.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,24 +39,24 @@ public class NongqingServiceImpl implements NongqingService {
             switch (NongQingResEnum.matchOpCode(searchType)) {
                 case SEARCH_TYPE_ENTERPRISE_NAME:
                     // 企业名称 查询
-                    System.out.println("企业名称查询");
                     if (StringUtils.isBlank(searchParam)) {
                         resMap.put("error", "企业名称为空。");
-                        return resMap;
+                        return ResponseUtil.error("企业名称不能为空");
                     }
                     handleEnterpriseNameSearchType(searchParam, resMap);
                     break;
                 case SEARCH_TYPE_AREA:
                     // 位置区域查询 查询
-                    System.out.println("位置区域查询");
                     handleAreaSearchTypeMethodTwo(searchParam, resMap);
                     break;
                 default:
                     System.out.println(NongQingResEnum.matchOpCode(searchType));
                     break;
             }
+        } else {
+            return ResponseUtil.error("搜索内容为空");
         }
-        return resMap;
+        return ResponseUtil.success(resMap);
     }
 
     /**
