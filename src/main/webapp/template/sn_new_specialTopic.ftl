@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="renderer" content=webkit>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
     <title>${site.displayName!}</title>
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
@@ -56,7 +57,7 @@
             <div class="topic-desc pull-topic-right">
               <h1>农情</h1>
               <p>此处可添加一句农情概括</p>
-              <button class="more-btn btn-default">《了解更多</button>
+              <button id="nongqing_btn" class="more-btn btn-default">《了解更多</button>
             </div>
             <div class="topic-img topic-img2"></div>
           </div>
@@ -118,6 +119,9 @@
   <script>
   $("#nianjian_btn").on("click",function(){
     window.location.href = "/topiecms/portal/channel/ntjnj/43_1.htm";
+  });
+  $("#nongqing_btn").on("click",function(){
+    window.location.href = "/topiecms/portal/channel/newnongqing/45_1.htm";
   });
   </script>
 </html>

@@ -107,7 +107,6 @@ public class NongqingServiceImpl implements NongqingService {
         final Map<String, DBObject> parInfos = new HashMap<>(16);
         // 地块
         final Map<String, DBObject> tunInfos = new HashMap<>(16);
-        long l1 = System.currentTimeMillis();
         mongoTemplate.executeQuery(new Query(Criteria.where("enterpriseId").in(areaEnterprises.keySet())), "w_baseInfo", new DocumentCallbackHandler() {
             @Override
             public void processDocument(DBObject dbObject) throws MongoException, DataAccessException {
@@ -164,14 +163,14 @@ public class NongqingServiceImpl implements NongqingService {
         System.out.println(realPlants.size());
         System.out.println(realPlantsTunId.size());
         // 涉农用地
-        resMap.put("totalLandArea", totalLandArea);
+        resMap.put("totalLandArea", Math.ceil(totalLandArea));
         // 农业用地块数量
         resMap.put("agriculturalLandCount", tunInfos.keySet().size());
         double parAllMu = 0;
         for (String parId : parInfos.keySet()) {
             parAllMu += Double.parseDouble((String) parInfos.get(parId).get("parMu"));
         }
-        resMap.put("parAllMu", parAllMu);
+        resMap.put("parAllMu", Math.ceil(parAllMu));
         // 农场数量
         resMap.put("farmsCount", baseInfos.size());
         // 当前种植面积
@@ -179,9 +178,9 @@ public class NongqingServiceImpl implements NongqingService {
         for (String tunId : realPlantsTunId) {
             newestPlantMu += Double.parseDouble((String) tunInfos.get(tunId).get("tunMu"));
         }
-        resMap.put("newestPlantMu", newestPlantMu);
+        resMap.put("newestPlantMu", Math.ceil(newestPlantMu));
         // 可种植面积
-        resMap.put("plantMuAvailable", totalLandArea - newestPlantMu);
+        resMap.put("plantMuAvailable", Math.floor(totalLandArea - newestPlantMu));
         // 地块数量
         resMap.put("tunCount", tunInfos.size());
         // 传感器数量

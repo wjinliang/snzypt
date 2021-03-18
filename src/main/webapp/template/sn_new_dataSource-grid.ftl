@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+      <meta name="renderer" content=webkit>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
     <title>${site.displayName!}</title>
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />

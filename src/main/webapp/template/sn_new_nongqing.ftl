@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="renderer" content=webkit>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
   <title>${site.displayName!}</title>
   <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
@@ -53,7 +54,7 @@
     <div class="main-data-reasource">
       <div class="setWidth">
         <div class="setlocation">
-          当前页面：<span>农情专题</span>
+          当前页面：特色专题/<span>农情专题</span>
         </div>
         <div class="common-valliage">
           <div class="main-topic">
@@ -63,18 +64,18 @@
                   <div class="clearfix" style="padding:15px 0"><span id="collapseBtn" class="collapse-btn">收起选项</span></div>
                   <div class="filter-box" id="nongQingFilterBox">
                     <ul>
-                      <li>
-                        <span class="filter-label">年度:</span>
-                        <div class="filter-list" id="year">
-                          <a href="javascript:;" class="active">2020年</a>
-                          <a href="javascript:;">2019年</a>
-                          <a href="javascript:;">2018年</a>
-                          <a href="javascript:;">2017年</a>
-                          <a href="javascript:;">2016年</a>
-                          <a href="javascript:;">2015年</a>
-                          <a href="javascript:;">2014年</a>
-                        </div>
-                      </li>
+<#--                      <li>-->
+<#--                        <span class="filter-label">年度:</span>-->
+<#--                        <div class="filter-list" id="year">-->
+<#--                          <a href="javascript:;" class="active">2020年</a>-->
+<#--                          <a href="javascript:;">2019年</a>-->
+<#--                          <a href="javascript:;">2018年</a>-->
+<#--                          <a href="javascript:;">2017年</a>-->
+<#--                          <a href="javascript:;">2016年</a>-->
+<#--                          <a href="javascript:;">2015年</a>-->
+<#--                          <a href="javascript:;">2014年</a>-->
+<#--                        </div>-->
+<#--                      </li>-->
                       <li>
                         <span class="filter-label">区域:</span>
                         <div class="filter-list" id="region">
@@ -102,9 +103,6 @@
                           </div>
                           <div class="selectListNext">
                             <a href="javascript:;" class="listANext">企业名称</a>
-                            <a href="javascript:;" class="listANext">企业地址</a>
-                            <a href="javascript:;" class="listANext">示范基地</a>
-                            <a href="javascript:;" class="listANext">农作物品种</a>
                           </div>
                         </div>
                         <div class="filter-search">

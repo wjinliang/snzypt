@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="renderer" content=webkit>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
     <title>${site.displayName!}</title>
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
@@ -75,7 +76,7 @@
                   <ul class="source-nav">
                     <li>监测预警</li>
                     <li>标准规范</li>
-                    <li>美丽乡村</li>
+                    <li>智慧乡村</li>
                     <li>舆情资讯</li>
                     <li>质量安全</li>
                   </ul>
@@ -115,30 +116,30 @@
                       <a class="link bg1" href="#"><span>经济收入</span></a>
                     </div>
                   </li>
-                  <li class="PathInner" id="PathMenu2">
-                    <div class="PathMain" onclick="toggleTool_m('PathMenu2');">
-                      美丽乡村
+                  <li class="PathInner" id="PathMenu5">
+                    <div class="PathMain" onclick="toggleTool_m('PathMenu5');">
+                      休闲农业
                     </div>
                     <div class="PathItem PathItem1">
-                      <span class="line1 bg2"></span>
-                      <a class="link bg2" href="#"><span>农村总数</span></a>
+                      <span class="line1 bg6"></span>
+                      <a class="link bg6" href="#"><span>农村总数</span></a>
                     </div>
                     <div class="PathItem PathItem2">
-                      <span class="line2 bg2"></span>
-                      <a class="link bg2" href="#"><span>常驻人口</span></a>
+                      <span class="line2 bg6"></span>
+                      <a class="link bg6" href="#"><span>常驻人口</span></a>
                     </div>
                     <div class="PathItem PathItem3">
-                      <span class="line3 bg2"></span>
-                      <a class="link bg2" href="#"><span>经济收入</span></a>
+                      <span class="line3 bg6"></span>
+                      <a class="link bg6" href="#"><span>经济收入</span></a>
                     </div>
                     <div class="PathItem PathItem4">
-                      <span class="line4 bg2"></span>
-                      <a class="link bg2" href="#"><span>农业用地</span></a>
+                      <span class="line4 bg6"></span>
+                      <a class="link bg6" href="#"><span>农业用地</span></a>
                     </div>
                   </li>
-                  <li class="PathInner" id="PathMenu3">
-                    <div class="PathMain" onclick="toggleTool_m('PathMenu3');">
-                      智慧乡村
+                  <li class="PathInner" id="PathMenu6">
+                    <div class="PathMain" onclick="toggleTool_m('PathMenu6');">
+                      统计年鉴
                     </div>
                     <div class="PathItem PathItem1">
                       <span class="line1 bg3"></span>
@@ -198,9 +199,9 @@
                       <a class="link bg4" href="#"><span>经济收入</span></a>
                     </div>
                   </li>
-                  <li class="PathInner" id="PathMenu5">
-                    <div class="PathMain" onclick="toggleTool_m('PathMenu5');">
-                      休闲农业
+                  <li class="PathInner" id="PathMenu2">
+                    <div class="PathMain" onclick="toggleTool_m('PathMenu2');">
+                      智慧乡村
                     </div>
                     <div class="PathItem PathItem2-1">
                       <span class="line2-1 bg5"></span>
@@ -219,21 +220,9 @@
                       <a class="link bg5" href="#"><span>农业用地</span></a>
                     </div>
                   </li>
-                  <li class="PathInner" id="PathMenu6">
-                    <div class="PathMain" onclick="toggleTool_m('PathMenu6');">
-                      统计年鉴
-                    </div>
-                    <div class="PathItem PathItem2-1">
-                      <span class="line2-1 bg6"></span>
-                      <a class="link bg6" href="#"><span>农村总数</span></a>
-                    </div>
-                    <div class="PathItem PathItem2-2">
-                      <span class="line2-2 bg6"></span>
-                      <a class="link bg6" href="#"><span>常驻人口</span></a>
-                    </div>
-                    <div class="PathItem PathItem2-3">
-                      <span class="line2-3 bg6"></span>
-                      <a class="link bg6" href="#"><span>经济收入</span></a>
+                  <li class="PathInner" id="PathMenu5">
+                    <div class="PathMain">
+                      ...
                     </div>
                   </li>
                 </ul>
@@ -263,7 +252,7 @@
 	  { id: 32, pId: 3, name: '质量安全信息',code:'QuHM4Myr', iconSkin: 'icon-25' },
 	  { id: 33, pId: 3, name: '休闲农业信息',code:'V5xYUnWp', iconSkin: 'icon-23' },
 	  { id: 31, pId: 3, name: '监测预警信息',code:'2jA5V8Qh', iconSkin: 'icon-24' },
-	  { id: 33, pId: 3, name: '美丽乡村信息',code:'SB7TABfi', iconSkin: 'icon-29' },
+	  { id: 33, pId: 3, name: '智慧乡村信息',code:'SB7TABfi', iconSkin: 'icon-29' },
 	  { id: 33, pId: 3, name: '农村改革信息',code:'hznuuul3', iconSkin: 'icon-26' },
 	  { id: 31, pId: 3, name: '舆情资讯信息',code:'gtTEogrR', iconSkin: 'icon-27' },
 	  { id: 33, pId: 3, name: '统计年鉴信息',code:'cL3i8PR4', iconSkin: 'icon-12' },
@@ -596,11 +585,12 @@
                   normal: {
                     show: true,
                     textStyle: {
-                      color: '#fff',
+                      color: '#D8BC37',
                       fontSize: 9,
                     },
                     formatter(value) {
-                      return value.data.value[2]
+                      // return value.data.value[2]
+                      return ""
                     },
                   },
                 },

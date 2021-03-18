@@ -72,7 +72,7 @@ public class CunqingPortalController {
 				System.out.println(key+":"+m.get(key));
 			}
 			System.out.println("},");
-		}
+		} //
 		return "app/cqpage";
 	}
 

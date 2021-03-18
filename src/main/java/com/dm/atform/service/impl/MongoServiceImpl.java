@@ -589,9 +589,9 @@ public class MongoServiceImpl implements MongoService {
 		int skip = (pageNum - 1) * pageSize;
 		if(fs.size()!=0){
 			for (AtField f : fs) {
-				fields.put(f.getaField(), "1");
+				fields.put(f.getaField(), true);
 			}
-			fields.put(atTable.getIdField(), "1");
+			fields.put(atTable.getIdField(), true);
 			
 			 cursor = coll.find(query, fields).skip(skip)
 					.sort(ord).limit(pageSize);
@@ -685,7 +685,7 @@ public class MongoServiceImpl implements MongoService {
 			fields= new BasicDBObject();
 			String[] fs = fileds.split(",");
 			for(String val:fs){
-				fields.append(val, "1");
+				fields.append(val, true);
 			}
 			cursor = coll.find(query,fields).skip(skip).limit(pageSize);
 		}else{
@@ -876,7 +876,7 @@ public class MongoServiceImpl implements MongoService {
 		int skip = (pageNum - 1) * pageSize;
 		if(!StringUtils.isEmpty(atTable.getSearchField())){
 			for (String field:atTable.getSearchField().split(",")) {
-				fields.put(field, "1");
+				fields.put(field, true);
 			}
 			 cursor = coll.find(query, fields).skip(skip)
 					.sort(ord).limit(pageSize);
