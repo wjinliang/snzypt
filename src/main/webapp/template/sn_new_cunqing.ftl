@@ -57,21 +57,21 @@
             <div class="setlocation">
                 当前页面：特色专题/<span>村情专题</span>
             </div>
-            <div class="common-valliage">
+            <div class="common-valliage" style="background: none">
                 <div class="main-topic">
-                    <div class="common-valliage">
+                    <div class="common-valliage" style="background: none">
                         <div class="valliage-info">
                             <div class="clearfix">
                                 <div class="v-left">
-                                    <div class="v-name">XXXX村</div>
+                                    <div id="info_cunName" class="v-name">村情专题</div>
                                     <div class="v-nav">
                                         <div id="navList" class="navlist-wrap">
                                             <div class="navlist">
                                                 <a href="" class="btn-active nav-btn">基本信息</a>
                                                 <a href="" class="nav-btn">特色产业</a>
                                                 <a href="" class="nav-btn">休闲农业</a>
-                                                <a href="" class="nav-btn">智慧乡村</a>
-                                                <a href="" class="nav-btn">其他</a>
+<#--                                                <a href="" class="nav-btn">智慧乡村</a>-->
+<#--                                                <a href="" class="nav-btn">其他</a>-->
                                             </div>
                                         </div>
                                         <div id="expandZone" class="expand active">
@@ -81,27 +81,27 @@
                                                         <li>
                                                             <i class="iconfont icon-weizhi"></i>
                                                             <span class="info-label">地理位置</span>
-                                                            <span class="info-count"></span>
+                                                            <span id="info_location" class="info-count"></span>
                                                         </li>
                                                         <li>
                                                             <i class="iconfont icon-mianji"></i>
                                                             <span class="info-label">村域面积</span>
-                                                            <span class="info-count"></span>
+                                                            <span id="info_villageArea" class="info-count"></span>
                                                         </li>
                                                         <li>
                                                             <i class="iconfont icon-renyuanfenbu"></i>
                                                             <span class="info-label">人口情况</span>
-                                                            <span class="info-count"></span>
+                                                            <span id="populationSituation" class="info-count"></span>
                                                         </li>
                                                         <li>
                                                             <i class="iconfont icon-shebei"></i>
                                                             <span class="info-label">基础设施</span>
-                                                            <span class="info-count"></span>
+                                                            <span id="infrastructure" class="info-count"></span>
                                                         </li>
                                                         <li>
                                                             <i class="iconfont icon-tudi"></i>
                                                             <span class="info-label">村庄规划</span>
-                                                            <span class="info-count"></span>
+                                                            <span id="info_villagePlanning" class="info-count"></span>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -109,8 +109,8 @@
                                                     <ul>
                                                         <li>
                                                             <i class="iconfont icon-weizhi"></i>
-                                                            <span class="info-label">地理位置11</span>
-                                                            <span class="info-count">2121212</span>
+                                                            <span class="info-label">地理位置</span>
+                                                            <span id="" class="info-count"></span>
                                                         </li>
                                                         <li>
                                                             <i class="iconfont icon-mianji"></i>
@@ -230,22 +230,22 @@
                                     <div class="v-hot-news">
                                         <div class="h-header">
                                             <span><i class="iconfont icon-laba"></i>最新动态</span>
-                                            <a href="" target="_blank">更多></a>
+                                            <a href='javascript:void(0)' id="moreDynamic">更多></a>
                                         </div>
                                         <div class="v-hot-cons" id="newestDynamic">
-                                            <p><a href="" target="_blank">世行：疫苗为经济复苏关键 中国助力全球经济发展中国助力全球经济发展</a></p>
+                                            <p><a href='javascript:void(0)' target="_blank">此处展示最新动态，正在加载...</a></p>
                                         </div>
                                     </div>
                                     <div class="v-other-service">
-                            <span id="cqvideo">
+                            <span id="cqvideoShow">
                                 <img src="/html/sn-static209/cdn/img/cqicon02.png">
                                 视频
                             </span>
-                                        <span id="allImage">
+                                        <span id="allImageShow">
                                 <img src="/html/sn-static209/cdn/img/cqicon03.png">
                                 图片
                             </span>
-                                        <span id="allView">
+                                        <span id="quanjingShow">
                                 <img src="/html/sn-static209/cdn/img/cqicon04.png">
                                 全景图
                             </span>
@@ -269,25 +269,19 @@
                                         <div class="filter-dropDown">
                                             <input id="searchRegion" type="text" value="" placeholder="输入搜索区名称">
                                             <ul id="regionResult" class="region-style">
-                                                <li>海淀区</li>
-                                                <li>搜索1</li>
-                                                <li>搜索2</li>
-                                                <li>搜索3</li>
+                                                <li>没有结果</li>
                                             </ul>
                                         </div>
                                         <div class="filter-dropDown">
                                             <input id="searchVallage" type="text" value="" placeholder="输入村名城">
                                             <ul id="vallageResult" class="region-style">
-                                                <li>海淀区</li>
-                                                <li>搜索1</li>
-                                                <li>搜索2</li>
-                                                <li>搜索3</li>
+                                                <li>没有结果</li>
                                             </ul>
                                         </div>
                                         <div class="filter-dropDown">
                                             <input type="text" value="" class="search-keys" placeholder="关键词搜索">
                                         </div>
-                                        <div class="searchIcon">
+                                        <div class="searchIcon" id="searchBtn">
                                             <i class="iconfont icon-sousuo"></i>
                                         </div>
                                     </div>
@@ -303,6 +297,7 @@
     <#include "/template/sn_new_footer.ftl">
     <script src="/html/sn-static209/cdn/js/jquery-3.4.1.min.js"></script>
     <script src="/html/sn-static209/cdn/js/viewer.min.js"></script>
+    <script src="/html/sn-static209/cdn/js/coco-modal.min.js"></script>
     <script src="/html/sn-static209/cdn/js/layer.js"></script>
     <script src="/html/sn-static209/cdn/js/topicLayer.js"></script>
     <script src='/html/sn-static/static/sumap/libs/SuperMap.Include.js'></script>
