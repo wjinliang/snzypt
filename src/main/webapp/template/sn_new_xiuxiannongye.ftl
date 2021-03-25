@@ -54,26 +54,26 @@
     <div class="main-data-reasource">
       <div class="setWidth">
         <div class="setlocation">
-          当前页面：特色专题/<span>农情专题</span>
+          当前页面：特色专题/<span>休闲农业专题</span>
         </div>
         <div class="common-valliage">
           <div class="main-topic">
             <div class="topic-filter">
               <div class="clearfix" style="padding:15px 0"><span id="collapseBtn" class="collapse-btn">收起选项</span></div>
-              <div class="filter-box">
+              <div class="filter-box" style="margin: 0 20px">
                 <ul>
-                  <li>
-                    <span class="filter-label">年度:</span>
-                    <div class="filter-list" id="year">
-                      <a href="javascript:;" class="active">2020年</a>
-                      <a href="javascript:;">2019年</a>
-                      <a href="javascript:;">2018年</a>
-                      <a href="javascript:;">2017年</a>
-                      <a href="javascript:;">2016年</a>
-                      <a href="javascript:;">2015年</a>
-                      <a href="javascript:;">2014年</a>
-                    </div>
-                  </li>
+<#--                  <li>-->
+<#--                    <span class="filter-label">年度:</span>-->
+<#--                    <div class="filter-list" id="year">-->
+<#--                      <a href="javascript:;" class="active">2020年</a>-->
+<#--                      <a href="javascript:;">2019年</a>-->
+<#--                      <a href="javascript:;">2018年</a>-->
+<#--                      <a href="javascript:;">2017年</a>-->
+<#--                      <a href="javascript:;">2016年</a>-->
+<#--                      <a href="javascript:;">2015年</a>-->
+<#--                      <a href="javascript:;">2014年</a>-->
+<#--                    </div>-->
+<#--                  </li>-->
                   <li>
                     <span class="filter-label">区域:</span>
                     <div class="filter-list" id="region">
@@ -96,43 +96,25 @@
                     <span class="filter-label">关键字:</span>
                     <div class="filter-search" style="margin-left: 0; width: 15%;">
                       <input type="text" value="" class="search-keys" placeholder="请输入内容">
-                      <i class="iconfont icon-sousuo"></i>
+                      <i class="iconfont icon-sousuo" id = "searchBtn"></i>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="region-detail" style="margin-top: 40px;">
-              <div class="regin-body">
-                <h1>顺义区</h1>
-                <ul>
-                  <li>
-                    <span class="regin-label">常住人口</span>
-                    <span class="regin-count">288219人</span>
-                  </li>
-                  <li>
-                    <span class="regin-label">经济收入</span>
-                    <span class="regin-count">29939232元</span>
-                  </li>
-                  <li>
-                    <span class="regin-label">农业用地</span>
-                    <span class="regin-count">34万平方米</span>
-                  </li>
-                  <li>
-                    <span class="regin-label">涉农企业</span>
-                    <span class="regin-count">78家</span>
-                  </li>
-                </ul>
+              <div class="regin-body" id="reginBody_xxny">
+
               </div>
             </div>
-            <div class="argu-result">
+            <div class="argu-result" style="width: 96%;">
               <ul class="clearfix">
                 <li>
                   <div>
                     最美乡村
                   </div>
                   <div>
-                    <span>1579</span>个
+                    <span id="mostMeiCun">无数据</span>个
                   </div>
                 </li>
                 <li>
@@ -140,7 +122,7 @@
                     民俗村
                   </div>
                   <div>
-                    <span>1579</span>个
+                    <span id="mscDom">无数据</span>个
                   </div>
                 </li>
                 <li>
@@ -148,7 +130,7 @@
                     民俗户
                   </div>
                   <div>
-                    <span>1579</span>个
+                    <span id="mshDom">无数据</span>个
                   </div>
                 </li>
                 <li>
@@ -156,7 +138,7 @@
                     星级园区
                   </div>
                   <div>
-                    <span>1579</span>个
+                    <span id="xjyqDom">无数据</span>个
                   </div>
                 </li>
                 <li>
@@ -164,7 +146,7 @@
                     精品民宿
                   </div>
                   <div>
-                    <span>1579</span>个
+                    <span id="jpmsDom">无数据</span>个
                   </div>
                 </li>
               </ul>
