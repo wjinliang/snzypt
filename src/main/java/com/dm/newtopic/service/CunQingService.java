@@ -31,4 +31,8 @@ public interface CunQingService {
      * @return 结果
      */
     Object getCunName(String cunName, String countyName);
+
+    Object getCunNameNew(String zhenName, String quName);
+
+    Object getZhenName(String searchVal);
 }

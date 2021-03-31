@@ -54,39 +54,55 @@
     <div class="main-data-reasource">
       <div class="setWidth">
         <div class="setlocation">
-          当前页面：特色专题/<span>农情专题</span>
+          当前页面：特色专题/<span>智慧乡村</span>
         </div>
         <div class="common-valliage">
           <div class="valliage-info">
             <div id="bjMap1" class="map-wrap" style="height: 650px;"></div>
-            <div class="map-filter clearfix">
-              <div class="filter-l">
-                <div class="filter-dropDown" id="dropdown1">
-                  <span>名称模糊查询</span>
-                  <ul class="dropdown">
-                    <li>1111</li>
-                    <li>1222</li>
-                    <li>23332</li>
-                  </ul>
-                </div>
+            <div class="map-filter clearfix" style="width: 98%; margin: 0 15px;">
+              <div class="filter-l" style="width: 40%;">
                 <div class="filter-dropDown" id="dropdown2">
                   <span>按区查询</span>
                   <ul class="dropdown">
-                    <li>反对法</li>
-                    <li>十大科技</li>
-                    <li>但是大多数</li>
+                    <li>大兴区</li>
+                    <li>通州区</li>
+                    <li>朝阳区</li>
+                    <li>密云县</li>
+                    <li>顺义区</li>
+                    <li>平谷区</li>
+                    <li>昌平区</li>
+                    <li>怀柔区</li>
+                    <li>房山区</li>
+                    <li>丰台区</li>
+                    <li>门头沟区</li>
+                    <li>石景山区</li>
+                    <li>海淀区</li>
+                    <li>延庆县</li>
                   </ul>
                 </div>
                 <div class="filter-dropDown" id="dropdown3">
+                  <span>选择乡镇</span>
+                  <ul class="dropdown">
+
+                  </ul>
+                </div>
+                <div class="filter-dropDown" id="dropdown4">
+                  <span>选择村庄</span>
+                  <ul class="dropdown">
+
+                  </ul>
+                </div>
+                <div class="filter-dropDown" id="dropdown5">
                   <span>时间查询</span>
                   <ul class="dropdown">
-                    <li>999</li>
-                    <li>2222</li>
-                    <li>大多数都是</li>
+                    <li>2017</li>
+                    <li>2018</li>
+                    <li>2019</li>
+                    <li>2020</li>
                   </ul>
                 </div>
               </div>
-              <div class="filter-r">
+              <div class="filter-r" style="width: 58%;">
                 <ul class="filter-btn" id="filterBtn">
                   <li>框选查询</li>
                   <li>典型案例查询</li>
@@ -97,72 +113,10 @@
                 </ul>
               </div>
             </div>
-            <div class="search-results">
+            <div class="search-results" style="margin-right: 20px;">
               <h1>查询结果</h1>
               <ul class="search-list" id="searchList">
-                <li>
-                  <span class="res-nav active"><i class="iconfont icon-weibiaoti--" style="margin-right: 10px;"></i>XXXXXXXXKSJJ</span>
-                  <div class="detail-cont">
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2020</span>
-                      <p><span class="count-styles">203003</span>个</p>
-                    </div>
-                    <div class="item">
-                      ldododosdsJSDSJHJSHD<span class="year-styles">2019</span>
-                      <p><span class="count-styles">88393</span>个</p>
-                    </div>
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2018</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                    <div class="item">
-                      iidiisid<span class="year-styles">2017</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <span class="res-nav"><i class="iconfont icon-renyuanfenbu" style="margin-right: 10px;"></i>XXXXXXXXKSJJ</span>
-                  <div class="detail-cont">
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2020</span>
-                      <p><span class="count-styles">203003</span>个</p>
-                    </div>
-                    <div class="item">
-                      ldododosdsJSDSJHJSHD<span class="year-styles">2019</span>
-                      <p><span class="count-styles">88393</span>个</p>
-                    </div>
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2018</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                    <div class="item">
-                      iidiisid<span class="year-styles">2017</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <span class="res-nav"><i class="iconfont icon-baohunongyeyongdiguanli" style="margin-right: 10px;"></i>JDIIDIDSIDISDS</span>
-                  <div class="detail-cont">
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2020</span>
-                      <p><span class="count-styles">203003</span>个</p>
-                    </div>
-                    <div class="item">
-                      ldododosdsJSDSJHJSHD<span class="year-styles">2019</span>
-                      <p><span class="count-styles">88393</span>个</p>
-                    </div>
-                    <div class="item">
-                      XSJJJDJSJJDKS<span class="year-styles">2018</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                    <div class="item">
-                      iidiisid<span class="year-styles">2017</span>
-                      <p><span class="count-styles">222</span>个</p>
-                    </div>
-                  </div>
-                </li>
+                等待查询
               </ul>
             </div>
           </div>
@@ -172,6 +126,7 @@
     <#include "/template/sn_new_footer.ftl">
  		<script type="text/javascript" src="/html/sn-static209/cdn/js/topicLayer.js"></script>
       	<script type="text/javascript" src="/html/sn-static209/jl/zhihuixiangcun.js"></script>
+        <script src="/html/sn-static209/cdn/js/coco-modal.min.js"></script>
       	<script type="text/javascript" src="/html/sn-static209/cdn/js/echarts.min.js"></script>
   </div>
   <script>
@@ -451,22 +406,12 @@
         myChart.setOption(option)
       })
       // dropdown效果
-      var dropdown1 = new DropDown($('#dropdown1'));
-      var dropdown2 = new DropDown($('#dropdown2'));
-      var dropdown3 = new DropDown($('#dropdown3'));
-      dropdown1.initEvents();
-      dropdown2.initEvents();
-      dropdown3.initEvents();
-      $('#filterBtn li').on('click',function(){
-        $('.filter-dropDown').removeClass('active');
-        $(this).addClass('hover').siblings().removeClass('hover')
-      })
-      $('#searchList li span').on('click',function(){
-        $(this).addClass('active')
-        $(this).siblings('').slideToggle()
-        $(this).parent('li').siblings().find('.res-nav').removeClass('active')
-        $(this).parent('li').siblings().find('.detail-cont').slideUp()
-      })
+      var dropdown5 = new DropDown($('#dropdown5'));
+      // var dropdown2 = new DropDown($('#dropdown2'));
+      // var dropdown3 = new DropDown($('#dropdown3'));
+      dropdown5.initEvents();
+      // dropdown2.initEvents();
+      // dropdown3.initEvents();
     })
   </script>
 </body>

@@ -148,7 +148,36 @@ public class CunQingServiceImpl implements CunQingService {
     @Override
     public Object getCunName(String cunName, String countyName) {
         final ArrayList<Object> res = new ArrayList<>();
-        mongoTemplate.executeQuery(new Query(Criteria.where("SZ_XZC").regex("" + cunName).and("SZ_QX").is(countyName)), "m_ST_REG_VILLAGE", new DocumentCallbackHandler() {
+        mongoTemplate.executeQuery(new Query(Criteria.where("SZ_XZC").regex("" + cunName).and("SZ_QX").regex(countyName)), "m_ST_REG_VILLAGE", new DocumentCallbackHandler() {
+            @Override
+            public void processDocument(DBObject dbObject) throws MongoException, DataAccessException {
+                res.add(dbObject);
+            }
+        });
+        return ResponseUtil.success(res);
+    }
+
+    @Override
+    public Object getCunNameNew(String zhenName, String quName) {
+        quName = quName.replace("区", "");
+        quName = quName.replace("县", "");
+        final ArrayList<Object> res = new ArrayList<>();
+        Query query = new Query(Criteria.where("SZ_XZ").regex(zhenName).and("SZ_QX").regex(quName));
+        mongoTemplate.executeQuery(query, "m_ST_REG_VILLAGE", new DocumentCallbackHandler() {
+            @Override
+            public void processDocument(DBObject dbObject) throws MongoException, DataAccessException {
+                res.add(dbObject);
+            }
+        });
+        return ResponseUtil.success(res);
+    }
+
+    @Override
+    public Object getZhenName(String searchVal) {
+        searchVal = searchVal.replace("区", "");
+        searchVal = searchVal.replace("县", "");
+        final ArrayList<Object> res = new ArrayList<>();
+        mongoTemplate.executeQuery(new Query(Criteria.where("SZ_QX").regex(searchVal)), "m_ST_REG_TOWN", new DocumentCallbackHandler() {
             @Override
             public void processDocument(DBObject dbObject) throws MongoException, DataAccessException {
                 res.add(dbObject);

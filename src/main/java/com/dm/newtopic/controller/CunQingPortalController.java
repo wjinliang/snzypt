@@ -49,6 +49,27 @@ public class CunQingPortalController {
 
         return cunQingService.getCountyName(searchVal);
     }
+    /**
+     * 乡镇查询
+     * @param searchVal ignore
+     * @return 结果
+     */
+    @RequestMapping(value = "/cunQing/getZhenName", method = {RequestMethod.GET})
+    @ResponseBody
+    public Object getZhenName(String searchVal) {
+
+        return cunQingService.getZhenName(searchVal);
+    }
+    /**
+     * 村庄查询
+     * @param zhenName ignore
+     * @return 结果
+     */
+    @RequestMapping(value = "/cunQing/getCunNameNew", method = {RequestMethod.GET})
+    @ResponseBody
+    public Object getCunNameNew(String zhenName, String quName) {
+        return cunQingService.getCunNameNew(zhenName, quName);
+    }
 
     /**
      * 获取村名
