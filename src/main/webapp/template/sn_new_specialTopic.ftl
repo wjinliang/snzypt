@@ -7,7 +7,8 @@
     <title>${site.displayName!}</title>
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/common.css" />
     <link rel="stylesheet" href="/html/sn-static209/cdn/css/style.css" />
-    <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />
+<#--    <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />-->
+    <link rel="stylesheet" href="/html/sn-static209/jl/specialTopic.css">
   </head>
 
   <body>
@@ -52,62 +53,48 @@
         </div>
       </div>
       <div class="main-data-reasource">
-        <div class="bg-gray">
-          <div class="setWidth topic-box clearfix">
-            <div class="topic-desc pull-topic-right">
-              <h1>农情</h1>
-              <p>此处可添加一句农情概括</p>
-              <button id="nongqing_btn" class="more-btn btn-default">《了解更多</button>
+        <div class="box">
+          <div class="items" style="background-color: #e7f1f8;">
+            <div class="items-content-box">
+              <p class="items-content-tit">农情</p>
+              <p class="items-content-content">点击即可跳转农情专题页面</p>
+              <button id="nongqing_btn" class="items-content-btn">了解更多》</button>
             </div>
-            <div class="topic-img topic-img2"></div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic1.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
+          </div>
+          <div class="items" >
+            <div class="items-content-box">
+              <p class="items-content-tit">村情</p>
+              <p class="items-content-content">点击即可跳转村情专题页面</p>
+              <button id="cunqing_btn" class="items-content-btn">了解更多》</button>
+            </div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic2.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
           </div>
         </div>
-        <div class="bg-white">
-          <div class="setWidth topic-box">
-            <div class="topic-desc">
-              <h1>村情</h1>
-              <p>此处可添加一句村情概括</p>
-              <button class="more-btn btn-primary">了解更多》</button>
+        <div class="box">
+          <div class="items" >
+            <div class="items-content-box">
+              <p class="items-content-tit">休闲农业</p>
+              <p class="items-content-content">点击即可跳转休闲农业专题页面</p>
+              <button id="xiuxian_btn" class="items-content-btn">了解更多》</button>
             </div>
-            <div class="topic-img topic-img1"></div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic4.png) no-repeat; background-size: 100% 100%;"  class="items-bgimg"></div>
           </div>
-        </div>
-        <#--<div class="bg-white">
-          <div class="setWidth topic-box">
-            <div class="topic-desc">
-              <h1>美丽乡村</h1>
-              <p>此处可添加一句美丽乡村概括</p>
-              <button class="more-btn btn-primary">了解更多》</button>
+          <div class="items" style="background-color: #e7f1f8;">
+            <div class="items-content-box">
+              <p class="items-content-tit">智慧乡村</p>
+              <p class="items-content-content">点击即可跳转智慧乡村专题页面</p>
+              <button id="zhihui_btn" class="items-content-btn">了解更多》</button>
             </div>
-            <div class="topic-img topic-img3"></div>
-          </div>
-        </div>-->
-        <div class="bg-gray">
-          <div class="topic-box setWidth clearfix">
-            <div class="topic-desc pull-topic-right">
-              <h1>休闲农业</h1>
-              <p>此处可添加一句休闲农业概括</p>
-              <button class="more-btn btn-default">《了解更多</button>
-            </div>
-            <div class="topic-img topic-img4"></div>
-          </div>
-        </div>
-        <div class="bg-white">
-          <div class="setWidth topic-box">
-            <div class="topic-desc">
-              <h1>智慧乡村</h1>
-              <p>此处可添加一句智慧乡村概括</p>
-              <button class="more-btn btn-primary">了解更多》</button>
-            </div>
-            <div class="topic-img topic-img5"></div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic3.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
           </div>
         </div>
         <div class="bg-gray">
-          <div class="topic-box setWidth clearfix">
+          <div class="topic-box setWidth  clearfix">
             <div class="topic-desc pull-topic-right">
               <h1>统计年鉴</h1>
               <p>全面反映北京农村经济和社会发展</p>
-              <button id="nianjian_btn" class="more-btn btn-default">《了解更多</button>
+              <button id="nianjian_btn"  class="more-btn btn-default">《了解更多</button>
             </div>
             <div class="topic-img topic-img6"></div>
           </div>
@@ -117,11 +104,20 @@
     </div>
   </body>
   <script>
-  $("#nianjian_btn").on("click",function(){
-    window.location.href = "/topiecms/portal/channel/ntjnj/43_1.htm";
-  });
-  $("#nongqing_btn").on("click",function(){
-    window.location.href = "/topiecms/portal/channel/newnongqing/45_1.htm";
-  });
+    $("#nianjian_btn").on("click",function(){
+      window.location.href = "/topiecms/portal/channel/ntjnj/43_1.htm";
+    });
+    $("#nongqing_btn").on("click",function(){
+      window.location.href = "/topiecms/portal/channel/newnongqing/44_1.htm";
+    });
+    $("#cunqing_btn").on("click",function(){
+      window.location.href = "/topiecms/portal/channel/newnongqing/45_1.htm";
+    });
+    $("#xiuxian_btn").on("click",function(){
+      window.location.href = "/topiecms/portal/channel/newnongqing/46_1.htm";
+    });
+    $("#zhihui_btn").on("click",function(){
+      window.location.href = "/topiecms/portal/channel/newnongqing/47_1.htm";
+    });
   </script>
 </html>
