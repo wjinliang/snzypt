@@ -358,7 +358,7 @@
 						var form = modal.$body.dmForm(formOpts);
 						form.loadLocal({"tableId":currentTableId});
 					}else{
-						bootbox.alert("");
+						bootbox.alert("请先选中左侧具体的分类");
 					}
 				}
 			}/* , {

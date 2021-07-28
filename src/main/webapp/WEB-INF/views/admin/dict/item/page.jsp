@@ -253,7 +253,7 @@
 
     function addHoverDom(treeId, treeNode) {
         var sObj = $("#" + treeNode.tId + "_span");
-        if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
+        if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0 || treeNode.pId == null) return;
         var addStr = "<span class='button2 add' id='addBtn_" + treeNode.tId
                 + "' title='增加子级字典' onfocus='this.blur();'></span>" +
                 "<span class='button2 edit' id='editBtn_" + treeNode.tId

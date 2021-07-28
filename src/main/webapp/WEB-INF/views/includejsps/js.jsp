@@ -43,6 +43,8 @@
         type="text/javascript"></script>
 <script src="<%=basePath%>assets/admin/layout3/scripts/theme.js"
         type="text/javascript"></script>
+<script src="<%=basePath%>assets/global/plugins/jquery.mloading.js"
+        type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
     bootbox.setDefaults({

@@ -1133,7 +1133,8 @@
                 + '			<span class="input-group-btn">'
                 + '			<button class="btn blue" id="goBtn" type="button">GO</button>'
                 + '			</span>' + '		</div>' + '	</form>' + '</div><div>');
-            pagingRow.find("[role='goPage']").append(goPage);
+            // FIXME 这块其实没有问题，但是问题清单中提出存在问题，建议是去掉。今后如有需要可以打开下面的注释 (.0-0.) --- luotuan 210727
+            // pagingRow.find("[role='goPage']").append(goPage);
             this.$gridWrapper.append(pagingRow);
         },
         _getTotalPage: function () {

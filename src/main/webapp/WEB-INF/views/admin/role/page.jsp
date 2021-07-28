@@ -329,6 +329,7 @@
 			if (ids.length > 0) {
 				bootbox.confirm("确定删除吗？", function(result) {
 					if (result) {
+						//FIXME 添加蒙层效果更好
 						$.ajax({
 							type : "POST",
 							data : "roleId=" + ids,

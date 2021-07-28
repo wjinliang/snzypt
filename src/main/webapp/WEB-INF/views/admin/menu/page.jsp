@@ -668,7 +668,7 @@
                         success: function (data) {
                         	if (data.status == 1) {
 								bootbox.alert("删除成功!");
-								grid.reload();
+                                refreshmenutree();
 							}else{
 								bootbox.alert("删除失败!");
 							}

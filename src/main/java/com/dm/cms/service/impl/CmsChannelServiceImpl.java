@@ -355,7 +355,7 @@ import com.github.pagehelper.PageInfo;
 			root.put("channel", channel);
 			root.put("site", site);
 			root.put("pageSize",channel.getPageSize());
-			root.put("superChannel", getSuperChannel(channel));
+			root.put("superChannel", channel.getId().equals(channel.getPid()) ? channel : getSuperChannel(channel));
 			String htmlFile = serperator + channel.getEnName()+"_"+i+".html";
 			success = this.generatorHtmlPCAndModile(cmsTemplate.getTemplatePath(),htmldir,htmlFile, root, request);
 		    if(!success)
@@ -415,9 +415,9 @@ import com.github.pagehelper.PageInfo;
 		{
 			channelEnNamedir.insert(0,"/");
 			channelEnNamedir.insert(0,channel.getEnName());
-			if(channel.getPid().intValue()!=0)
+			if(channel.getPid() !=0 && !channel.getPid().equals(channel.getId()))
 			{
-				log.debug("---{}---",channel.getPid().intValue());
+				log.info("---{}---", channel.getPid());
 				getChannelenNameByIterator(channel.getPid(),channelEnNamedir);
 			}
 			else

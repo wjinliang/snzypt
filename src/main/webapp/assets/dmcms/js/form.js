@@ -1270,11 +1270,17 @@
             var that = this;
             if (this._beforeSubmit != undefined) {
                 var result = that._beforeSubmit();
+            } else {
+
             }
             if (result == false) {
                 return;
             }
             if (this._ajaxSubmit) {
+                var btn = $('button[role="submit"]');
+                var modalbody = $('div .modal-body');
+                btn.attr('disabled',true);
+                $("body").mLoading("show");
                 $.ajax({
                     type: that._method,
                     url: that._action,
@@ -1289,9 +1295,13 @@
                         } else {
                             alert("表单提交成功");
                         }
+                        btn.attr('disabled',false);
+                        $("body").mLoading("hide");
                     },
                     error: function (data) {
                         alert("异步提交表单错误.");
+                        btn.attr('disabled',false);
+                        $("body").mLoading("hide");
                     }
                 });
             } else {

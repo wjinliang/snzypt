@@ -47,41 +47,42 @@ public class FreeMarkertUtil {
 			Configuration config = new Configuration();
 			Writer out =null;
 			// 设置要解析的模板所在的目录，并加载模板文件
-			try {
-				config.setDirectoryForTemplateLoading(new File(templatePath));
-				// 设置包装器，并将对象包装为数据模型
-				config.setObjectWrapper(new DefaultObjectWrapper());
-				// 获取模板,并设置编码方式，这个编码必须要与页面中的编码格式一致
-				config = updateConfiguration(config, request);
-				// 否则会出现乱码
-				Template template = config.getTemplate(templateName, "UTF-8");
-				// 合并数据模型与模板
-				FileOutputStream fos = null;
-				fos = new FileOutputStream(fileName);
-				out = new OutputStreamWriter(fos, "UTF-8");
-				template.process(root, out);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				log.error(e.getMessage());
-				return false;
-			} catch (TemplateException e) {
-				// TODO Auto-generated catch block
-				log.error(e.getMessage());
-				return false;
-			}
-			finally{
-				if(out!=null)
-				{
-					try {
-						out.flush();
-						out.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						log.error(e.getMessage());
-						return false;
-					}
+		try {
+			config.setDirectoryForTemplateLoading(new File(templatePath));
+			// 设置包装器，并将对象包装为数据模型
+			config.setObjectWrapper(new DefaultObjectWrapper());
+			// 获取模板,并设置编码方式，这个编码必须要与页面中的编码格式一致
+			config = updateConfiguration(config, request);
+			// 否则会出现乱码
+			Template template = config.getTemplate(templateName, "UTF-8");
+			// 合并数据模型与模板
+			FileOutputStream fos = null;
+			fos = new FileOutputStream(fileName);
+			out = new OutputStreamWriter(fos, "UTF-8");
+			template.process(root, out);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			return false;
+		} catch (TemplateException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			return false;
+		} catch (IllegalArgumentException e) {
+			log.error(e.getMessage());
+			return false;
+		} finally {
+			if (out != null) {
+				try {
+					out.flush();
+					out.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					log.error(e.getMessage());
+					return false;
 				}
 			}
+		}
 			return true;
 	}
 	protected static Configuration updateConfiguration(Configuration configuration,HttpServletRequest request)

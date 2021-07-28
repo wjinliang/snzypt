@@ -413,7 +413,7 @@
 			labelInline : true,
 			rowEleNum : 1,
 			beforeSubmit : function() {
-
+				$('button[role="submit"]').attr('disabled',true);
 			},
 			ajaxSuccess : function(res) {
 				if(res.status=="1"){
@@ -421,8 +421,9 @@
 					modal.hide();
 					grid.reload();
 				}else{
-					bootbox.alert("操作失败!");	
+					bootbox.alert("操作失败!");
 				}
+				$('button[role="submit"]').attr('disabled',false);
 			},
 			submitText : "保存",//保存按钮的文本
 			showReset : false,//是否显示重置按钮

@@ -469,7 +469,7 @@
 	        }
 	    }
 	    function deleteData(id) {
-	        bootbox.confirm("确定删除吗？", function (result) {
+	        bootbox.confirm("确定清空文本数据吗？", function (result) {
 	            if (result) {
 	            	$.ajax({
 						url:"./deldata",

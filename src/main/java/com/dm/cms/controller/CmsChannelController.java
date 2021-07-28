@@ -121,7 +121,7 @@ public class CmsChannelController {
     		if(id!=null&&!id.equals("")){
     			Integer channelId = Integer.parseInt(id);
     			List<Integer> list =this.cmsChannelService.selectChildChannelIdList(channelId);
-    			if(list.size()>0)
+    			if(list.size()>0 && !list.contains(Integer.parseInt(id)))
     				return ResponseUtil.error("删除失败，请先删除该频道的子频道!");
     			this.cmsChannelService.deleteCmsChannel(channelId);
     		}
