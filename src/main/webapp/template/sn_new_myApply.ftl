@@ -108,5 +108,22 @@
       </div>
       <#include "/template/sn_new_footer.ftl">
     </div>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: "/topiecms/userInfo",
+              success: function (data) {
+                  if (data.status == "1") {
+                  } else {
+                     alert("请先登录！")
+                  }
+              },
+              error: function (jqXHR, textStatus, errorMsg) {
+              }
+          });
+      });
+  </script>
   </body>
 </html>

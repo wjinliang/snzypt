@@ -99,11 +99,11 @@
                         <div class="filter-dropDown">
                           <div class="selectNext">
                             <span class="selectValNext" onselectstart="return false">企业名称</span>
-                            <i class="iconfont icon-xiangxia" style="float: right;"></i>
+<#--                            <i class="iconfont icon-xiangxia" style="float: right;"></i>-->
                           </div>
-                          <div class="selectListNext">
-                            <a href="javascript:;" class="listANext">企业名称</a>
-                          </div>
+<#--                          <div class="selectListNext">-->
+<#--                            <a href="javascript:;" class="listANext">企业名称</a>-->
+<#--                          </div>-->
                         </div>
                         <div class="filter-search">
                           <input type="text" value="" class="search-keys" placeholder="请输入内容">
