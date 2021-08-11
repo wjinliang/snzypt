@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="/html/sn-static209/cdn/css/font.css" />
   <link rel="stylesheet" href="/html/sn-static209/jl/style.css" />
   <link rel="stylesheet" href="/html/sn-static209/cdn/iconFonts/iconfont.css" />
+  <script>
+    var iserver = "http://localhsot:8090";
+    //var iserver = "http://47.96.75.177:8090";
+    iserver = "http://mxbt.pro:8090";
+    var mapUrl = iserver + "/iserver/services/map-beijing/rest/maps/beijing10261";
+    var mapDataUrl = iserver + '/iserver/services/data-beijing/rest/data';
+  </script>
 </head>
 
 <body>
@@ -51,12 +58,13 @@
         </div>
       </div>
     </div>
+    <div id="_mapdiv"></div>
     <div class="main-data-reasource">
       <div class="setWidth">
-        <div class="setlocation">
-          当前页面：特色专题/<span>智慧乡村</span>
-        </div>
         <div class="common-valliage">
+          <div class="setlocation">
+            <div id="pathText">当前页面：特色专题/<span>智慧乡村</span></div>
+          </div>
           <div class="valliage-info">
             <div id="bjMap1" class="map-wrap" style="height: 650px;"></div>
             <div class="map-filter clearfix" style="width: 98%; margin: 0 15px;">
@@ -125,14 +133,17 @@
     </div>
     <#include "/template/sn_new_footer.ftl">
  		<script type="text/javascript" src="/html/sn-static209/cdn/js/topicLayer.js"></script>
-      	<script type="text/javascript" src="/html/sn-static209/jl/zhihuixiangcun.js"></script>
+
         <script src="/html/sn-static209/cdn/js/coco-modal.min.js"></script>
       	<script type="text/javascript" src="/html/sn-static209/cdn/js/echarts.min.js"></script>
+    <script type="text/javascript" include="widgets.alert" src="/html/sn-static209/cdn/js/include-web.js"></script>
+    <script type="text/javascript" exclude="iclient-classic" include="nanoscroller,infoWindow,MapToImg"
+            src="/html/sn-static209/cdn/classic/include-classic.js"></script>
   </div>
   <script>
     var myChart
     $(document).ready(function () {
-      myChart = echarts.init(document.getElementById('bjMap1'))
+      /*myChart = echarts.init(document.getElementById('bjMap1'))
       $.get('cdn/js/beijing.json', function (geoJson) {
         echarts.registerMap('beijing', geoJson, {})
         var geoCoordMap = {
@@ -404,7 +415,7 @@
           ],
         }
         myChart.setOption(option)
-      })
+      })*/
       // dropdown效果
       var dropdown5 = new DropDown($('#dropdown5'));
       // var dropdown2 = new DropDown($('#dropdown2'));
@@ -412,8 +423,123 @@
       dropdown5.initEvents();
       // dropdown2.initEvents();
       // dropdown3.initEvents();
+      // 初始化map的大小 & 一些样式的微调。
+      var mapDiv = document.getElementById("_mapdiv");
+      var nongQingContentDiv = document.getElementsByClassName("main-data-reasource")[0];
+      mapDiv.style.position = 'absolute';
+      mapDiv.style.top = getComputedStyle(nongQingContentDiv, null).top;
+      mapDiv.style.height = getComputedStyle(nongQingContentDiv, null).height;
+      mapDiv.style.width = getComputedStyle(nongQingContentDiv, null).width;
+      mapDiv.style.zIndex = 0;
+
+      window.onresize = () => {
+        mapDiv.style.top = getComputedStyle(nongQingContentDiv, null).top;
+        mapDiv.style.height = getComputedStyle(nongQingContentDiv, null).height;
+        mapDiv.style.width = getComputedStyle(nongQingContentDiv, null).width;
+      };
+
+      var commonValliage = document.querySelectorAll(".common-valliage");
+
+      commonValliage.forEach(item => {
+        item.style.background = "none";
+      })
+
+      var pathText = document.getElementById("pathText");
+      pathText.style.width = "300px";
+      pathText.style.padding = "10px 10px";
+      pathText.style.borderRadius = "10px";
+      pathText.style.background = 'rgba(255, 255, 255, 0.9)';
+
+      var map;
+      var initMap = function () {
+        this.map = new SuperMap.Map("_mapdiv", {
+          controls: [
+            new SuperMap.Control.Navigation(),
+            new SuperMap.Control.Zoom({div: $("#rightBottom")[0]}),
+            new SuperMap.Control.MousePosition(),
+            new SuperMap.Control.OverviewMap()
+          ], allOverlays: true
+        });
+
+        map = this.map;
+        //设置地图最小缩放级别为7级
+        this.map.events.register("zoomend", this, function (e) {
+          if (this.map.getZoom() < 7)
+          {
+            //map.zoomTo(17);
+            this.map.setCenter(new SuperMap.LonLat(116.36503293755, 39.953585745484), 9);
+          }
+        });
+        // $("#rightBottom").attr("style", "");
+
+        layer = new SuperMap.Layer.TiledDynamicRESTLayer("World", mapUrl, null, {
+          maxResolution: "auto",
+          useCanvas: false
+        });
+        layer.events.on({
+          "layerInitialized": () => {
+            this.map.addLayers([layer]);
+            this.map.setCenter(new SuperMap.LonLat(116.36503293755, 39.953585745484), 9);
+            //区划矢量图层
+            var qu_Layer = new SuperMap.Layer.Vector("qu_Layer");
+            this.map.addLayers([qu_Layer]);
+
+
+            var queryResult = new SuperMap.Layer.Vector("queryResult");
+            this.map.addLayers([queryResult]);
+
+
+            var featurePop;
+            var callbacks = {
+              click: (currentFeature) => {
+                closeInfoWin();
+                var x = (currentFeature.geometry.bounds.bottom + currentFeature.geometry.bounds.top) / 2
+                var y = (currentFeature.geometry.bounds.left + currentFeature.geometry.bounds.right) / 2
+                featurePop = new SuperMap.InfoWindow(
+                        "feature",
+                        "属性"
+                );
+                featurePop.hide();
+                featurePop.titleBox = true;
+                featurePop.contentSize = new SuperMap.Size(300, 200);
+                featurePop.render();
+                //featurePop.show(null, feature);
+                featurePop.show(null, currentFeature);
+                var lonLat = new SuperMap.LonLat(y, x);
+                featurePop.setLonLat(lonLat, { x: 0, y: 0 });
+                this.map.addPopup(featurePop)
+              }
+            };
+            function closeInfoWin() {
+              if (featurePop) {
+                try {
+                  featurePop.hide();
+                  featurePop.destroy();
+                }
+                catch (e) {
+                }
+              }
+            }
+            this.selectFeature = new SuperMap.Control.SelectFeature([qu_Layer,queryResult],
+                    {
+                      callbacks: callbacks
+                    });
+            this.map.addControl(this.selectFeature);
+            this.selectFeature.activate();
+
+            //	this.shuxing();
+
+          }
+        });
+        // 禁用拖拽
+        for (var i = 0; i< this.map.controls.length; i++) {
+          this.map.controls[i].deactivate();
+        }
+      }
+      initMap();
     })
   </script>
+  <script type="text/javascript" src="/html/sn-static209/jl/zhihuixiangcun.js"></script>
 </body>
 
 </html>
