@@ -282,6 +282,8 @@ function chart3(data){
 
     var previousPoint = null;
     $("#chart_3").bind("plothover", function(event, pos, item) {
+		pos.x = pos.x || pos.pageX // 浏览器兼容
+		pos.y = pos.y || pos.pageY
         $("#x").text(pos.x.toFixed(0));
         $("#y").text(pos.y.toFixed(0));
 
@@ -338,9 +340,14 @@ function chart3(data){
 }
 
 jQuery(document).ready(function() {
+	var html = "<h2 style='text-align: center'>最近30天无新增文章</h2>";
 	var url="cmsStatic/pubulishList?days=30&pageSize=7";
 	$.get(url,function(data){
-		chart3(data);
+		if (data.data.length === 0) {
+			$("#chart_3").html(html)
+		} else {
+			chart3(data);
+		}
 	});
             
 });

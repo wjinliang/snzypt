@@ -85,7 +85,7 @@
 	jQuery.validator.addMethod("isPassword", function(value, element) {    
 	    var tel = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={} :";'<>?,.\/]).{8,30}$/;
 	    return this.optional(element) || (tel.test(value));
-	}, "必须字母数字符号混合且大于8位");
+	}, "必须同时包含字母、数字、特殊符号。且长度大于8位");
 	   var configForm = '<form id="configMailForm">'
 	   +'<div style="float:left;margin-left:100px;">'
 	   +'配置用户:<select id="leadIds" name="leadIds" multiple="multiple" class="form-control input-large">';

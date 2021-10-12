@@ -14,7 +14,7 @@
   <script>
     var iserver = "http://localhsot:8090";
     //var iserver = "http://47.96.75.177:8090";
-    iserver = "http://mxbt.pro:8090";
+    iserver = "https://172.26.72.221:8090";
     var mapUrl = iserver + "/iserver/services/map-beijing/rest/maps/beijing10261";
     var mapDataUrl = iserver + '/iserver/services/data-beijing/rest/data';
   </script>
