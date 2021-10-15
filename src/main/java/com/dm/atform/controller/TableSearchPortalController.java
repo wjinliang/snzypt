@@ -38,7 +38,7 @@ public class TableSearchPortalController {
 	@ResponseBody
 	public Object data(
 			@RequestParam(value = "pageNum", required = false,defaultValue="1") Integer pageNum,
-			@RequestParam(value = "pageSize", required = false,defaultValue="10") Integer pageSize,
+			@RequestParam(value = "pageSize", required = false,defaultValue="100") Integer pageSize,
 			@PathVariable("code") String code){
 		if(StringUtils.isEmpty(code)){
 			return ResponseUtil.success("code 不能为空");

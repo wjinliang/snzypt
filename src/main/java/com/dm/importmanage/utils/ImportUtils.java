@@ -106,6 +106,8 @@ public class ImportUtils {
 		String tableName = log.getTableName();
 		if (!StringUtils.hasText(tableName)) {
 			tableName = ChineseToEnglish.getPinYinHeadChar("im_"+path);
+			// 将非字母数字下划线替换成下划线
+			tableName = tableName.replaceAll("([^a-zA-Z0-9_]+)", "_");
 			//tableName = (String) m.get(4);
 		}
 		r.setTableName(tableName);
