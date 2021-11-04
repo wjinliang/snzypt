@@ -89,7 +89,25 @@
             <div style="background: url(/html/sn-static209/cdn/img/topic3.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
           </div>
         </div>
-        <div class="bg-gray">
+        <div class="box">
+          <div class="items" style="background-color: #e7f1f8;">
+            <div class="items-content-box">
+              <p class="items-content-tit">统计年鉴</p>
+              <p class="items-content-content">全面反映北京农村经济和社会发展</p>
+              <button id="nianjian_btn" class="items-content-btn">《了解更多</button>
+            </div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic6.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
+          </div>
+          <div class="items" >
+            <div class="items-content-box">
+              <p class="items-content-tit">期待更多</p>
+              <p class="items-content-content">等待更多专题。。。。。。</p>
+              <button id="moreThing" class="items-content-btn">未完待续</button>
+            </div>
+            <div style="background: url(/html/sn-static209/cdn/img/topic2.png) no-repeat; background-size: 100% 100%;" class="items-bgimg"></div>
+          </div>
+        </div>
+        <#--<div class="bg-gray">
           <div class="topic-box setWidth  clearfix">
             <div class="topic-desc pull-topic-right">
               <h1>统计年鉴</h1>
@@ -98,7 +116,7 @@
             </div>
             <div class="topic-img topic-img6"></div>
           </div>
-        </div>
+        </div>-->
       </div>
       <#include "/template/sn_new_footer.ftl">
     </div>

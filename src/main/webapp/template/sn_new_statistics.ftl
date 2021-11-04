@@ -69,6 +69,7 @@
         </div>
       </div>
       <#include "/template/sn_new_footer.ftl">
+<#--      2019年-->
     <script type="text/javascript" src="/html/sn-static/static/js/echarts.common.min.js"></script>
     <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCJBQK2019.js"></script>
     <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYSCTJ2019.js"></script>
@@ -91,7 +92,27 @@
     <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_XZQY2019.js"></script>
     <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_XZQYCKGHQK2019.js"></script>
     <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCSCJYZYZBQK2019.js"></script>
-    
+
+<#--   2020年   -->
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCJBQK2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYSCTJ2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NZWBZMJHZLMJ2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NLMYYZCZ2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_ZYNCPCL2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_PJYNCYRYZNLMYZCZ2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYGGY2020FP.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_GDMJ2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYSCTJ2020db.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NLMYYZCZZB2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_ZYNZWBZMJJCL2020zb.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_LYJGGXCPSC2020bd.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SCSYJCCPCL2020db.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SCPSC2020db.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NYGGY2020db.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_tjZZSC2020db.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_SSNY2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_XZQY2020.js"></script>
+      <script type="text/javascript" src="/html/sn-static209/jl/sn_new_statistics_NCSCJYZYZBQK2020.js"></script>
     <script type="text/javascript" src="/html/sn-static209/jl/statistics.js"></script>
     </div>
     <script>
